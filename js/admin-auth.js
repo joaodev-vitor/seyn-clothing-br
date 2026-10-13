@@ -1,6 +1,6 @@
 /* =========================================================
    ADMIN-AUTH.JS — Login via Firebase Auth + TOTP (Google Auth)
-   v5 — com verificação em duas etapas gratuita
+   v6 — corrigido QR Code (qrcodejs)
    ========================================================= */
 
 'use strict';
@@ -166,12 +166,27 @@ function mostrarSetupTOTP(user, resolve) {
 
     document.body.appendChild(modal);
 
-    /* Gera o QR Code */
-    var canvas = document.createElement('canvas');
-    document.getElementById('totpQR').appendChild(canvas);
-    QRCode.toCanvas(canvas, uri, { width: 200, margin: 1 }, function (err) {
-        if (err) console.error('[TOTP] Erro QR:', err);
-    });
+    /* ✅ Gera o QR Code (lib qrcodejs) */
+    var qrContainer = document.getElementById('totpQR');
+    qrContainer.innerHTML = '';
+
+    if (typeof QRCode !== 'undefined') {
+        try {
+            new QRCode(qrContainer, {
+                text: uri,
+                width: 200,
+                height: 200,
+                colorDark: '#000000',
+                colorLight: '#ffffff',
+                correctLevel: QRCode.CorrectLevel.M
+            });
+            console.log('[TOTP] ✅ QR Code gerado');
+        } catch (e) {
+            console.error('[TOTP] ❌ Erro ao gerar QR:', e);
+        }
+    } else {
+        console.error('[TOTP] ❌ Biblioteca QRCode não carregada');
+    }
 
     /* Foca no input */
     setTimeout(function () {
