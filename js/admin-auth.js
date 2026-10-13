@@ -167,26 +167,28 @@ function mostrarSetupTOTP(user, resolve) {
     document.body.appendChild(modal);
 
     /* ✅ Gera o QR Code (lib qrcodejs) */
-    var qrContainer = document.getElementById('totpQR');
-    qrContainer.innerHTML = '';
+   var qrContainer = document.getElementById('totpQR');
+qrContainer.innerHTML = '';
 
-    if (typeof QRCode !== 'undefined') {
-        try {
-            new QRCode(qrContainer, {
-                text: uri,
-                width: 200,
-                height: 200,
-                colorDark: '#000000',
-                colorLight: '#ffffff',
-                correctLevel: QRCode.CorrectLevel.M
-            });
-            console.log('[TOTP] ✅ QR Code gerado');
-        } catch (e) {
-            console.error('[TOTP] ❌ Erro ao gerar QR:', e);
-        }
-    } else {
-        console.error('[TOTP] ❌ Biblioteca QRCode não carregada');
-    }
+var qrUrl = 'https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=' + encodeURIComponent(uri);
+
+var qrImg = document.createElement('img');
+qrImg.src = qrUrl;
+qrImg.width = 200;
+qrImg.height = 200;
+qrImg.alt = 'QR Code TOTP';
+qrImg.style.display = 'block';
+
+qrImg.onload = function() {
+    console.log('[TOTP] ✅ QR Code gerado via API');
+};
+
+qrImg.onerror = function() {
+    console.error('[TOTP] ❌ Falha ao carregar QR da API');
+    qrContainer.innerHTML = '<p style="color:#ef4444;font-size:.8rem;padding:20px;">Erro ao carregar QR. Use o código manual abaixo.</p>';
+};
+
+qrContainer.appendChild(qrImg);
 
     /* Foca no input */
     setTimeout(function () {
