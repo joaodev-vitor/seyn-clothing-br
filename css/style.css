@@ -10341,3 +10341,144 @@ body:not(.tem-filtro) .header .menu-button {
 /* Tema claro */
 [data-tema="claro"] .btn-gender { color: #1f2937; border-color: rgba(0, 0, 0, 0.2); }
 [data-tema="claro"] .btn-gender.active { background: #1a4dff; color: #fff; border-color: #1a4dff; }
+
+/* =========================================================
+   ✅ AJUSTES FINAIS — Filtro de gênero dentro do Hero
+   + Hambúrguer SEM moldura/sombra
+   ========================================================= */
+
+/* ---------------------------------------------------------
+   1. FILTRO DE GÊNERO — dentro do hero
+   --------------------------------------------------------- */
+.gender-filter {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 26px;
+    flex-wrap: wrap;
+    animation: heroRise 1.1s .05s var(--ease-soft) both;
+}
+
+.btn-gender {
+    padding: 8px 22px;
+    font-family: var(--ff-sans);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--paper-2);
+    background: transparent;
+    border: 1px solid var(--line-2);
+    border-radius: 99px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-gender:hover {
+    border-color: var(--blue-1);
+    color: var(--paper-0);
+    transform: translateY(-1px);
+}
+
+.btn-gender.active {
+    background: var(--blue-1);
+    border-color: var(--blue-1);
+    color: #ffffff;
+    box-shadow: 0 0 20px rgba(26, 77, 255, .35);
+}
+
+/* Tema claro */
+[data-tema="claro"] .btn-gender {
+    color: #1f2937;
+    border-color: rgba(0, 0, 0, 0.2);
+}
+
+[data-tema="claro"] .btn-gender.active {
+    background: #1a4dff;
+    color: #ffffff;
+    border-color: #1a4dff;
+}
+
+@media (max-width: 720px) {
+    .gender-filter {
+        margin-bottom: 20px;
+        gap: 8px;
+    }
+    .btn-gender {
+        padding: 7px 16px;
+        font-size: 0.66rem;
+    }
+}
+
+
+/* ---------------------------------------------------------
+   2. HAMBÚRGUER — SEM MOLDURA, SEM SOMBRA, só o ícone
+   --------------------------------------------------------- */
+.header .menu-button.visivel,
+.header .header-actions .menu-button.visivel {
+    background: transparent !important;
+    border: none !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    color: var(--paper-1) !important;
+
+    position: absolute !important;
+    top: 50% !important;
+    left: 20px !important;
+    right: auto !important;
+    transform: translateY(-50%) !important;
+
+    width: 42px !important;
+    height: 42px !important;
+    display: grid !important;
+    place-items: center !important;
+    z-index: 210 !important;
+    cursor: pointer !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+}
+
+.header .menu-button.visivel:hover {
+    color: var(--blue-1) !important;
+    background: transparent !important;
+}
+
+.header .menu-button.visivel svg {
+    width: 26px !important;
+    height: 26px !important;
+    stroke: currentColor !important;
+    stroke-width: 1.8 !important;
+}
+
+/* Escondido por padrão */
+.header .menu-button:not(.visivel),
+.header .header-actions .menu-button:not(.visivel) {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+}
+
+@media (max-width: 720px) {
+    .header .menu-button.visivel {
+        left: 14px !important;
+        width: 38px !important;
+        height: 38px !important;
+    }
+    .header .menu-button.visivel svg {
+        width: 24px !important;
+        height: 24px !important;
+    }
+}
+
+/* Tema claro */
+[data-tema="claro"] .header .menu-button.visivel {
+    color: #1f2937 !important;
+    background: transparent !important;
+    border: none !important;
+}
+
+[data-tema="claro"] .header .menu-button.visivel:hover {
+    color: #1a4dff !important;
+}
