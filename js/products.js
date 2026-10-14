@@ -1,9 +1,10 @@
 /* =========================================================
    PRODUCTS.JS — Catálogo + grids + favoritos + comprar agora
-   v4 — filtro de gênero + controle do hambúrguer
+   v5 — filtro de gênero + controle do hambúrguer (CORRIGIDO)
    ========================================================= */
 
 'use strict';
+
 
 /* =========================================================
    SISTEMA DE FAVORITOS
@@ -258,8 +259,7 @@ function normalizarProduto(p) {
         estoque:         p.estoque !== false,
         quantidade:      typeof p.quantidade === 'number' ? p.quantidade : 0,
         estoqueTamanhos: p.estoqueTamanhos || {},
-        // NOVO: Campo de gênero (padrão "unissex" se não existir)
-        genero:          (p.genero || 'unissex').toLowerCase() 
+        genero:          (p.genero || 'unissex').toLowerCase()
     };
 }
 
@@ -301,7 +301,7 @@ function calcularDesconto(precoAntigo, preco) {
 
 
 /* =========================================================
-   🛒 COMPRAR AGORA — adiciona ao carrinho e vai pro checkout
+   🛒 COMPRAR AGORA
    ========================================================= */
 function comprarAgora(id, quantidade) {
     quantidade = Math.max(1, parseInt(quantidade, 10) || 1);
@@ -477,31 +477,13 @@ function renderizarProdutos(lista, gridId = 'products-grid') {
 
 
 /* =========================================================
-   VARIÁVEL GLOBAL DO FILTRO DE GÊNERO (NOVO)
+   FILTRO DE GÊNERO
    ========================================================= */
 let filtroGeneroAtual = 'todos';
 
 
 /* =========================================================
-   CONTROLE DO HAMBÚRGUER (NOVO)
-   ========================================================= */
-function atualizarMenuHamburguer(genero) {
-    const btnMenu = document.querySelector('.header .menu-button');
-    if (!btnMenu) return;
-
-    // Se for feminino ou masculino, mostra o hambúrguer
-    if (genero === 'feminino' || genero === 'masculino') {
-        btnMenu.classList.add('visivel');
-    } 
-    // Se for "todos", esconde o hambúrguer
-    else {
-        btnMenu.classList.remove('visivel');
-    }
-}
-
-
-/* =========================================================
-   FUNÇÃO DE FILTRAR GÊNERO (NOVO)
+   FUNÇÃO DE FILTRAR GÊNERO
    ========================================================= */
 function filtrarGenero(genero) {
     filtroGeneroAtual = genero;
@@ -509,7 +491,7 @@ function filtrarGenero(genero) {
     // Atualiza a classe 'active' nos botões
     document.querySelectorAll('.btn-gender').forEach(btn => {
         btn.classList.remove('active');
-        if (btn.getAttribute('onclick') && btn.getAttribute('onclick').includes(`'${genero}'`)) {
+        if (btn.getAttribute('onclick') && btn.getAttribute('onclick').includes("'" + genero + "'")) {
             btn.classList.add('active');
         }
     });
@@ -549,7 +531,7 @@ function inicializarProdutos() {
 
         let lista = obterProdutos();
 
-        // NOVO: Aplica o filtro de gênero
+        // Aplica o filtro de gênero
         if (filtroGeneroAtual !== 'todos') {
             lista = lista.filter(p => p.genero === filtroGeneroAtual);
         }
@@ -580,7 +562,7 @@ function selecionarTamanho(event, botao) {
 
 
 /* =========================================================
-   ❤️ TOGGLE FAVORITO — card de produto
+   ❤️ TOGGLE FAVORITO
    ========================================================= */
 function toggleWish(event, botao) {
     event.preventDefault();
@@ -625,7 +607,6 @@ function aplicarOrdenacao(valor) {
     const categoria = grid.dataset.categoria || '';
     let lista = obterProdutos();
 
-    // NOVO: Aplica o filtro de gênero antes de ordenar
     if (filtroGeneroAtual !== 'todos') {
         lista = lista.filter(p => p.genero === filtroGeneroAtual);
     }
@@ -671,25 +652,25 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 /* =========================================================
-   EXPÕE
+   EXPÕE GLOBALMENTE
    ========================================================= */
-window.CATALOGO_PADRAO      = CATALOGO_PADRAO;
-window.obterProdutos        = obterProdutos;
-window.normalizarProduto    = normalizarProduto;
-window.formatarPreco        = formatarPreco;
-window.calcularDesconto     = calcularDesconto;
-window.gerarCardHTML        = gerarCardHTML;
-window.renderizarProdutos   = renderizarProdutos;
-window.inicializarProdutos  = inicializarProdutos;
-window.aplicarOrdenacao     = aplicarOrdenacao;
-window.selecionarTamanho    = selecionarTamanho;
-window.toggleWish           = toggleWish;
-window.comprarAgora         = comprarAgora;
-window.filtrarGenero        = filtrarGenero; // NOVO
+window.CATALOGO_PADRAO          = CATALOGO_PADRAO;
+window.obterProdutos            = obterProdutos;
+window.normalizarProduto        = normalizarProduto;
+window.formatarPreco            = formatarPreco;
+window.calcularDesconto         = calcularDesconto;
+window.gerarCardHTML            = gerarCardHTML;
+window.renderizarProdutos       = renderizarProdutos;
+window.inicializarProdutos      = inicializarProdutos;
+window.aplicarOrdenacao         = aplicarOrdenacao;
+window.selecionarTamanho        = selecionarTamanho;
+window.toggleWish               = toggleWish;
+window.comprarAgora             = comprarAgora;
+window.filtrarGenero            = filtrarGenero;
 
-window.FAV_KEY              = FAV_KEY;
-window.lerFavoritos         = lerFavoritos;
-window.salvarFavoritos      = salvarFavoritos;
-window.ehFavorito           = ehFavorito;
-window.toggleFavorito       = toggleFavorito;
-window.atualizarBadgeFavoritos = atualizarBadgeFavoritos;f
+window.FAV_KEY                  = FAV_KEY;
+window.lerFavoritos             = lerFavoritos;
+window.salvarFavoritos          = salvarFavoritos;
+window.ehFavorito               = ehFavorito;
+window.toggleFavorito           = toggleFavorito;
+window.atualizarBadgeFavoritos  = atualizarBadgeFavoritos;
