@@ -3,272 +3,547 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Seynclothing — Streetwear · Acessórios · Old Money</title>
-    <meta name="description" content="Seynclothing. Três universos: streetwear urbano, acessórios que definem e a sobriedade do old money.">
-    <meta name="keywords" content="streetwear, moda masculina, old money, acessórios, tênis, roupas, mj stores">
-    <meta name="author" content="Seynclothing">
-    <meta name="theme-color" content="#05070c">
-    <meta name="robots" content="index, follow">
-
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="Seynclothing — Streetwear · Acessórios · Old Money">
-    <meta property="og:description" content="Três universos. Uma identidade.">
-    <meta property="og:url" content="https://seynclothing.netlify.app/">
-    <meta property="og:image" content="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=1200&h=630&fit=crop">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
-    <meta property="og:site_name" content="Seynclothing">
-    <meta property="og:locale" content="pt_BR">
-
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Seynclothing — Streetwear · Acessórios · Old Money">
-    <meta name="twitter:description" content="Moda autoral para quem veste o que pensa.">
-    <meta name="twitter:image" content="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=1200&h=630&fit=crop">
-
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%231a4dff'/><text y='.9em' x='50%25' text-anchor='middle' font-size='70' font-family='Georgia,serif' font-style='italic' font-weight='700' fill='white'>S</text></svg>">
-    <link rel="canonical" href="https://seynclothing.netlify.app/">
+    <title>Painel · Seynclothing</title>
+    <meta name="description" content="Painel administrativo Seynclothing.">
+    <meta name="theme-color" content="#08090d">
+    <meta name="robots" content="noindex, nofollow">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;0,900;1,400;1,700;1,900&family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/produtos.css">
-    <link rel="stylesheet" href="css/cliente.css">
+    <link rel="stylesheet" href="css/admin.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%231a4dff'/><text y='.9em' x='50%25' text-anchor='middle' font-size='70' font-family='Georgia,serif' font-style='italic' font-weight='700' fill='white'>S</text></svg>">
 </head>
 
-<body>
+<body class="app">
 
-<a href="#main" class="skip-link">Pular para o conteúdo</a>
-
-<header class="header" id="header">
-    <nav class="nav" id="nav" aria-label="Navegação principal">
-        <button class="nav-close" onclick="fecharMenu()" aria-label="Fechar menu">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
-        </button>
-        <a href="index.html" class="active">Início</a>
-        <a href="streetwear.html">Streetwear</a>
-        <a href="acessorios.html">Acessórios</a>
-        <a href="old-money.html">Old Money</a>
-    </nav>
-
-    <a href="index.html" class="logo" aria-label="Seynclothing — Página inicial">
-        Seyn<span>clothing</span>
-    </a>
-
-    <div class="header-actions">
-        <button class="search-button" onclick="abrirBusca()" aria-label="Pesquisar">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20.5 20.5l-3.5-3.5"/></svg>
-        </button>
-
-        <a href="carrinho.html" class="cart-button" aria-label="Abrir carrinho">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 7h14l-1.2 12.5a1 1 0 0 1-1 .9H7.2a1 1 0 0 1-1-.9L5 7z"/><path d="M9 7V5.5A3 3 0 0 1 15 5.5V7"/></svg>
-            <span id="cart-count">0</span>
-        </a>
-
-        <a href="login.html" class="conta-button" aria-label="Minha conta" id="contaHeaderBtn">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg>
-            <span class="conta-nome" id="contaNomeHeader"></span>
-        </a>
-
-        <button class="menu-button" onclick="abrirMenu()" aria-label="Abrir menu">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
-        </button>
-    </div>
-</header>
-
-<div class="search-overlay" id="searchOverlay" role="dialog" aria-modal="true" aria-label="Busca de produtos">
-    <div class="search-box">
-        <button class="close-search" onclick="fecharBusca()" aria-label="Fechar busca">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
-        </button>
-        <p>O que você está procurando?</p>
-        <input type="text" id="searchInput" placeholder="Moletom, relógio, mocassim..." autocomplete="off" spellcheck="false">
-        <button onclick="pesquisarProduto()">Buscar</button>
-    </div>
-</div>
-
-<main id="main">
-    <section class="hero">
-        <div class="hero-content">
-
-            <!-- ✅ FILTRO DE GÊNERO — dentro do hero, alinhado com "NOVA COLEÇÃO" -->
-            <div class="gender-filter">
-                <button class="btn-gender active" onclick="filtrarGenero('todos')">Todos</button>
-                <button class="btn-gender" onclick="filtrarGenero('feminino')">Feminino</button>
-                <button class="btn-gender" onclick="filtrarGenero('masculino')">Masculino</button>
-            </div>
-
-            <p class="hero-small">NOVA COLEÇÃO — CAPÍTULO 01</p>
-            <h1>TRÊS UNIVERSOS.<br><span>UMA IDENTIDADE.</span></h1>
-            <p class="hero-description">Streetwear, acessórios e a sobriedade do old money. Peças construídas com intenção — para durar mais que a tendência.</p>
-            <div class="hero-buttons">
-                <a href="#destaques" class="btn-primary">Ver destaques</a>
-                <a href="#categorias" class="btn-secondary">Explorar universos</a>
+<div class="admin-login" id="adminLogin">
+    <div class="admin-login-backdrop"></div>
+    <div class="admin-login-box">
+        <div class="admin-login-brand">
+            <span class="brand-mark">S</span>
+            <div>
+                <strong>Seynclothing</strong>
+                <small>Acesso restrito</small>
             </div>
         </div>
-        <div class="hero-decoration" aria-hidden="true"><span>Seynclothing</span></div>
-    </section>
+        <h1>Painel <em>administrativo.</em></h1>
+        <p>Digite a senha de acesso para continuar.</p>
 
-    <div class="ticker" aria-hidden="true">
-        <div class="ticker-track">
-            <span>Streetwear</span><span>Acessórios</span><span>Old Money</span><span>Autoral</span><span>Edição limitada</span><span>Desde 2018</span>
-            <span>Streetwear</span><span>Acessórios</span><span>Old Money</span><span>Autoral</span><span>Edição limitada</span><span>Desde 2018</span>
-        </div>
-    </div>
-
-    <section class="products" id="destaques">
-        <header class="section-head">
-            <div class="section-head-left">
-                <span class="section-kicker"><span>—</span>PEÇAS EM DESTAQUE</span>
-                <h2 class="section-title">Selecionadas<span>pela curadoria.</span></h2>
-            </div>
-            <div class="section-head-right">
-                <p>Uma amostra dos três universos. As peças que definem o momento.</p>
-            </div>
-        </header>
-        <div class="products-grid" id="products-grid" data-limit="8" aria-live="polite"></div>
-        <div class="products-cta">
-            <a href="streetwear.html" class="btn-secondary">Ver streetwear</a>
-            <a href="acessorios.html" class="btn-secondary">Ver acessórios</a>
-            <a href="old-money.html" class="btn-primary">Ver old money</a>
-        </div>
-    </section>
-
-    <section class="categories" id="categorias">
-        <div class="section-title">
-            <p>ESCOLHA SEU UNIVERSO</p>
-            <h2>Três territórios.<span>Uma assinatura.</span></h2>
-        </div>
-        <div class="category-grid category-grid--three">
-            <a href="streetwear.html" class="category-card street-card">
-                <div class="category-content">
-                    <span>01</span><h3>Streetwear</h3>
-                    <p>Silhuetas largas, atitude urbana. Para quem cria suas próprias regras.</p>
-                    <strong>Explorar</strong>
+        <form id="adminLoginForm" autocomplete="off">
+            <div class="admin-login-field">
+                <label for="adminSenha">Senha</label>
+                <div class="admin-login-input">
+                    <input type="password" id="adminSenha" placeholder="••••••••••" autocomplete="current-password" required autofocus>
+                    <button type="button" id="adminToggleSenha" onclick="alternarSenha()" aria-label="Mostrar senha">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                    </button>
                 </div>
-            </a>
-            <a href="acessorios.html" class="category-card access-card">
-                <div class="category-content">
-                    <span>02</span><h3>Acessórios</h3>
-                    <p>Relógios, cintos, óculos e o que define o detalhe invisível.</p>
-                    <strong>Explorar</strong>
-                </div>
-            </a>
-            <a href="old-money.html" class="category-card old-card">
-                <div class="category-content">
-                    <span>03</span><h3>Old Money</h3>
-                    <p>Sobriedade como declaração. O luxo que não precisa gritar.</p>
-                    <strong>Explorar</strong>
-                </div>
-            </a>
-        </div>
-    </section>
-
-    <section class="lookbook" id="lookbook" aria-labelledby="lookbook-title">
-        <div class="section-title">
-            <p>LOOKBOOK — MMXXVI</p>
-            <h2 id="lookbook-title">Do ateliê<span>para a rua.</span></h2>
-        </div>
-        <div class="lookbook-grid">
-            <article class="lookbook-item span-7"><h4>Concreto & Seda</h4><small>LOOK 01 — STREETWEAR</small></article>
-            <article class="lookbook-item span-5"><h4>Meia-Luz</h4><small>LOOK 02 — ACESSÓRIOS</small></article>
-            <article class="lookbook-item span-4"><h4>Herança</h4><small>LOOK 03 — OLD MONEY</small></article>
-            <article class="lookbook-item span-8"><h4>Rua Noturna</h4><small>LOOK 04 — ENCERRAMENTO</small></article>
-        </div>
-    </section>
-
-    <section class="pull-quote">
-        <blockquote>Não fazemos roupa para passar. Fazemos para permanecer.</blockquote>
-        <cite>Manifesto Seynclothing</cite>
-    </section>
-
-    <section class="products products-alt">
-        <header class="section-head">
-            <div class="section-head-left">
-                <span class="section-kicker"><span>—</span>MAIS PROCURADOS</span>
-                <h2 class="section-title">O que está<span>saindo.</span></h2>
+                <span class="admin-login-erro" id="adminLoginErro"></span>
             </div>
-            <div class="section-head-right">
-                <p>Peças que somem rápido do estoque. Últimas unidades em rotação.</p>
-            </div>
-        </header>
-        <div class="products-grid" id="products-grid-procurados" data-limit="4" data-ordem="preco-desc" aria-live="polite"></div>
-    </section>
-
-    <section class="quick-categories">
-        <div class="section-title">
-            <p>ENCONTRE O SEU</p>
-            <h2>Escolha<span>uma categoria.</span></h2>
-        </div>
-        <div class="quick-grid">
-            <a href="streetwear.html" class="quick-card"><span>01</span><h3>Streetwear</h3><p>Atitude urbana.</p></a>
-            <a href="acessorios.html" class="quick-card"><span>02</span><h3>Acessórios</h3><p>Os detalhes fazem diferença.</p></a>
-            <a href="old-money.html" class="quick-card"><span>03</span><h3>Old Money</h3><p>Sobriedade como declaração.</p></a>
-            <a href="#destaques" class="quick-card"><span>04</span><h3>Ver tudo</h3><p>Confira nossa coleção.</p></a>
-        </div>
-    </section>
-
-    <section class="newsletter">
-        <div>
-            <h3>Receba<span>primeiro.</span></h3>
-            <p>Lançamentos, editoriais e convites para pré-vendas — direto no seu e-mail.</p>
-        </div>
-        <form class="newsletter-form" id="newsletterForm">
-            <input type="email" placeholder="seu@email.com" aria-label="Seu e-mail" required>
-            <button type="submit">Assinar</button>
+            <button type="submit" class="admin-login-btn">Entrar no painel</button>
         </form>
-    </section>
 
-    <section class="final-cta">
-        <div>
-            <h2>Não vista.<span>Represente.</span></h2>
-            <a href="#destaques" class="btn-primary">Explorar agora</a>
+        <div class="admin-login-foot">
+            <a href="index.html">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                Voltar para a loja
+            </a>
         </div>
-    </section>
-</main>
-
-<footer class="footer">
-    <div class="footer-logo">Seyn<span>clothing</span></div>
-    <nav class="footer-links" aria-label="Rodapé">
-        <a href="streetwear.html">Streetwear</a>
-        <a href="acessorios.html">Acessórios</a>
-        <a href="old-money.html">Old Money</a>
-        <a href="admin.html" class="admin-link">Área administrativa</a>
-    </nav>
-    <div class="footer-contato">
-    <a href="mailto:seyn.clothing@gmail.com" class="footer-contato-link">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-            <rect x="3" y="5" width="18" height="14" rx="2"/>
-            <path d="M3 7l9 6 9-6"/>
-        </svg>
-        <span>seyn.clothing@gmail.com</span>
-    </a>
-
-    <a href="https://wa.me/5511993890188" target="_blank" rel="noopener" class="footer-contato-link">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-            <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
-        </svg>
-        <span>(11) 99389-0188</span>
-    </a>
+    </div>
 </div>
 
-<p>© 2026 Seynclothing — Todos os direitos reservados.</p>
-<p class="footer-legal" style="margin-top:8px;font-size:0.8rem;">
-    <a href="privacidade.html" style="color:#7fb0ff;">Política de Privacidade</a> ·
-    <a href="direitos-titular.html" style="color:#7fb0ff;">Direitos do Titular</a>
-</p>
-</footer>
+<aside class="sidebar" id="sidebar">
+    <div class="sidebar-head">
+        <a href="index.html" class="brand" aria-label="Seynclothing">
+            <span class="brand-mark">S</span>
+            <span class="brand-text">
+                <strong>Seynclothing</strong>
+                <small>Painel administrativo</small>
+            </span>
+        </a>
+        <button class="icon-btn sidebar-collapse" onclick="alternarSidebarRecolhida()" aria-label="Recolher menu">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+        </button>
+    </div>
+
+    <div class="sidebar-search">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+        <input type="text" id="sidebarSearch" placeholder="Buscar no painel..." autocomplete="off">
+        <kbd>⌘K</kbd>
+    </div>
+
+    <nav class="sidebar-nav" aria-label="Navegação">
+        <div class="nav-section">
+            <span class="nav-label">Operação</span>
+            <button class="nav-item active" data-section="dashboard" onclick="trocarSecao('dashboard')">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="9" rx="1"/><rect x="14" y="3" width="7" height="5" rx="1"/><rect x="14" y="12" width="7" height="9" rx="1"/><rect x="3" y="16" width="7" height="5" rx="1"/></svg>
+                <span>Dashboard</span>
+            </button>
+            <button class="nav-item" data-section="pedidos" onclick="trocarSecao('pedidos')">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 3h14v18l-7-4-7 4V3z"/><path d="M9 8h6M9 12h6"/></svg>
+                <span>Pedidos</span>
+                <span class="nav-badge" id="navBadgePedidos">0</span>
+            </button>
+            <button class="nav-item" data-section="produtos" onclick="trocarSecao('produtos')">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 7l9-4 9 4-9 4-9-4z"/><path d="M3 7v10l9 4 9-4V7"/><path d="M12 11v10"/></svg>
+                <span>Produtos</span>
+            </button>
+            <button class="nav-item" data-section="estoque" onclick="trocarSecao('estoque')">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="1"/><path d="M3 9h18M3 15h18M9 3v18M15 3v18"/></svg>
+                <span>Estoque</span>
+            </button>
+        </div>
+
+        <div class="nav-section">
+            <span class="nav-label">Relacionamento</span>
+            <button class="nav-item" data-section="clientes" onclick="trocarSecao('clientes')">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="8" r="4"/><path d="M2 21c0-3.9 3.1-7 7-7s7 3.1 7 7"/><circle cx="17" cy="8" r="3"/></svg>
+                <span>Clientes</span>
+            </button>
+            <button class="nav-item" data-section="avaliacoes" onclick="trocarSecao('avaliacoes')">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                <span>Avaliações</span>
+                <span class="nav-badge" id="navBadgeAvaliacoes">0</span>
+            </button>
+            <button class="nav-item" data-section="reembolsos" onclick="trocarSecao('reembolsos')">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 1 0 3-6.7M3 4v5h5"/></svg>
+                <span>Reembolsos</span>
+                <span class="nav-badge" id="navBadgeReembolsos">0</span>
+            </button>
+            <button class="nav-item" data-section="relatorios" onclick="trocarSecao('relatorios')">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="M7 15l4-4 4 4 5-6"/></svg>
+                <span>Relatórios</span>
+            </button>
+        </div>
+
+        <div class="nav-section">
+            <span class="nav-label">Sistema</span>
+            <button class="nav-item" data-section="config" onclick="trocarSecao('config')">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+                <span>Configurações</span>
+            </button>
+        </div>
+    </nav>
+
+    <div class="sidebar-foot">
+        <div class="system-health">
+            <div class="health-row"><span class="health-dot"></span><span class="health-label">Sistema operacional</span><span class="health-value">99.9%</span></div>
+            <div class="health-bar"><div class="health-fill" style="width: 99.9%"></div></div>
+            <small>Última verificação: agora</small>
+        </div>
+        <a href="index.html" class="back-store">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+            <span>Voltar para a loja</span>
+        </a>
+    </div>
+</aside>
+
+<div class="sidebar-backdrop" id="sidebarBackdrop" onclick="fecharSidebar()"></div>
+
+<div class="app-shell">
+
+    <header class="topbar">
+        <button class="icon-btn mobile-menu" onclick="alternarSidebar()" aria-label="Menu">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+
+        <div class="topbar-title">
+            <nav class="breadcrumb" aria-label="Trilha">
+                <a href="index.html">Painel</a>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+                <span id="breadcrumbCurrent">Dashboard</span>
+            </nav>
+            <h1 id="pageTitle">Dashboard</h1>
+        </div>
+
+        <div class="topbar-actions">
+            <button class="icon-btn" onclick="fazerLogout()" aria-label="Sair" title="Sair">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"/></svg>
+            </button>
+            <button class="icon-btn" onclick="abrirBuscaGlobal()" aria-label="Buscar">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+            </button>
+
+            <div class="dropdown">
+                <button class="icon-btn" onclick="alternarDropdown('notifMenu')" aria-label="Notificações">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8a6 6 0 1 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/></svg>
+                    <span class="notif-dot" aria-hidden="true"></span>
+                </button>
+                <div class="dropdown-menu" id="notifMenu">
+                    <div class="dropdown-head"><strong>Notificações</strong><span>0 novas</span></div>
+                    <ul class="notif-list">
+                        <li class="notif-item">
+                            <span class="notif-icon info"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 3h14v18l-7-4-7 4V3z"/></svg></span>
+                            <div><strong>Sem notificações</strong><small>Aguardando pedidos</small></div>
+                        </li>
+                    </ul>
+                    <a href="#" class="dropdown-foot" onclick="event.preventDefault(); trocarSecao('pedidos');">Ver pedidos</a>
+                </div>
+            </div>
+
+            <div class="dropdown">
+                <button class="user-btn" onclick="alternarDropdown('userMenu')">
+                    <span class="user-avatar">S</span>
+                    <span class="user-info"><strong>Administrador</strong><small>Proprietário</small></span>
+                    <svg class="user-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+                </button>
+                <div class="dropdown-menu user-menu" id="userMenu">
+                    <div class="dropdown-user-head">
+                        <span class="user-avatar-lg">S</span>
+                        <div><strong>Administrador</strong><small>admin@seynclothing.com</small></div>
+                    </div>
+                    <ul>
+                        <li><a href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg>Meu perfil</a></li>
+                        <li><a href="#" onclick="event.preventDefault(); trocarSecao('config');"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/></svg>Configurações</a></li>
+                    </ul>
+                    <div class="dropdown-user-foot">
+                        <a href="#" class="logout" onclick="event.preventDefault(); fazerLogout();">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"/></svg>
+                            Sair
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="content">
+        <div id="alertaReembolsos" class="alerta-reembolsos" style="display:none;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7M3 4v5h5"/></svg>
+            <span><strong id="alertaReembolsosTexto">0 reembolsos pendentes</strong> — clientes aguardando resposta</span>
+            <button type="button" onclick="trocarSecao('reembolsos')">Ver agora</button>
+        </div>
+
+        <section class="page active" data-section="dashboard">
+            <div id="alertaEstoque"></div>
+            <div class="kpi-grid kpi-grid-6">
+                <article class="kpi"><header><span>Faturamento</span><span class="kpi-period">Total acumulado</span></header><strong class="kpi-value" id="kpiFaturamento">R$ 0,00</strong><footer><span class="trend trend-up"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17l10-10M17 7H10M17 7v7"/></svg>ativo</span><small>soma de todos os pedidos</small></footer></article>
+                <article class="kpi"><header><span>Pedidos</span><span class="kpi-period">Total</span></header><strong class="kpi-value" id="kpiPedidos">0</strong><footer><span class="trend trend-neutral"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/></svg>registrados</span><small>desde o início</small></footer></article>
+                <article class="kpi"><header><span>Ticket médio</span><span class="kpi-period">Por pedido</span></header><strong class="kpi-value" id="kpiTicket">R$ 0,00</strong><footer><span class="trend trend-neutral"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/></svg>média</span><small>faturamento / pedidos</small></footer></article>
+                <article class="kpi"><header><span>Produtos ativos</span><span class="kpi-period">Catálogo</span></header><strong class="kpi-value" id="kpiProdutos">0</strong><footer><span class="trend trend-neutral"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/></svg>disponíveis</span><small>no catálogo</small></footer></article>
+                <article class="kpi kpi-destaque"><header><span>Itens em estoque</span><span class="kpi-period">Total de unidades</span></header><strong class="kpi-value" id="kpiItensEstoque">0</strong><footer><span class="trend trend-neutral"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/></svg>unidades</span><small>somatório do catálogo</small></footer></article>
+                <article class="kpi kpi-alerta"><header><span>Estoque baixo</span><span class="kpi-period">≤ 5 unidades</span></header><strong class="kpi-value" id="kpiBaixoEstoque">0</strong><footer><span class="trend trend-down"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 7l10 10M17 17H10M17 17v-7"/></svg>repor</span><small>precisa repor logo</small></footer></article>
+            </div>
+
+            <div class="grid-2col">
+                <article class="panel panel-chart">
+                    <header class="panel-head"><div><h2>Desempenho de vendas</h2><p class="panel-sub">Faturamento por dia</p></div></header>
+                    <div class="chart-wrap">
+                        <svg class="chart-svg" viewBox="0 0 800 240" preserveAspectRatio="none" aria-hidden="true">
+                            <defs><linearGradient id="chartFill" x1="0" x2="0" y1="0" y2="1"><stop offset="0%" stop-color="rgba(37, 99, 235, .35)"/><stop offset="100%" stop-color="rgba(37, 99, 235, 0)"/></linearGradient></defs>
+                            <g class="chart-grid"><line x1="0" y1="40" x2="800" y2="40"/><line x1="0" y1="90" x2="800" y2="90"/><line x1="0" y1="140" x2="800" y2="140"/><line x1="0" y1="190" x2="800" y2="190"/></g>
+                            <path class="chart-area" d="" fill="url(#chartFill)"/>
+                            <path class="chart-line" d="" fill="none" stroke="#2563eb" stroke-width="2.5"/>
+                        </svg>
+                        <div class="chart-axis-x"></div>
+                    </div>
+                </article>
+                <article class="panel panel-activity">
+                    <header class="panel-head"><div><h2>Atividade recente</h2><p class="panel-sub">Últimas movimentações</p></div></header>
+                    <ul class="activity-list" id="activityList"></ul>
+                </article>
+            </div>
+
+            <article class="panel">
+                <header class="panel-head">
+                    <div><h2>Pedidos recentes</h2><p class="panel-sub">Últimos 5 pedidos</p></div>
+                    <button class="btn btn-ghost" onclick="trocarSecao('pedidos')">Ver todos<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+                </header>
+                <div class="table-wrap">
+                    <table class="table">
+                        <thead><tr><th>Pedido</th><th>Cliente</th><th>Data</th><th>Valor</th><th>Pagamento</th><th>Status</th><th></th></tr></thead>
+                        <tbody id="recentOrdersTable"></tbody>
+                    </table>
+                </div>
+            </article>
+        </section>
+
+        <section class="page" data-section="produtos">
+            <header class="page-head">
+                <div><h2>Gestão de produtos</h2><p>Cadastre, edite, defina quantidade e remova peças.</p></div>
+                <div style="display:flex;gap:10px;flex-wrap:wrap;">
+                    <button class="btn btn-ghost" onclick="reporTudo(10)">Definir 10 un. em todos sem estoque</button>
+                    <button class="btn btn-primary" onclick="abrirModalProduto()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>Novo produto</button>
+                </div>
+            </header>
+            <div class="toolbar">
+                <div class="toolbar-search">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+                    <input type="text" id="productSearch" placeholder="Buscar produto...">
+                </div>
+                <div class="toolbar-filters">
+                    <select class="select" id="filterCategoria"><option value="">Todas as categorias</option><option value="streetwear">Streetwear</option><option value="acessorios">Acessórios</option><option value="old-money">Old Money</option></select>
+                    <select class="select" id="filterEstoque"><option value="">Todos os estoques</option><option value="ativo">Disponíveis</option><option value="baixo">Estoque baixo</option><option value="esgotado">Esgotados</option></select>
+                </div>
+            </div>
+            <article class="panel">
+                <div class="table-wrap">
+                    <table class="table table-products">
+                        <thead><tr><th class="col-check"><input type="checkbox"></th><th>Produto</th><th>Categoria</th><th>Preço</th><th>Quantidade</th><th>Status</th><th class="col-actions"></th></tr></thead>
+                        <tbody id="productsTable"></tbody>
+                    </table>
+                </div>
+                <footer class="table-foot" id="productsFoot"><span class="table-count">0 produtos</span></footer>
+            </article>
+        </section>
+
+        <section class="page" data-section="pedidos">
+            <header class="page-head"><div><h2>Pedidos</h2><p>Histórico completo de vendas.</p></div></header>
+            <article class="panel">
+                <div class="table-wrap">
+                    <table class="table">
+                        <thead><tr><th>Pedido</th><th>Cliente</th><th>Data</th><th>Valor</th><th>Pagamento</th><th>Status</th><th></th></tr></thead>
+                        <tbody id="ordersTableFull"></tbody>
+                    </table>
+                </div>
+            </article>
+        </section>
+
+        <section class="page" data-section="estoque">
+            <header class="page-head">
+                <div><h2>Controle de estoque</h2><p>Aumente ou diminua a quantidade de cada produto.</p></div>
+                <button class="btn btn-ghost" onclick="reporTudo(10)">Definir 10 un. em todos sem estoque</button>
+            </header>
+            <div id="estoqueLista"></div>
+        </section>
+
+        <section class="page" data-section="clientes">
+            <header class="page-head"><div><h2>Clientes</h2><p>Base de clientes derivada dos pedidos.</p></div></header>
+            <article class="panel">
+                <div class="table-wrap">
+                    <table class="table">
+                        <thead><tr><th>Cliente</th><th>Telefone</th><th>Pedidos</th><th>Total gasto</th><th>Último pedido</th></tr></thead>
+                        <tbody id="clientesTable"></tbody>
+                    </table>
+                </div>
+            </article>
+        </section>
+
+        <section class="page" data-section="avaliacoes">
+            <header class="page-head">
+                <div><h2>Avaliações</h2><p>O que os clientes dizem sobre as peças.</p></div>
+                <div style="display:flex;gap:10px;flex-wrap:wrap;">
+                    <select class="select" id="filtroAvaliacoesNota" onchange="renderizarAvaliacoes()"><option value="">Todas as notas</option><option value="5">5 estrelas</option><option value="4">4 estrelas</option><option value="3">3 estrelas</option><option value="2">2 estrelas</option><option value="1">1 estrela</option></select>
+                    <button class="btn btn-ghost" onclick="carregarAvaliacoesAdmin()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 1 0 3-6.7M3 4v5h5"/></svg>Recarregar</button>
+                </div>
+            </header>
+            <div class="kpi-grid" style="margin-bottom:30px;">
+                <article class="kpi"><header><span>Total de avaliações</span></header><strong class="kpi-value" id="kpiTotalAvaliacoes">0</strong></article>
+                <article class="kpi"><header><span>Nota média</span></header><strong class="kpi-value" id="kpiMediaAvaliacoes">—</strong></article>
+                <article class="kpi"><header><span>5 estrelas</span></header><strong class="kpi-value" id="kpiCincoEstrelas">0</strong></article>
+            </div>
+            <article class="panel">
+                <div class="table-wrap">
+                    <table class="table">
+                        <thead><tr><th>Produto</th><th>Cliente</th><th>Nota</th><th>Comentário</th><th>Data</th><th></th></tr></thead>
+                        <tbody id="avaliacoesTable"></tbody>
+                    </table>
+                </div>
+                <footer class="table-foot" id="avaliacoesFoot"><span class="table-count">0 avaliações</span></footer>
+            </article>
+        </section>
+
+        <section class="page" data-section="reembolsos">
+            <header class="page-head"><div><h2>Reembolsos</h2><p>Solicitações de reembolso dos clientes.</p></div></header>
+            <div class="kpi-grid" style="margin-bottom:30px;">
+                <article class="kpi"><header><span>Total de solicitações</span></header><strong class="kpi-value" id="kpiTotalReembolsos">0</strong></article>
+                <article class="kpi kpi-alerta"><header><span>Pendentes</span></header><strong class="kpi-value" id="kpiReembolsosPendentes">0</strong></article>
+                <article class="kpi"><header><span>Valor total</span></header><strong class="kpi-value" id="kpiValorReembolsos">R$ 0,00</strong></article>
+            </div>
+            <article class="panel">
+                <div class="table-wrap">
+                    <table class="table">
+                        <thead><tr><th>Pedido</th><th>Cliente</th><th>Valor</th><th>Motivo</th><th>Status</th><th>Data</th><th></th></tr></thead>
+                        <tbody id="reembolsosTable"></tbody>
+                    </table>
+                </div>
+            </article>
+        </section>
+
+        <section class="page" data-section="relatorios">
+            <header class="page-head"><div><h2>Relatórios</h2><p>Análise de desempenho.</p></div></header>
+            <div class="kpi-grid" style="margin-bottom:30px;">
+                <article class="kpi"><header><span>Total de pedidos</span></header><strong class="kpi-value" id="relatorioTotalPedidos">0</strong></article>
+                <article class="kpi"><header><span>Total faturado</span></header><strong class="kpi-value" id="relatorioTotalFaturado">R$ 0,00</strong></article>
+            </div>
+        </section>
+
+        <!-- =========================================================
+             CONFIGURAÇÕES — PIX
+             ✅ AJUSTADO: placeholder claro, texto de ajuda, contador
+             ========================================================= -->
+        <section class="page" data-section="config">
+            <header class="page-head"><div><h2>Configurações</h2><p>Chave PIX e dados da loja.</p></div></header>
+            <article class="panel" style="padding:32px;">
+                <h3 style="font-size:15px;font-weight:600;margin-bottom:6px;">Configuração PIX</h3>
+                <p style="font-size:13px;color:var(--text-3);margin-bottom:24px;">Define para onde o dinheiro é enviado nos pagamentos via PIX.</p>
+
+                <div class="form-row">
+                    <div class="field field-full">
+                        <label for="configPixChave">Chave PIX <span>*</span></label>
+                        <input type="text" id="configPixChave" placeholder="Ex: 40599270829 (só números)" required>
+                        <small style="display:block;margin-top:6px;font-size:12px;color:var(--text-3);">
+                            CPF: apenas os 11 números, sem pontos ou traço.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="field">
+                        <label for="configPixNome">Nome do recebedor <span>*</span></label>
+                        <input type="text" id="configPixNome" maxlength="25" placeholder="SEYN CLOTHING" required
+                               oninput="document.getElementById('contadorNome').textContent = this.value.length + '/25';">
+                        <small style="display:block;margin-top:6px;font-size:12px;color:var(--text-3);">
+                            ⚠️ Sem acento e sem "ç" — máx 25 caracteres.
+                            <span id="contadorNome" style="float:right;color:var(--text-3);">0/25</span>
+                        </small>
+                    </div>
+                    <div class="field">
+                        <label for="configPixCidade">Cidade <span>*</span></label>
+                        <input type="text" id="configPixCidade" maxlength="15" placeholder="SAO PAULO" required
+                               oninput="document.getElementById('contadorCidade').textContent = this.value.length + '/15';">
+                        <small style="display:block;margin-top:6px;font-size:12px;color:var(--text-3);">
+                            ⚠️ Sem acento — máx 15 caracteres.
+                            <span id="contadorCidade" style="float:right;color:var(--text-3);">0/15</span>
+                        </small>
+                    </div>
+                </div>
+
+                <div style="margin-top:24px;padding:16px;background:rgba(37,99,235,.06);border-left:3px solid #2563eb;border-radius:4px;">
+                    <p style="font-size:13px;color:var(--text-2);margin:0;">
+                        <strong style="color:#2563eb;">💡 Dica:</strong> depois de salvar, faça um pedido de teste e leia o QR Code com o app do banco. Deve aparecer <strong id="previewNome">SEYN CLOTHING</strong> como recebedor.
+                    </p>
+                </div>
+            </article>
+            <div style="display:flex;gap:12px;justify-content:flex-end;margin-top:20px;">
+                <button class="btn btn-primary" onclick="salvarConfiguracoes()">Salvar alterações</button>
+            </div>
+        </section>
+    </main>
+</div>
+
+<div class="modal" id="modalProduto">
+    <div class="modal-backdrop" onclick="fecharModalProduto()"></div>
+    <div class="modal-dialog">
+        <header class="modal-head">
+            <div><h3 id="modalProdutoTitle">Novo produto</h3><p>Preencha os dados para cadastrar no catálogo.</p></div>
+            <button class="icon-btn" onclick="fecharModalProduto()" aria-label="Fechar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+        </header>
+        <form class="modal-body" id="formProduto">
+            <input type="hidden" id="produtoId">
+            <div class="form-row"><div class="field field-full"><label for="fNome">Nome do produto <span>*</span></label><input type="text" id="fNome" required placeholder="Ex: Moletom Oversized Ártico"></div></div>
+            <div class="form-row">
+                <div class="field"><label for="fCategoria">Categoria <span>*</span></label><select id="fCategoria" required><option value="">Selecione</option><option value="streetwear">Streetwear</option><option value="acessorios">Acessórios</option><option value="old-money">Old Money</option></select></div>
+                <div class="field"><label for="fBadge">Badge</label><select id="fBadge"><option value="">Nenhum</option><option value="novo">Novo</option><option value="sale">Promoção</option></select></div>
+            </div>
+            <div class="form-row"><div class="field field-full"><label for="fDescricao">Descrição curta <span>*</span></label><textarea id="fDescricao" required rows="3" placeholder="Descrição do produto"></textarea></div></div>
+            <div class="form-row">
+                <div class="field"><label for="fPreco">Preço (R$) <span>*</span></label><input type="number" step="0.01" id="fPreco" required placeholder="349.90"></div>
+                <div class="field"><label for="fPrecoAntigo">Preço original (opcional)</label><input type="number" step="0.01" id="fPrecoAntigo" placeholder="429.90"></div>
+            </div>
+            <div class="form-row"><div class="field field-full"><label for="fImagem">URL da imagem principal <span>*</span></label><input type="url" id="fImagem" required placeholder="https://..."></div></div>
+            <div class="form-row"><div class="field field-full"><label for="fImagemAlt">URL da imagem alternativa (opcional)</label><input type="url" id="fImagemAlt" placeholder="https://..."></div></div>
+            <div class="form-row"><div class="field field-full"><label for="fTamanhos">Tamanhos disponíveis</label><input type="text" id="fTamanhos" placeholder="P, M, G, GG"></div></div>
+            <footer class="modal-foot">
+                <button type="button" class="btn btn-ghost" onclick="fecharModalProduto()">Cancelar</button>
+                <button type="submit" class="btn btn-primary">Salvar produto</button>
+            </footer>
+        </form>
+    </div>
+</div>
+
+<div class="modal" id="modalPedido">
+    <div class="modal-backdrop" onclick="fecharModalPedido()"></div>
+    <div class="modal-dialog modal-lg">
+        <header class="modal-head">
+            <div><h3>Pedido <span class="mono" id="pedidoModalNumero">#0000</span></h3><p id="pedidoModalData">—</p></div>
+            <button class="icon-btn" onclick="fecharModalPedido()" aria-label="Fechar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+        </header>
+        <div class="modal-body">
+            <div class="modal-section"><h4 class="modal-section-title">Cliente</h4><div class="modal-info" id="pedidoModalCliente"></div></div>
+            <div class="modal-section"><h4 class="modal-section-title">Endereço de entrega</h4><div class="modal-info" id="pedidoModalEndereco"></div></div>
+            <div class="modal-section"><h4 class="modal-section-title">Itens</h4><div class="order-items" id="pedidoModalItens"></div><div class="order-totals" id="pedidoModalTotais"></div></div>
+            <div class="modal-section">
+                <h4 class="modal-section-title">Status do pedido</h4>
+                <div class="form-row"><div class="field field-full">
+                    <select id="pedidoModalStatus">
+                        <option value="aguardando_pagamento">Aguardando pagamento</option>
+                        <option value="processando">Processando</option>
+                        <option value="pago">Pago</option>
+                        <option value="preparando">Preparando envio</option>
+                        <option value="enviado">Em rota de entrega</option>
+                        <option value="entregue">Entregue</option>
+                        <option value="cancelado">Cancelado</option>
+                    </select>
+                </div></div>
+            </div>
+        </div>
+        <footer class="modal-foot modal-foot-split">
+            <button type="button" class="btn btn-ghost danger" onclick="excluirPedido()">Excluir pedido</button>
+            <div>
+                <button type="button" class="btn btn-ghost" onclick="fecharModalPedido()">Fechar</button>
+                <button type="button" class="btn btn-primary" onclick="salvarStatusPedido()">Salvar status</button>
+            </div>
+        </footer>
+    </div>
+</div>
+
+<div class="modal" id="modalReembolso">
+    <div class="modal-backdrop" onclick="fecharModalReembolso()"></div>
+    <div class="modal-dialog">
+        <header class="modal-head">
+            <div><h3>Reembolso <span class="mono" id="reembolsoModalNumero">#0000</span></h3><p id="reembolsoModalData">—</p></div>
+            <button class="icon-btn" onclick="fecharModalReembolso()" aria-label="Fechar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+        </header>
+        <div class="modal-body">
+            <div class="modal-section"><h4 class="modal-section-title">Cliente</h4><div class="modal-info" id="reembolsoModalCliente"></div></div>
+            <div class="modal-section" id="reembolsoModalMotivoSection"><h4 class="modal-section-title">Motivo do reembolso</h4><div id="reembolsoModalMotivo"></div></div>
+            <div class="modal-section"><h4 class="modal-section-title">Itens do pedido</h4><div class="order-items" id="reembolsoModalItens"></div><div class="order-totals" id="reembolsoModalTotais"></div></div>
+            <div class="modal-section">
+                <h4 class="modal-section-title">Status do reembolso</h4>
+                <div class="form-row"><div class="field field-full">
+                    <select id="reembolsoModalStatus">
+                        <option value="pendente">Pendente</option>
+                        <option value="aprovado">Aprovado — aguardando devolução</option>
+                        <option value="pago">Pago — valor já devolvido</option>
+                        <option value="negado">Negado</option>
+                    </select>
+                </div></div>
+            </div>
+            <div class="modal-section">
+                <h4 class="modal-section-title">Resposta pro cliente (opcional)</h4>
+                <textarea id="reembolsoModalObs" rows="3" placeholder="Ex: reembolso aprovado, valor será devolvido via PIX em até 5 dias úteis..." style="width:100%;padding:12px;background:var(--surface-0);border:1px solid var(--border);color:var(--text-1);border-radius:6px;font-family:inherit;font-size:13px;resize:vertical;outline:none;"></textarea>
+            </div>
+        </div>
+        <footer class="modal-foot modal-foot-split">
+            <button type="button" class="btn btn-ghost danger" onclick="excluirReembolso()">Excluir</button>
+            <div>
+                <button type="button" class="btn btn-ghost" onclick="fecharModalReembolso()">Fechar</button>
+                <button type="button" class="btn btn-primary" onclick="salvarStatusReembolso()">Salvar status</button>
+            </div>
+        </footer>
+    </div>
+</div>
+
+<div class="toast-stack" id="toastStack"></div>
 
 <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth-compat.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+<!-- ✅ CORRIGIDO: libs TOTP com URLs corretas -->
+<script src="https://cdn.jsdelivr.net/npm/otpauth@9/dist/otpauth.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
+
 <script src="js/firebase-config.js"></script>
 <script src="js/firebase-service.js"></script>
 <script src="js/products.js"></script>
-<script src="js/cart.js"></script>
-<script src="js/script.js"></script>
-<script src="js/whatsapp-float.js"></script>
-<script src="js/cookie-consent.js"></script>
+<script src="js/email.js"></script>
+<script src="js/admin.js"></script>
+<script src="js/admin-auth.js"></script>
+
 </body>
 </html>

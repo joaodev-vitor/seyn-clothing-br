@@ -91,6 +91,14 @@
 <main id="main">
     <section class="hero">
         <div class="hero-content">
+
+            <!-- ✅ FILTRO DE GÊNERO — dentro do hero, alinhado com "NOVA COLEÇÃO" -->
+            <div class="gender-filter">
+                <button class="btn-gender active" onclick="filtrarGenero('todos')">Todos</button>
+                <button class="btn-gender" onclick="filtrarGenero('feminino')">Feminino</button>
+                <button class="btn-gender" onclick="filtrarGenero('masculino')">Masculino</button>
+            </div>
+
             <p class="hero-small">NOVA COLEÇÃO — CAPÍTULO 01</p>
             <h1>TRÊS UNIVERSOS.<br><span>UMA IDENTIDADE.</span></h1>
             <p class="hero-description">Streetwear, acessórios e a sobriedade do old money. Peças construídas com intenção — para durar mais que a tendência.</p>
@@ -101,15 +109,6 @@
         </div>
         <div class="hero-decoration" aria-hidden="true"><span>Seynclothing</span></div>
     </section>
-
-    <!-- =============================================
-         FILTRO DE GÊNERO (movido para cima, antes do ticker)
-         ============================================= -->
-    <div class="gender-filter">
-        <button class="btn-gender active" onclick="filtrarGenero('todos')">Todos</button>
-        <button class="btn-gender" onclick="filtrarGenero('feminino')">Feminino</button>
-        <button class="btn-gender" onclick="filtrarGenero('masculino')">Masculino</button>
-    </div>
 
     <div class="ticker" aria-hidden="true">
         <div class="ticker-track">
