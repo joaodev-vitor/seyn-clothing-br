@@ -10276,3 +10276,68 @@ body:not(.tem-filtro) .header .menu-button {
 .header .nav.open .nav-close {
     display: grid !important;
 }
+/* =========================================================
+   🔥 FIX NUCLEAR — HAMBÚRGUER + BOTÕES DE GÊNERO
+   Cola no final do style.css
+   ========================================================= */
+
+/* 1. FILTRO DE GÊNERO */
+.gender-filter {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    padding: 32px var(--gutter) 24px;
+    flex-wrap: wrap;
+}
+
+.btn-gender {
+    padding: 10px 26px;
+    font-family: var(--ff-sans);
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--paper-2);
+    background: transparent;
+    border: 1px solid var(--line-2);
+    border-radius: 99px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-gender:hover {
+    border-color: var(--blue-1);
+    color: var(--paper-0);
+}
+
+.btn-gender.active {
+    background: var(--blue-1);
+    border-color: var(--blue-1);
+    color: #ffffff;
+}
+
+@media (max-width: 720px) {
+    .gender-filter { padding: 24px 18px 18px; gap: 8px; }
+    .btn-gender { padding: 9px 20px; font-size: 0.72rem; }
+}
+
+/* 2. HAMBÚRGUER — escondido SEMPRE, SÓ aparece com .visivel */
+.header .menu-button,
+.header .header-actions .menu-button {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+}
+
+.header .menu-button.visivel,
+.header .header-actions .menu-button.visivel {
+    display: grid !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+}
+
+/* Tema claro */
+[data-tema="claro"] .btn-gender { color: #1f2937; border-color: rgba(0, 0, 0, 0.2); }
+[data-tema="claro"] .btn-gender.active { background: #1a4dff; color: #fff; border-color: #1a4dff; }
