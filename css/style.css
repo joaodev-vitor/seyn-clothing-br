@@ -10482,3 +10482,73 @@ body:not(.tem-filtro) .header .menu-button {
 [data-tema="claro"] .header .menu-button.visivel:hover {
     color: #1a4dff !important;
 }
+/* =========================================================
+   ✅ AJUSTE FINAL — Gaveta totalmente escondida + Botões à direita
+   ========================================================= */
+
+/* ---------------------------------------------------------
+   1. GAVETA LATERAL — quando FECHADA, some 100%
+   --------------------------------------------------------- */
+.header .nav:not(.open) {
+    /* Esconde totalmente fora da tela */
+    transform: translateX(-110%) !important;
+
+    /* Mata o shadow que estava vazando */
+    box-shadow: none !important;
+    border-right: none !important;
+
+    /* Garante que não dá pra clicar nem ver nada */
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+
+    /* Transição suave de saída */
+    transition: transform .5s cubic-bezier(.22, 1, .36, 1),
+                opacity .3s ease,
+                visibility 0s linear .5s !important;
+}
+
+.header .nav.open {
+    transform: translateX(0) !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+
+    /* Devolve o shadow e a borda quando ABERTA */
+    box-shadow: 50px 0 120px rgba(0, 0, 0, .85) !important;
+    border-right: 1px solid var(--line-2) !important;
+
+    transition: transform .5s cubic-bezier(.22, 1, .36, 1),
+                opacity .3s ease,
+                visibility 0s linear 0s !important;
+}
+
+/* Tema claro */
+[data-tema="claro"] .header .nav:not(.open) {
+    box-shadow: none !important;
+}
+[data-tema="claro"] .header .nav.open {
+    box-shadow: -50px 0 120px rgba(0, 0, 0, .15) !important;
+    border-right-color: rgba(0, 0, 0, .15) !important;
+}
+
+
+/* ---------------------------------------------------------
+   2. BOTÕES DE GÊNERO — alinhados à DIREITA do hero
+   --------------------------------------------------------- */
+.gender-filter {
+    justify-content: flex-end !important;
+    margin-left: auto !important;
+    margin-right: 0 !important;
+    padding: 0 !important;
+    margin-bottom: 24px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+}
+
+/* Em telas pequenas, mantém centralizado pra não cortar */
+@media (max-width: 900px) {
+    .gender-filter {
+        justify-content: flex-start !important;
+    }
+}
