@@ -1,6 +1,6 @@
 /* =========================================================
    ADMIN-AUTH.JS — Login via Firebase Auth + TOTP (Google Auth)
-   v7 — QR Code com 3 APIs em cascata (fallback)
+   v8 — QR Code SVG local (sem CDN externo)
    ========================================================= */
 
 'use strict';
@@ -166,48 +166,29 @@ function mostrarSetupTOTP(user, resolve) {
 
     document.body.appendChild(modal);
 
-    /* ✅ QR Code com 3 APIs em cascata */
+    /* ✅ QR Code SVG local (lib qrcode-generator) */
     var qrContainer = document.getElementById('totpQR');
     qrContainer.innerHTML = '';
 
-    var apisQR = [
-        'https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=' + encodeURIComponent(uri),
-        'https://chart.googleapis.com/chart?chs=200x200&chld=M|0&cht=qr&chl=' + encodeURIComponent(uri),
-        'https://quickchart.io/qr?text=' + encodeURIComponent(uri) + '&size=200'
-    ];
-
-    var tentativa = 0;
-
-    function tentarQR() {
-        if (tentativa >= apisQR.length) {
-            console.warn('[TOTP] ⚠️ Todas as APIs falharam');
-            qrContainer.innerHTML = '<div style="padding:30px 20px;color:#a4b2ca;font-size:.8rem;text-align:center;line-height:1.6;">Use o código manual<br>abaixo ↓</div>';
-            return;
+    try {
+        if (typeof qrcode === 'function') {
+            var qr = qrcode(0, 'M');
+            qr.addData(uri);
+            qr.make();
+            qrContainer.innerHTML = qr.createSvgTag({
+                cellSize: 4,
+                margin: 4,
+                scalable: true
+            });
+            console.log('[TOTP] ✅ QR Code SVG gerado');
+        } else {
+            console.error('[TOTP] ❌ Lib qrcode-generator não carregada');
+            qrContainer.innerHTML = '<div style="padding:30px;color:#a4b2ca;font-size:.8rem;text-align:center;">Use o código manual ↓</div>';
         }
-
-        var img = document.createElement('img');
-        img.width = 200;
-        img.height = 200;
-        img.alt = 'QR Code';
-        img.style.display = 'block';
-        img.style.borderRadius = '4px';
-
-        img.onload = function() {
-            console.log('[TOTP] ✅ QR Code carregado (API ' + (tentativa + 1) + '/' + apisQR.length + ')');
-        };
-
-        img.onerror = function() {
-            console.warn('[TOTP] ⚠️ API ' + (tentativa + 1) + ' falhou, tentando próxima...');
-            tentativa++;
-            tentarQR();
-        };
-
-        img.src = apisQR[tentativa];
-        qrContainer.innerHTML = '';
-        qrContainer.appendChild(img);
+    } catch (e) {
+        console.error('[TOTP] ❌ Erro ao gerar QR:', e);
+        qrContainer.innerHTML = '<div style="padding:30px;color:#a4b2ca;font-size:.8rem;text-align:center;">Use o código manual ↓</div>';
     }
-
-    tentarQR();
 
     /* Foca no input */
     setTimeout(function () {
