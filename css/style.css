@@ -10530,3 +10530,144 @@ body:not(.tem-filtro) .header .menu-button {
         justify-content: flex-start !important;
     }
 }
+
+/* =========================================================
+   ✅ AJUSTE — Botões mais pra cima/meio + Temas de fonte
+   ========================================================= */
+
+/* ---------------------------------------------------------
+   1. BOTÕES DE GÊNERO — mais pra cima e centralizados
+   --------------------------------------------------------- */
+.gender-filter {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: 10px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 0 !important;
+    margin: 0 auto 40px auto !important;
+    transform: translateY(-80px) !important;
+    flex-wrap: wrap !important;
+}
+
+@media (max-width: 900px) {
+    .gender-filter {
+        transform: translateY(-40px) !important;
+        margin-bottom: 20px !important;
+    }
+}
+
+@media (max-width: 600px) {
+    .gender-filter {
+        transform: translateY(-20px) !important;
+        margin-bottom: 10px !important;
+    }
+}
+
+
+/* ---------------------------------------------------------
+   2. TEMA FEMININO — fonte elegante + paleta suave
+   --------------------------------------------------------- */
+body.tema-feminino h1,
+body.tema-feminino h2,
+body.tema-feminino h3,
+body.tema-feminino .logo,
+body.tema-feminino .product-name,
+body.tema-feminino .hero-decoration span,
+body.tema-feminino .section-title h2 {
+    font-family: 'Cormorant Garamond', 'Playfair Display', Georgia, serif !important;
+    font-weight: 600 !important;
+    letter-spacing: -0.01em !important;
+}
+
+body.tema-feminino h1 {
+    font-style: italic !important;
+    font-weight: 500 !important;
+}
+
+body.tema-feminino .hero h1 span,
+body.tema-feminino .section-title h2 span {
+    color: #c8618c !important;
+}
+
+body.tema-feminino .hero-small,
+body.tema-feminino .section-kicker,
+body.tema-feminino .product-cat {
+    color: #c8618c !important;
+}
+
+body.tema-feminino .btn-primary {
+    background: #c8618c !important;
+    border-color: #c8618c !important;
+}
+
+body.tema-feminino .btn-primary:hover {
+    background: #a84a70 !important;
+    border-color: #a84a70 !important;
+}
+
+body.tema-feminino .btn-gender.active {
+    background: #c8618c !important;
+    border-color: #c8618c !important;
+    box-shadow: 0 0 20px rgba(200, 97, 140, .35) !important;
+}
+
+
+/* ---------------------------------------------------------
+   3. TEMA MASCULINO — fonte forte + paleta sóbria
+   --------------------------------------------------------- */
+body.tema-masculino h1,
+body.tema-masculino h2,
+body.tema-masculino h3,
+body.tema-masculino .logo,
+body.tema-masculino .product-name,
+body.tema-masculino .hero-decoration span,
+body.tema-masculino .section-title h2 {
+    font-family: 'Oswald', 'Inter', sans-serif !important;
+    font-weight: 500 !important;
+    font-style: normal !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.02em !important;
+}
+
+body.tema-masculino .hero h1 {
+    font-size: clamp(2rem, 1.2rem + 4vw, 5rem) !important;
+    line-height: 1.05 !important;
+}
+
+body.tema-masculino .hero h1 span,
+body.tema-masculino .section-title h2 span {
+    color: #2a3a4a !important;
+    font-weight: 700 !important;
+}
+
+body.tema-masculino .hero-small,
+body.tema-masculino .section-kicker,
+body.tema-masculino .product-cat {
+    color: #2a3a4a !important;
+}
+
+body.tema-masculino .btn-primary {
+    background: #1a1a1a !important;
+    border-color: #1a1a1a !important;
+}
+
+body.tema-masculino .btn-primary:hover {
+    background: #000 !important;
+    border-color: #000 !important;
+}
+
+body.tema-masculino .btn-gender.active {
+    background: #1a1a1a !important;
+    border-color: #1a1a1a !important;
+    box-shadow: 0 0 20px rgba(26, 26, 26, .35) !important;
+}
+
+/* Transição suave ao trocar de tema */
+body {
+    transition: background-color .4s ease, color .4s ease !important;
+}
+body h1, body h2, body h3, body .logo, body .product-name {
+    transition: font-family .3s ease, color .3s ease !important;
+}

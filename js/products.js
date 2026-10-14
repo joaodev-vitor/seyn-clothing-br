@@ -1,6 +1,6 @@
 /* =========================================================
    PRODUCTS.JS — Catálogo + grids + favoritos + comprar agora
-   v5 — filtro de gênero + controle do hambúrguer (CORRIGIDO)
+   v6 — filtro de gênero + temas (feminino/masculino) + hambúrguer
    ========================================================= */
 
 'use strict';
@@ -484,19 +484,29 @@ let filtroGeneroAtual = 'todos';
 
 /* =========================================================
    FUNÇÃO DE FILTRAR GÊNERO
+   Aplica tema (feminino/masculino), controla hambúrguer e re-renderiza
    ========================================================= */
 function filtrarGenero(genero) {
     filtroGeneroAtual = genero;
 
-    // Atualiza a classe 'active' nos botões
-    document.querySelectorAll('.btn-gender').forEach(btn => {
+    // 1. Atualiza a classe 'active' nos botões
+    document.querySelectorAll('.btn-gender').forEach(function (btn) {
         btn.classList.remove('active');
-        if (btn.getAttribute('onclick') && btn.getAttribute('onclick').includes("'" + genero + "'")) {
+        var onclick = btn.getAttribute('onclick') || '';
+        if (onclick.indexOf("'" + genero + "'") !== -1) {
             btn.classList.add('active');
         }
     });
 
-    // Mostra ou esconde o hambúrguer E libera espaço no header
+    // 2. Aplica o TEMA de fonte/paleta no <body>
+    document.body.classList.remove('tema-feminino', 'tema-masculino');
+    if (genero === 'feminino') {
+        document.body.classList.add('tema-feminino');
+    } else if (genero === 'masculino') {
+        document.body.classList.add('tema-masculino');
+    }
+
+    // 3. Mostra/esconde o hambúrguer
     const btnMenu = document.querySelector('.header .menu-button');
     if (btnMenu) {
         if (genero === 'feminino' || genero === 'masculino') {
@@ -508,7 +518,11 @@ function filtrarGenero(genero) {
         }
     }
 
-    // Re-renderiza os grids
+    // 4. Fecha a gaveta se estiver aberta
+    const nav = document.querySelector('.header .nav');
+    if (nav) nav.classList.remove('open');
+
+    // 5. Re-renderiza os grids
     inicializarProdutos();
 }
 
