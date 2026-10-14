@@ -506,19 +506,27 @@ function atualizarMenuHamburguer(genero) {
 function filtrarGenero(genero) {
     filtroGeneroAtual = genero;
 
-    // Atualiza a classe 'active' nos botões na tela
+    // Atualiza a classe 'active' nos botões
     document.querySelectorAll('.btn-gender').forEach(btn => {
         btn.classList.remove('active');
-        // Verifica se o botão clicado é o atual
         if (btn.getAttribute('onclick') && btn.getAttribute('onclick').includes(`'${genero}'`)) {
             btn.classList.add('active');
         }
     });
 
-    // Chama a função que atualiza o hambúrguer
-    atualizarMenuHamburguer(genero);
+    // Mostra ou esconde o hambúrguer E libera espaço no header
+    const btnMenu = document.querySelector('.header .menu-button');
+    if (btnMenu) {
+        if (genero === 'feminino' || genero === 'masculino') {
+            btnMenu.classList.add('visivel');
+            document.body.classList.add('tem-filtro');
+        } else {
+            btnMenu.classList.remove('visivel');
+            document.body.classList.remove('tem-filtro');
+        }
+    }
 
-    // Re-renderiza todos os grids de produtos
+    // Re-renderiza os grids
     inicializarProdutos();
 }
 
@@ -684,4 +692,4 @@ window.lerFavoritos         = lerFavoritos;
 window.salvarFavoritos      = salvarFavoritos;
 window.ehFavorito           = ehFavorito;
 window.toggleFavorito       = toggleFavorito;
-window.atualizarBadgeFavoritos = atualizarBadgeFavoritos;
+window.atualizarBadgeFavoritos = atualizarBadgeFavoritos;f

@@ -9833,164 +9833,33 @@ img, video, canvas, svg {
 }
 
 /* =========================================================
-   SIDEBAR DE CATEGORIAS — Estilo marketplace
+   🎯 SEYN — CSS FINAL CONSOLIDADO
+   Tudo o que vem depois daqui é a ÚNICA fonte da verdade
+   para: hambúrguer, gaveta lateral e filtro de gênero.
    ========================================================= */
 
-.cat-sidebar {
-    position: sticky;
-    top: calc(var(--header-h) + 20px);
-    width: 260px;
-    background: var(--ink-1);
-    border: 1px solid var(--line-1);
-    border-radius: 8px;
-    overflow: hidden;
-    font-family: var(--ff-sans);
-}
-
-.cat-sidebar details {
-    border-bottom: 1px solid var(--line-0);
-}
-
-.cat-sidebar details:last-child {
-    border-bottom: none;
-}
-
-.cat-sidebar summary {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 16px 18px;
-    font-size: .92rem;
-    font-weight: 600;
-    color: var(--paper-1);
-    cursor: pointer;
-    list-style: none;
-    transition: background .25s, color .25s;
-}
-
-.cat-sidebar summary::-webkit-details-marker {
-    display: none;
-}
-
-.cat-sidebar summary::after {
-    content: "›";
-    font-size: 1.2rem;
-    color: var(--paper-3);
-    transition: transform .3s, color .3s;
-}
-
-.cat-sidebar details[open] summary::after {
-    transform: rotate(90deg);
-    color: var(--blue-3);
-}
-
-.cat-sidebar summary:hover {
-    background: rgba(127, 176, 255, .05);
-    color: var(--blue-3);
-}
-
-.cat-sidebar details[open] summary {
-    color: var(--blue-3);
-    background: rgba(127, 176, 255, .05);
-}
-
-.cat-sidebar .cat-sub {
-    display: flex;
-    flex-direction: column;
-    padding: 6px 0 10px;
-    background: rgba(0, 0, 0, .15);
-}
-
-.cat-sidebar .cat-sub a {
-    display: block;
-    padding: 9px 18px 9px 34px;
-    font-size: .82rem;
-    color: var(--paper-2);
-    text-decoration: none;
-    transition: color .2s, background .2s, padding-left .2s;
-    position: relative;
-}
-
-.cat-sidebar .cat-sub a::before {
-    content: "·";
-    position: absolute;
-    left: 22px;
-    color: var(--paper-4);
-    transition: color .2s;
-}
-
-.cat-sidebar .cat-sub a:hover {
-    color: var(--blue-3);
-    background: rgba(127, 176, 255, .05);
-    padding-left: 38px;
-}
-
-.cat-sidebar .cat-sub a:hover::before {
-    color: var(--blue-3);
-}
-
-/* Título da sidebar */
-.cat-sidebar-title {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 16px 18px;
-    background: linear-gradient(135deg, var(--ink-2), var(--ink-1));
-    border-bottom: 1px solid var(--line-1);
-    font-size: .95rem;
-    font-weight: 700;
-    color: var(--paper-0);
-    text-transform: uppercase;
-    letter-spacing: .12em;
-}
-
-.cat-sidebar-title svg {
-    width: 18px;
-    height: 18px;
-    stroke: var(--blue-3);
-}
-
-/* Layout wrapper — sidebar + conteúdo */
-.cat-layout {
-    display: grid;
-    grid-template-columns: 260px 1fr;
-    gap: 32px;
-    padding: 40px var(--gutter);
-    max-width: 1500px;
-    margin: 0 auto;
-    align-items: start;
-}
-
-/* Mobile — sidebar vira um bloco acima */
-@media (max-width: 900px) {
-    .cat-layout {
-        grid-template-columns: 1fr;
-        gap: 20px;
-        padding: 30px 18px;
-    }
-
-    .cat-sidebar {
-        position: static;
-        width: 100%;
-    }
-
-    .cat-sidebar summary {
-        padding: 14px 16px;
-        font-size: .88rem;
-    }
-}
-
-/* =========================================================
-   HAMBURGER NA ESQUERDA — v3 FINAL
-   Botão bonito, à esquerda, todas as larguras
-   ========================================================= */
-
-/* 1. Header — abre espaço pra esquerda */
+/* ---------------------------------------------------------
+   1. HEADER — abre espaço à esquerda SE o hambúrguer estiver visível
+   --------------------------------------------------------- */
 .header {
+    padding-left: var(--gutter) !important;
+}
+
+/* Quando o JS adiciona a classe "tem-filtro" no body, o header ganha espaço */
+body.tem-filtro .header {
     padding-left: 88px !important;
 }
 
-/* 2. Botão hamburger — fixo no canto esquerdo do header */
+@media (max-width: 720px) {
+    body.tem-filtro .header {
+        padding-left: 68px !important;
+    }
+}
+
+
+/* ---------------------------------------------------------
+   2. BOTÃO HAMBÚRGUER — escondido por padrão, aparece com .visivel
+   --------------------------------------------------------- */
 .header .menu-button {
     position: absolute !important;
     top: 50% !important;
@@ -10000,7 +9869,7 @@ img, video, canvas, svg {
 
     width: 46px !important;
     height: 46px !important;
-    display: grid !important;
+    display: none !important;             /* ESCONDIDO por padrão */
     place-items: center !important;
 
     background: rgba(127, 176, 255, .06) !important;
@@ -10013,7 +9882,11 @@ img, video, canvas, svg {
     transition: all .3s cubic-bezier(.22, 1, .36, 1) !important;
 }
 
-/* 3. Hover — fica mais visível */
+/* Quando o JS adicionar .visivel, ELE APARECE */
+.header .menu-button.visivel {
+    display: grid !important;
+}
+
 .header .menu-button:hover {
     background: rgba(127, 176, 255, .14) !important;
     border-color: rgba(127, 176, 255, .45) !important;
@@ -10021,7 +9894,6 @@ img, video, canvas, svg {
     transform: translateY(-50%) scale(1.04) !important;
 }
 
-/* 4. Ícone SVG dentro do botão */
 .header .menu-button svg {
     width: 22px !important;
     height: 22px !important;
@@ -10029,122 +9901,23 @@ img, video, canvas, svg {
     stroke-width: 2 !important;
 }
 
-/* 5. Header compacto (ao rolar) — mantém alinhado */
-.header.scrolled .menu-button {
-    top: 50% !important;
-}
-
-/* 6. Esconde o hamburger duplicado que tá dentro do .header-actions */
-.header-actions .menu-button,
-.header-actions .menu-button:not(.fake) {
-    display: none !important;
-}
-
-/* Exceção: se o único menu-button da página estiver dentro de header-actions,
-   a gente mostra ele posicionado à esquerda via position absolute.
-   Como não sabemos a estrutura exata, garantimos que QUALQUER menu-button
-   dentro do header fique na esquerda. */
-.header .header-actions .menu-button {
-    position: absolute !important;
-    top: 50% !important;
-    left: 20px !important;
-    right: auto !important;
-    transform: translateY(-50%) !important;
-    display: grid !important;
-    width: 46px !important;
-    height: 46px !important;
-    place-items: center !important;
-    background: rgba(127, 176, 255, .06) !important;
-    border: 1px solid rgba(127, 176, 255, .18) !important;
-    border-radius: 10px !important;
-    color: var(--paper-1) !important;
-    cursor: pointer !important;
-    z-index: 210 !important;
-    transition: all .3s cubic-bezier(.22, 1, .36, 1) !important;
-}
-
-.header .header-actions .menu-button:hover {
-    background: rgba(127, 176, 255, .14) !important;
-    border-color: rgba(127, 176, 255, .45) !important;
-    color: var(--paper-0) !important;
-}
-
-.header .header-actions .menu-button svg {
-    width: 22px !important;
-    height: 22px !important;
-    stroke: currentColor !important;
-    stroke-width: 2 !important;
-}
-
-/* 7. Logo do header — centralizada, mas com espaço à esquerda */
-.header .logo {
-    grid-column: 2 !important;
-    justify-self: center !important;
-}
-
-/* 8. Ações (busca/carrinho/conta/tema) — à direita */
-.header .header-actions {
-    grid-column: 3 !important;
-    justify-content: flex-end !important;
-}
-
-/* =========================================================
-   MOBILE — ajusta tamanho e posição
-   ========================================================= */
 @media (max-width: 720px) {
-    .header {
-        padding-left: 68px !important;
-    }
-
-    .header .menu-button,
-    .header .header-actions .menu-button {
+    .header .menu-button {
         left: 14px !important;
         width: 40px !important;
         height: 40px !important;
         border-radius: 8px !important;
     }
-
-    .header .menu-button svg,
-    .header .header-actions .menu-button svg {
+    .header .menu-button svg {
         width: 20px !important;
         height: 20px !important;
     }
 }
 
-@media (max-width: 420px) {
-    .header {
-        padding-left: 60px !important;
-    }
 
-    .header .menu-button,
-    .header .header-actions .menu-button {
-        left: 10px !important;
-        width: 38px !important;
-        height: 38px !important;
-    }
-}
-
-/* =========================================================
-   TEMA CLARO — cores adaptadas
-   ========================================================= */
-[data-tema="claro"] .header .menu-button,
-[data-tema="claro"] .header .header-actions .menu-button {
-    background: rgba(26, 77, 255, .04) !important;
-    border-color: rgba(0, 0, 0, .12) !important;
-    color: #1f2937 !important;
-}
-
-[data-tema="claro"] .header .menu-button:hover,
-[data-tema="claro"] .header .header-actions .menu-button:hover {
-    background: rgba(26, 77, 255, .10) !important;
-    border-color: #1a4dff !important;
-    color: #000000 !important;
-}
-
-/* =========================================================
-   GAVETA LATERAL (o menu que abre) — reforço
-   ========================================================= */
-
+/* ---------------------------------------------------------
+   3. GAVETA LATERAL (nav que abre) — limpa e única
+   --------------------------------------------------------- */
 .header .nav {
     position: fixed !important;
     top: 0 !important;
@@ -10171,12 +9944,19 @@ img, video, canvas, svg {
     transform: translateX(0) !important;
 }
 
+/* ---------------------------------------------------------
+   🔤 FONTE DO MENU — troque aqui se quiser outra fonte
+   --------------------------------------------------------- */
 .header .nav a {
     width: 100% !important;
-    font-family: var(--ff-display) !important;
+
+    /* ===> MUDE A FONTE AQUI: ===> */
+    font-family: var(--ff-sans) !important;    /* Inter — moderna. Troque para --ff-display se quiser serifada */
+    font-style: normal !important;             /* normal (sem itálico). Mude para italic se preferir */
+    /* <=== FIM ===< */
+
     font-size: 1.6rem !important;
-    font-style: italic !important;
-    font-weight: 400 !important;
+    font-weight: 500 !important;
     letter-spacing: 0 !important;
     text-transform: none !important;
     color: var(--paper-0) !important;
@@ -10186,19 +9966,22 @@ img, video, canvas, svg {
 }
 
 .header .nav a::before { display: none !important; }
+
 .header .nav a:hover {
     color: var(--blue-3) !important;
     padding-left: 10px !important;
 }
-.header .nav a.active { color: var(--blue-3) !important; }
 
-/* Botão X pra fechar */
+.header .nav a.active {
+    color: var(--blue-3) !important;
+}
+
+/* Botão X (fechar) — só aparece quando o menu está aberto */
 .header .nav .nav-close {
-    display: grid !important;
+    display: none !important;
     position: absolute !important;
     top: 22px !important;
     right: 24px !important;
-    left: auto !important;
     width: 40px !important;
     height: 40px !important;
     place-items: center !important;
@@ -10210,66 +9993,38 @@ img, video, canvas, svg {
     transition: all .35s cubic-bezier(.22, 1, .36, 1) !important;
 }
 
+.header .nav.open .nav-close {
+    display: grid !important;
+}
+
 .header .nav .nav-close:hover {
     color: var(--paper-0) !important;
     border-color: var(--blue-1) !important;
     transform: rotate(90deg) !important;
 }
 
-/* Tema claro — gaveta branca */
-[data-tema="claro"] .header .nav {
-    background: #ffffff !important;
-    border-right-color: rgba(0, 0, 0, .15) !important;
-}
-[data-tema="claro"] .header .nav a {
-    color: #000000 !important;
-    border-bottom-color: rgba(0, 0, 0, .08) !important;
-}
-[data-tema="claro"] .header .nav a:hover,
-[data-tema="claro"] .header .nav a.active {
-    color: #1a4dff !important;
-}
-[data-tema="claro"] .header .nav .nav-close {
-    color: #1f2937 !important;
-    border-color: rgba(0, 0, 0, .2) !important;
-}
-/* =========================================================
-   HAMBÚRGUER INTELIGENTE (Esconde por padrão)
-   ========================================================= */
-
-/* Esconde o botão do menu por padrão */
-.header .menu-button {
-    position: absolute !important;
-    left: 20px !important;
-    top: 50% !important;
-    transform: translateY(-50%) !important;
-    z-index: 210 !important;
-    display: none !important; /* <--- AQUI ELE FICA ESCONDIDO */
-    place-items: center !important;
-    width: 42px !important;
-    height: 42px !important;
-    color: var(--paper-2) !important;
+@media (max-width: 720px) {
+    .header .nav {
+        width: 100vw !important;
+        padding: 80px 28px 40px !important;
+    }
+    .header .nav a {
+        font-size: 1.4rem !important;
+        padding: 16px 0 !important;
+    }
 }
 
-/* Quando a classe 'visivel' for adicionada via JavaScript, ele aparece */
-.header .menu-button.visivel {
-    display: grid !important;
-}
 
-.header .menu-button:hover {
-    color: var(--paper-0) !important;
-    background: rgba(127, 176, 255, .06) !important;
-    border-color: var(--line-2) !important;
-}
-/* =========================================================
-   BOTÕES DE FILTRO DE GÊNERO
-   ========================================================= */
+/* ---------------------------------------------------------
+   4. FILTRO DE GÊNERO — botões
+   --------------------------------------------------------- */
 .gender-filter {
     display: flex;
     justify-content: center;
     gap: 12px;
     padding: 30px var(--gutter);
     margin-top: 20px;
+    flex-wrap: wrap;
 }
 
 .btn-gender {
@@ -10298,27 +10053,53 @@ img, video, canvas, svg {
     color: #ffffff;
 }
 
-/* Ajuste para tema claro */
+
+/* ---------------------------------------------------------
+   5. TEMA CLARO — ajustes no hambúrguer e gaveta
+   --------------------------------------------------------- */
+[data-tema="claro"] .header .menu-button {
+    background: rgba(26, 77, 255, .04) !important;
+    border-color: rgba(0, 0, 0, .12) !important;
+    color: #1f2937 !important;
+}
+
+[data-tema="claro"] .header .menu-button:hover {
+    background: rgba(26, 77, 255, .10) !important;
+    border-color: #1a4dff !important;
+    color: #000000 !important;
+}
+
+[data-tema="claro"] .header .nav {
+    background: #ffffff !important;
+    border-right-color: rgba(0, 0, 0, .15) !important;
+}
+
+[data-tema="claro"] .header .nav a {
+    color: #000000 !important;
+    border-bottom-color: rgba(0, 0, 0, .08) !important;
+}
+
+[data-tema="claro"] .header .nav a:hover,
+[data-tema="claro"] .header .nav a.active {
+    color: #1a4dff !important;
+}
+
+[data-tema="claro"] .header .nav .nav-close {
+    color: #1f2937 !important;
+    border-color: rgba(0, 0, 0, .2) !important;
+}
+
 [data-tema="claro"] .btn-gender {
     color: #1f2937;
-    border-color: rgba(0,0,0,0.2);
+    border-color: rgba(0, 0, 0, .2);
 }
+
 [data-tema="claro"] .btn-gender.active {
     background: #1a4dff;
     color: #ffffff;
     border-color: #1a4dff;
 }
-/* Garante que o menu comece sempre fechado */
-.header .nav {
-    transform: translateX(-105%) !important;
-}
-.header .nav.open {
-    transform: translateX(0) !important;
-}
-/* Garante que o botão de fechar só apareça quando o menu estiver aberto */
-.header .nav .nav-close {
-    display: none !important;
-}
-.header .nav.open .nav-close {
-    display: grid !important;
-}
+
+/* =========================================================
+   FIM — CSS LIMPO
+   ========================================================= */
