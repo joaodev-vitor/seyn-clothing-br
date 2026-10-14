@@ -10308,3 +10308,17 @@ img, video, canvas, svg {
     color: #ffffff;
     border-color: #1a4dff;
 }
+/* Garante que o menu comece sempre fechado */
+.header .nav {
+    transform: translateX(-105%) !important;
+}
+.header .nav.open {
+    transform: translateX(0) !important;
+}
+/* Garante que o botão de fechar só apareça quando o menu estiver aberto */
+.header .nav .nav-close {
+    display: none !important;
+}
+.header .nav.open .nav-close {
+    display: grid !important;
+}
