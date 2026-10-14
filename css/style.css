@@ -10105,3 +10105,122 @@ img, video, canvas, svg {
         padding: 16px 0 !important;
     }
 }
+/* =========================================================
+   CORREÇÃO FINAL — HAMBÚRGUER À ESQUERDA (CSS APENAS)
+   ========================================================= */
+
+/* 1. Tira o botão do grupo da direita e fixa na esquerda */
+.header .menu-button {
+    position: absolute !important;
+    left: 20px !important;      /* Distância da borda esquerda */
+    top: 50% !important;       /* Centraliza verticalmente */
+    transform: translateY(-50%) !important; /* Ajuste fino da centralização */
+    z-index: 210 !important;   /* Garante que fique clicável acima de tudo */
+    display: grid !important;  /* Força a exibição em telas menores */
+    place-items: center !important;
+}
+
+/* 2. Ajusta o padding do header (remove os 90px antigos) */
+.header {
+    padding-left: 75px !important;  /* Espaço à esquerda para o botão não cobrir a logo */
+    padding-right: 20px !important; /* Mantém um espaço na direita */
+}
+
+/* 3. Garante que o botão de fechar do menu (X) continue no lugar certo */
+.header .nav .nav-close {
+    left: auto !important;
+    right: 24px !important;
+}
+
+/* 4. Ajustes para telas menores (celular) */
+@media (max-width: 720px) {
+    .header .menu-button {
+        left: 14px !important;
+    }
+    .header {
+        padding-left: 60px !important;
+    }
+}
+/* =========================================================
+   HAMBURGER NA ESQUERDA — força em TODAS as larguras
+   Vence o script.js e qualquer media query
+   ========================================================= */
+
+.header .menu-button,
+.header-actions .menu-button,
+.header .header-actions .menu-button,
+body .header .menu-button {
+    position: fixed !important;
+    left: 16px !important;
+    right: auto !important;
+    top: 24px !important;
+    bottom: auto !important;
+    transform: none !important;
+    z-index: 9999 !important;
+    display: grid !important;
+    place-items: center !important;
+    width: 42px !important;
+    height: 42px !important;
+    color: var(--paper-2) !important;
+    background: transparent !important;
+    border: 1px solid transparent !important;
+    border-radius: 50% !important;
+    transition: color .3s, background .3s, border-color .3s !important;
+}
+
+.header .menu-button:hover,
+.header-actions .menu-button:hover {
+    color: var(--paper-0) !important;
+    background: rgba(127, 176, 255, .08) !important;
+    border-color: var(--line-2) !important;
+}
+
+.header .menu-button svg {
+    width: 22px !important;
+    height: 22px !important;
+    stroke: currentColor !important;
+}
+
+/* Header scrolled (fica mais baixo) */
+.header.scrolled .menu-button,
+.header.scrolled .header-actions .menu-button {
+    top: 14px !important;
+}
+
+/* Empurra o logo pra não colidir */
+.header,
+body .header {
+    padding-left: 76px !important;
+}
+
+/* Ajustes finos em telas pequenas */
+@media (max-width: 720px) {
+    .header,
+    body .header {
+        padding-left: 64px !important;
+    }
+    .header .menu-button,
+    .header-actions .menu-button,
+    body .header .menu-button {
+        left: 10px !important;
+        top: 18px !important;
+        width: 40px !important;
+        height: 40px !important;
+    }
+    .header.scrolled .menu-button,
+    .header.scrolled .header-actions .menu-button {
+        top: 12px !important;
+    }
+}
+
+/* Tema claro */
+[data-tema="claro"] .header-actions .menu-button,
+[data-tema="claro"] .header .menu-button {
+    color: #1f2937 !important;
+}
+[data-tema="claro"] .header-actions .menu-button:hover,
+[data-tema="claro"] .header .menu-button:hover {
+    color: #000000 !important;
+    background: rgba(26, 77, 255, .1) !important;
+    border-color: rgba(26, 77, 255, .3) !important;
+}
