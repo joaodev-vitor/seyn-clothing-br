@@ -1,10 +1,9 @@
 /* =========================================================
    PRODUCTS.JS — Catálogo + grids + favoritos + comprar agora
-   v3 — botão "comprar agora"
+   v4 — filtro de gênero + controle do hambúrguer
    ========================================================= */
 
 'use strict';
-
 
 /* =========================================================
    SISTEMA DE FAVORITOS
@@ -12,12 +11,9 @@
 
 const FAV_KEY = 'artefatos_favoritos';
 
-
 function lerFavoritos() {
-
     try {
         var raw = localStorage.getItem(FAV_KEY);
-
         if (!raw) {
             var antigo = localStorage.getItem('miqjo_favoritos');
             if (antigo) {
@@ -25,16 +21,13 @@ function lerFavoritos() {
                 raw = antigo;
             }
         }
-
         var lista = JSON.parse(raw || '[]');
         return Array.isArray(lista) ? lista : [];
-
     } catch (e) {
         console.warn('[favoritos] Erro ao ler:', e);
         return [];
     }
 }
-
 
 function salvarFavoritos(lista) {
     try {
@@ -46,17 +39,13 @@ function salvarFavoritos(lista) {
     }
 }
 
-
 function ehFavorito(id) {
     if (!id) return false;
     return lerFavoritos().indexOf(id) !== -1;
 }
 
-
 function toggleFavorito(id) {
-
     if (!id) return false;
-
     var lista = lerFavoritos();
     var idx = lista.indexOf(id);
     var adicionou;
@@ -73,16 +62,12 @@ function toggleFavorito(id) {
     return adicionou;
 }
 
-
 function atualizarBadgeFavoritos() {
-
     var total = lerFavoritos().length;
-
     document.querySelectorAll('[data-fav-count]').forEach(function (el) {
         el.textContent = total;
         el.style.display = total > 0 ? '' : 'none';
     });
-
     var badgeConta = document.getElementById('contaBadgeFavoritos');
     if (badgeConta) badgeConta.textContent = total;
 }
@@ -92,7 +77,6 @@ function atualizarBadgeFavoritos() {
    CATÁLOGO PADRÃO
    ========================================================= */
 const CATALOGO_PADRAO = [
-
     /* ---------- STREETWEAR ---------- */
     { id: 'sw-001', nome: 'Moletom Oversized Ártico', categoria: 'streetwear',
       descricao: 'Moletom pesado 420g, capuz duplo, corte oversized.',
@@ -273,7 +257,9 @@ function normalizarProduto(p) {
         cores:           Array.isArray(p.cores) ? p.cores : [],
         estoque:         p.estoque !== false,
         quantidade:      typeof p.quantidade === 'number' ? p.quantidade : 0,
-        estoqueTamanhos: p.estoqueTamanhos || {}
+        estoqueTamanhos: p.estoqueTamanhos || {},
+        // NOVO: Campo de gênero (padrão "unissex" se não existir)
+        genero:          (p.genero || 'unissex').toLowerCase() 
     };
 }
 
@@ -282,7 +268,6 @@ function normalizarProduto(p) {
    LEITURA
    ========================================================= */
 function obterProdutos() {
-
     if (Array.isArray(window.__catalogo) && window.__catalogo.length > 0) {
         return window.__catalogo.map(normalizarProduto);
     }
@@ -319,7 +304,6 @@ function calcularDesconto(precoAntigo, preco) {
    🛒 COMPRAR AGORA — adiciona ao carrinho e vai pro checkout
    ========================================================= */
 function comprarAgora(id, quantidade) {
-
     quantidade = Math.max(1, parseInt(quantidade, 10) || 1);
 
     if (!id) {
@@ -365,7 +349,6 @@ function comprarAgora(id, quantidade) {
 
     if (typeof atualizarContador === 'function') atualizarContador();
 
-    /* Redireciona direto pro checkout */
     window.location.href = 'finalizar.html';
 }
 
@@ -374,7 +357,6 @@ function comprarAgora(id, quantidade) {
    CARD
    ========================================================= */
 function gerarCardHTML(p) {
-
     const desconto = calcularDesconto(p.precoAntigo, p.preco);
     const favoritado = ehFavorito(p.id);
     const esgotado = p.estoque === false;
@@ -406,20 +388,15 @@ function gerarCardHTML(p) {
 
     return `
         <article class="product-card" data-id="${p.id}" data-categoria="${p.categoria}">
-
             <div class="product-media">
-
                 <img class="product-img product-img--main" src="${p.imagem}" alt="${p.nome}" loading="lazy"
                      onerror="this.style.background='#0b1120';this.style.opacity=.4">
-
                 ${p.imagemAlt
                     ? `<img class="product-img product-img--alt" src="${p.imagemAlt}"
                            alt="${p.nome} — vista alternativa" loading="lazy"
                            onerror="this.style.display='none'">`
                     : ''}
-
                 ${badges ? `<div class="product-badges">${badges}</div>` : ''}
-
                 <button class="product-wish${favoritado ? ' active' : ''}"
                         type="button"
                         data-fav-id="${p.id}"
@@ -429,9 +406,7 @@ function gerarCardHTML(p) {
                         <path d="M12 20.5l-7.5-7.2a4.7 4.7 0 0 1 6.6-6.7l.9.9.9-.9a4.7 4.7 0 0 1 6.6 6.7z"/>
                     </svg>
                 </button>
-
                 <div class="product-actions">
-
                     <button class="product-quick-add"
                             type="button"
                             onclick="event.preventDefault(); adicionarAoCarrinho('${p.id}')"
@@ -443,7 +418,6 @@ function gerarCardHTML(p) {
                             </svg>
                             Adicionar`}
                     </button>
-
                     <button class="product-buy-now"
                             type="button"
                             onclick="event.preventDefault(); comprarAgora('${p.id}')"
@@ -454,27 +428,18 @@ function gerarCardHTML(p) {
                             </svg>
                             Comprar`}
                     </button>
-
                 </div>
-
             </div>
-
             <div class="product-info">
-
                 <span class="product-cat">${p.categoria}</span>
-
                 <h3 class="product-name">
                     <a href="produto.html?id=${p.id}">${p.nome}</a>
                 </h3>
-
                 <p class="product-desc">${p.descricao}</p>
-
                 ${precoHTML}
                 ${coresHTML}
                 ${tamanhosHTML}
-
             </div>
-
         </article>
     `;
 }
@@ -484,7 +449,6 @@ function gerarCardHTML(p) {
    RENDER
    ========================================================= */
 function renderizarProdutos(lista, gridId = 'products-grid') {
-
     const grid = document.getElementById(gridId);
     if (!grid) return [];
 
@@ -513,10 +477,56 @@ function renderizarProdutos(lista, gridId = 'products-grid') {
 
 
 /* =========================================================
+   VARIÁVEL GLOBAL DO FILTRO DE GÊNERO (NOVO)
+   ========================================================= */
+let filtroGeneroAtual = 'todos';
+
+
+/* =========================================================
+   CONTROLE DO HAMBÚRGUER (NOVO)
+   ========================================================= */
+function atualizarMenuHamburguer(genero) {
+    const btnMenu = document.querySelector('.header .menu-button');
+    if (!btnMenu) return;
+
+    // Se for feminino ou masculino, mostra o hambúrguer
+    if (genero === 'feminino' || genero === 'masculino') {
+        btnMenu.classList.add('visivel');
+    } 
+    // Se for "todos", esconde o hambúrguer
+    else {
+        btnMenu.classList.remove('visivel');
+    }
+}
+
+
+/* =========================================================
+   FUNÇÃO DE FILTRAR GÊNERO (NOVO)
+   ========================================================= */
+function filtrarGenero(genero) {
+    filtroGeneroAtual = genero;
+
+    // Atualiza a classe 'active' nos botões na tela
+    document.querySelectorAll('.btn-gender').forEach(btn => {
+        btn.classList.remove('active');
+        // Verifica se o botão clicado é o atual
+        if (btn.getAttribute('onclick') && btn.getAttribute('onclick').includes(`'${genero}'`)) {
+            btn.classList.add('active');
+        }
+    });
+
+    // Chama a função que atualiza o hambúrguer
+    atualizarMenuHamburguer(genero);
+
+    // Re-renderiza todos os grids de produtos
+    inicializarProdutos();
+}
+
+
+/* =========================================================
    INICIALIZAÇÃO
    ========================================================= */
 function inicializarProdutos() {
-
     if (document.body.classList.contains('search-page')) return;
 
     atualizarBadgeFavoritos();
@@ -525,12 +535,16 @@ function inicializarProdutos() {
     if (grids.length === 0) return;
 
     grids.forEach(grid => {
-
         const categoria = (grid.dataset.categoria || '').trim();
         const limite    = parseInt(grid.dataset.limit || '0', 10);
         const ordem     = grid.dataset.ordem || 'padrao';
 
         let lista = obterProdutos();
+
+        // NOVO: Aplica o filtro de gênero
+        if (filtroGeneroAtual !== 'todos') {
+            lista = lista.filter(p => p.genero === filtroGeneroAtual);
+        }
 
         if (categoria) {
             lista = lista.filter(p => p.categoria.toLowerCase() === categoria.toLowerCase());
@@ -561,7 +575,6 @@ function selecionarTamanho(event, botao) {
    ❤️ TOGGLE FAVORITO — card de produto
    ========================================================= */
 function toggleWish(event, botao) {
-
     event.preventDefault();
     event.stopPropagation();
 
@@ -598,12 +611,16 @@ function toggleWish(event, botao) {
    ORDENAÇÃO
    ========================================================= */
 function aplicarOrdenacao(valor) {
-
     const grid = document.getElementById('products-grid');
     if (!grid) return;
 
     const categoria = grid.dataset.categoria || '';
     let lista = obterProdutos();
+
+    // NOVO: Aplica o filtro de gênero antes de ordenar
+    if (filtroGeneroAtual !== 'todos') {
+        lista = lista.filter(p => p.genero === filtroGeneroAtual);
+    }
 
     if (categoria) {
         lista = lista.filter(p => p.categoria.toLowerCase() === categoria.toLowerCase());
@@ -660,6 +677,7 @@ window.aplicarOrdenacao     = aplicarOrdenacao;
 window.selecionarTamanho    = selecionarTamanho;
 window.toggleWish           = toggleWish;
 window.comprarAgora         = comprarAgora;
+window.filtrarGenero        = filtrarGenero; // NOVO
 
 window.FAV_KEY              = FAV_KEY;
 window.lerFavoritos         = lerFavoritos;

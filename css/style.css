@@ -10233,3 +10233,78 @@ img, video, canvas, svg {
     color: #1f2937 !important;
     border-color: rgba(0, 0, 0, .2) !important;
 }
+/* =========================================================
+   HAMBÚRGUER INTELIGENTE (Esconde por padrão)
+   ========================================================= */
+
+/* Esconde o botão do menu por padrão */
+.header .menu-button {
+    position: absolute !important;
+    left: 20px !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    z-index: 210 !important;
+    display: none !important; /* <--- AQUI ELE FICA ESCONDIDO */
+    place-items: center !important;
+    width: 42px !important;
+    height: 42px !important;
+    color: var(--paper-2) !important;
+}
+
+/* Quando a classe 'visivel' for adicionada via JavaScript, ele aparece */
+.header .menu-button.visivel {
+    display: grid !important;
+}
+
+.header .menu-button:hover {
+    color: var(--paper-0) !important;
+    background: rgba(127, 176, 255, .06) !important;
+    border-color: var(--line-2) !important;
+}
+/* =========================================================
+   BOTÕES DE FILTRO DE GÊNERO
+   ========================================================= */
+.gender-filter {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    padding: 30px var(--gutter);
+    margin-top: 20px;
+}
+
+.btn-gender {
+    padding: 10px 24px;
+    font-family: var(--ff-sans);
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--paper-2);
+    background: transparent;
+    border: 1px solid var(--line-2);
+    border-radius: 99px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-gender:hover {
+    border-color: var(--blue-1);
+    color: var(--paper-0);
+}
+
+.btn-gender.active {
+    background: var(--blue-1);
+    border-color: var(--blue-1);
+    color: #ffffff;
+}
+
+/* Ajuste para tema claro */
+[data-tema="claro"] .btn-gender {
+    color: #1f2937;
+    border-color: rgba(0,0,0,0.2);
+}
+[data-tema="claro"] .btn-gender.active {
+    background: #1a4dff;
+    color: #ffffff;
+    border-color: #1a4dff;
+}
