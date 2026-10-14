@@ -10103,3 +10103,176 @@ body.tem-filtro .header {
 /* =========================================================
    FIM — CSS LIMPO
    ========================================================= */
+   /* =========================================================
+   🔧 CORREÇÃO FINAL — HAMBÚRGUER + BOTÕES DE GÊNERO
+   Cola no final do style.css
+   ========================================================= */
+
+/* ---------------------------------------------------------
+   1. FILTRO DE GÊNERO — posicionado entre hero e ticker
+   --------------------------------------------------------- */
+.gender-filter {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    padding: 32px var(--gutter) 24px;
+    margin: 0;
+    flex-wrap: wrap;
+    background: transparent;
+}
+
+.btn-gender {
+    padding: 10px 26px;
+    font-family: var(--ff-sans);
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--paper-2);
+    background: transparent;
+    border: 1px solid var(--line-2);
+    border-radius: 99px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-gender:hover {
+    border-color: var(--blue-1);
+    color: var(--paper-0);
+    transform: translateY(-1px);
+}
+
+.btn-gender.active {
+    background: var(--blue-1);
+    border-color: var(--blue-1);
+    color: #ffffff;
+    box-shadow: 0 0 20px rgba(26, 77, 255, .35);
+}
+
+/* Tema claro */
+[data-tema="claro"] .btn-gender {
+    color: #1f2937;
+    border-color: rgba(0, 0, 0, 0.2);
+}
+
+[data-tema="claro"] .btn-gender.active {
+    background: #1a4dff;
+    color: #ffffff;
+    border-color: #1a4dff;
+}
+
+@media (max-width: 720px) {
+    .gender-filter {
+        padding: 24px 18px 18px;
+        gap: 8px;
+    }
+    .btn-gender {
+        padding: 9px 20px;
+        font-size: 0.72rem;
+    }
+}
+
+
+/* ---------------------------------------------------------
+   2. HAMBÚRGUER — escondido por padrão, APARECE SÓ com .visivel
+   (usando :not() para vencer qualquer regra antiga)
+   --------------------------------------------------------- */
+
+/* Esconde o menu-button em qualquer variação que ele apareça */
+.header .menu-button:not(.visivel),
+.header .header-actions .menu-button:not(.visivel) {
+    display: none !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+    visibility: hidden !important;
+}
+
+/* Mostra o menu-button quando tiver a classe .visivel */
+.header .menu-button.visivel,
+.header .header-actions .menu-button.visivel {
+    display: grid !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+
+    position: absolute !important;
+    top: 50% !important;
+    left: 20px !important;
+    right: auto !important;
+    transform: translateY(-50%) !important;
+
+    width: 46px !important;
+    height: 46px !important;
+    place-items: center !important;
+
+    background: rgba(127, 176, 255, .06) !important;
+    border: 1px solid rgba(127, 176, 255, .18) !important;
+    border-radius: 10px !important;
+    color: var(--paper-1) !important;
+    cursor: pointer !important;
+    z-index: 210 !important;
+}
+
+.header .menu-button.visivel:hover {
+    background: rgba(127, 176, 255, .14) !important;
+    border-color: rgba(127, 176, 255, .45) !important;
+    color: var(--paper-0) !important;
+}
+
+.header .menu-button.visivel svg {
+    width: 22px !important;
+    height: 22px !important;
+    stroke: currentColor !important;
+    stroke-width: 2 !important;
+}
+
+/* Esconde o hambúrguer quando o body não tem a classe 'tem-filtro' */
+body:not(.tem-filtro) .header .menu-button {
+    display: none !important;
+}
+
+@media (max-width: 720px) {
+    .header .menu-button.visivel,
+    .header .header-actions .menu-button.visivel {
+        left: 14px !important;
+        width: 40px !important;
+        height: 40px !important;
+    }
+    .header .menu-button.visivel svg {
+        width: 20px !important;
+        height: 20px !important;
+    }
+}
+
+/* Tema claro */
+[data-tema="claro"] .header .menu-button.visivel {
+    background: rgba(26, 77, 255, .04) !important;
+    border-color: rgba(0, 0, 0, .12) !important;
+    color: #1f2937 !important;
+}
+
+[data-tema="claro"] .header .menu-button.visivel:hover {
+    background: rgba(26, 77, 255, .10) !important;
+    border-color: #1a4dff !important;
+    color: #000000 !important;
+}
+
+
+/* ---------------------------------------------------------
+   3. GAVETA LATERAL — garante que fique fechada
+   --------------------------------------------------------- */
+.header .nav {
+    transform: translateX(-105%) !important;
+}
+
+.header .nav.open {
+    transform: translateX(0) !important;
+}
+
+.header .nav .nav-close {
+    display: none !important;
+}
+
+.header .nav.open .nav-close {
+    display: grid !important;
+}
