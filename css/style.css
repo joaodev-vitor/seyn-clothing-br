@@ -10693,158 +10693,163 @@ body.tema-masculino .btn-gender.active {
 }
 
 /* =========================================================
-   🔥 BLOCO FINAL — PÁGINA INICIAL PRETA + MASCULINO IGUAL
+   🔥 BLOCO FINAL — TEMA CLARO (página inicial + masculino)
    Deve ser o ÚLTIMO bloco do arquivo
    ========================================================= */
 
 /* ---------------------------------------------------------
-   1. PÁGINA INICIAL (padrão) — FUNDO PRETO
+   1. PÁGINA INICIAL — TEMA CLARO, LETRAS ESCURAS
    --------------------------------------------------------- */
 html, body {
-    background-color: #0a0a0a !important;
-    color: #e8e8e8 !important;
+    background-color: #f5f7ff !important;
+    color: #0a0e1a !important;
 }
 
 body::before {
     background:
-        radial-gradient(1200px 800px at 15% -10%, rgba(26, 77, 255, .08), transparent 60%),
-        radial-gradient(900px 700px at 105% 15%, rgba(10, 47, 168, .12), transparent 65%),
-        radial-gradient(1100px 900px at 50% 120%, rgba(26, 77, 255, .06), transparent 70%) !important;
+        radial-gradient(1200px 800px at 15% -10%, rgba(26, 77, 255, .06), transparent 60%),
+        radial-gradient(900px 700px at 105% 15%, rgba(10, 47, 168, .04), transparent 65%),
+        radial-gradient(1100px 900px at 50% 120%, rgba(26, 77, 255, .04), transparent 70%) !important;
 }
 
-body::after { opacity: .3 !important; }
+body::after { opacity: .15 !important; }
 
 /* HEADER */
-.header { background: rgba(10, 10, 10, .85) !important; border-bottom-color: rgba(127, 176, 255, .1) !important; }
-.header.scrolled { background: rgba(10, 10, 10, .95) !important; }
-.logo { color: #ffffff !important; }
-.logo span { color: #7fb0ff !important; }
-.nav a { color: #a4b2ca !important; }
-.nav a:hover, .nav a.active { color: #ffffff !important; }
-.search-button, .cart-button, .menu-button { color: #a4b2ca !important; }
+.header { background: rgba(245, 247, 255, .92) !important; border-bottom-color: rgba(10, 20, 50, .08) !important; }
+.header.scrolled { background: rgba(245, 247, 255, .98) !important; box-shadow: 0 20px 60px rgba(0, 0, 0, .08) !important; }
+.logo { color: #0a0e1a !important; }
+.logo span { color: #1a4dff !important; }
+.nav a { color: #1f2937 !important; }
+.nav a:hover, .nav a.active { color: #000000 !important; }
+.search-button, .cart-button, .menu-button { color: #374151 !important; }
 .search-button:hover, .cart-button:hover, .menu-button:hover {
-    color: #ffffff !important;
-    background: rgba(127, 176, 255, .08) !important;
-    border-color: rgba(127, 176, 255, .3) !important;
+    color: #000000 !important;
+    background: rgba(26, 77, 255, .08) !important;
+    border-color: rgba(26, 77, 255, .3) !important;
 }
-.conta-button { color: #a4b2ca !important; }
+.conta-button { color: #1f2937 !important; }
 
 /* HERO */
 .hero {
     background:
-        radial-gradient(1000px 800px at 78% 10%, rgba(26, 77, 255, .18), transparent 60%),
-        radial-gradient(800px 600px at 8% 92%, rgba(10, 47, 168, .22), transparent 65%),
-        linear-gradient(180deg, #0a0a0a 0%, #0e0e0e 60%, #0a0a0a 100%) !important;
+        radial-gradient(1000px 800px at 78% 10%, rgba(26, 77, 255, .1), transparent 60%),
+        radial-gradient(800px 600px at 8% 92%, rgba(10, 47, 168, .06), transparent 65%),
+        linear-gradient(180deg, #f5f7ff 0%, #eef1f8 60%, #f5f7ff 100%) !important;
 }
-.hero h1 { color: #ffffff !important; }
-.hero h1 span { color: #7fb0ff !important; }
-.hero-small { color: #7fb0ff !important; border-bottom-color: rgba(127, 176, 255, .3) !important; }
-.hero-description { color: #a4b2ca !important; }
+.hero h1 { color: #0a0e1a !important; }
+.hero h1 span { color: #1a4dff !important; }
+.hero-small { color: #1a4dff !important; border-bottom-color: rgba(10, 20, 50, .2) !important; }
+.hero-description { color: #1f2937 !important; }
 .hero-decoration span {
     color: transparent !important;
-    -webkit-text-stroke: 1px rgba(127, 176, 255, .35) !important;
+    -webkit-text-stroke: 2px rgba(26, 77, 255, .4) !important;
+    opacity: 1 !important;
 }
 
 /* TICKER */
-.ticker { background: #0d0d0d !important; border-color: rgba(127, 176, 255, .1) !important; }
-.ticker::before { background: linear-gradient(90deg, #0d0d0d, transparent) !important; }
-.ticker::after  { background: linear-gradient(270deg, #0d0d0d, transparent) !important; }
-.ticker-track > * { color: #a4b2ca !important; }
+.ticker { background: #eef1f8 !important; border-color: rgba(10, 20, 50, .1) !important; }
+.ticker::before { background: linear-gradient(90deg, #eef1f8, transparent) !important; }
+.ticker::after  { background: linear-gradient(270deg, #eef1f8, transparent) !important; }
+.ticker-track > * { color: #1f2937 !important; }
 
 /* TÍTULOS E TEXTOS */
-h1, h2, h3, h4 { color: #ffffff !important; }
-p { color: #a4b2ca !important; }
-.section-title h2 { color: #ffffff !important; }
-.section-title h2 span { color: #7fb0ff !important; }
-.section-title > p, .section-kicker { color: #7fb0ff !important; }
-.section-kicker span { color: #38455c !important; }
+h1, h2, h3, h4 { color: #0a0e1a !important; }
+p { color: #1f2937 !important; }
+.section-title h2 { color: #0a0e1a !important; }
+.section-title h2 span { color: #1a4dff !important; }
+.section-title > p, .section-kicker { color: #1a4dff !important; }
+.section-kicker span { color: #64748b !important; }
 
 /* CATEGORIAS */
-.category-card { border-color: rgba(127, 176, 255, .15) !important; }
-.category-content h3 { color: #ffffff !important; }
-.category-content p { color: #a4b2ca !important; }
-.category-content > span { color: #7fb0ff !important; }
-.category-content strong { color: #ffffff !important; }
+.category-card { border-color: rgba(10, 20, 50, .12) !important; }
+.category-content h3 { color: #0a0e1a !important; }
+.category-content p { color: #1f2937 !important; }
+.category-content > span { color: #1a4dff !important; }
+.category-content strong { color: #0a0e1a !important; }
 
 /* LOOKBOOK */
 .lookbook-item {
-    background: #141414 !important;
-    border-color: rgba(127, 176, 255, .15) !important;
+    background: #eef1f8 !important;
+    border-color: rgba(10, 20, 50, .12) !important;
 }
-.lookbook-item h4 { color: #ffffff !important; }
+.lookbook-item h4 { color: #0a0e1a !important; }
+.lookbook-item small { color: #1a4dff !important; }
 
 /* PULL-QUOTE */
-.pull-quote blockquote { color: #ffffff !important; }
-.pull-quote cite { color: #7fb0ff !important; }
+.pull-quote blockquote { color: #0a0e1a !important; }
+.pull-quote cite { color: #1a4dff !important; }
 
 /* CARDS DE PRODUTO */
-.product-media { background: #141414 !important; border-color: rgba(127, 176, 255, .15) !important; }
-.product-name, .product-name a { color: #ffffff !important; }
-.product-desc { color: #a4b2ca !important; }
-.product-price strong { color: #ffffff !important; }
-.product-price s { color: #5d6b83 !important; }
-.product-cat { color: #7fb0ff !important; }
+.product-media { background: #eef1f8 !important; border-color: rgba(10, 20, 50, .12) !important; }
+.product-name, .product-name a { color: #0a0e1a !important; }
+.product-desc { color: #1f2937 !important; }
+.product-price strong { color: #0a0e1a !important; }
+.product-price s { color: #64748b !important; }
+.product-cat { color: #1a4dff !important; }
 
 /* QUICK CATEGORIES */
-.quick-card { border-color: rgba(127, 176, 255, .12) !important; }
-.quick-card h3 { color: #ffffff !important; }
-.quick-card p { color: #a4b2ca !important; }
-.quick-card span { color: #7fb0ff !important; }
+.quick-card { border-color: rgba(10, 20, 50, .12) !important; }
+.quick-card h3 { color: #0a0e1a !important; }
+.quick-card p { color: #1f2937 !important; }
+.quick-card span { color: #1a4dff !important; }
 
 /* NEWSLETTER */
 .newsletter {
-    background: radial-gradient(700px 500px at 20% 30%, rgba(26, 77, 255, .12), transparent 65%), #0d0d0d !important;
-    border-color: rgba(127, 176, 255, .1) !important;
+    background: radial-gradient(700px 500px at 20% 30%, rgba(26, 77, 255, .08), transparent 65%), #eef1f8 !important;
+    border-color: rgba(10, 20, 50, .12) !important;
 }
-.newsletter h3 { color: #ffffff !important; }
-.newsletter h3 span { color: #7fb0ff !important; }
-.newsletter p { color: #a4b2ca !important; }
-.newsletter-form { border-bottom-color: rgba(127, 176, 255, .3) !important; }
-.newsletter-form input { color: #ffffff !important; }
-.newsletter-form button { color: #ffffff !important; }
+.newsletter h3 { color: #0a0e1a !important; }
+.newsletter h3 span { color: #1a4dff !important; }
+.newsletter p { color: #1f2937 !important; }
+.newsletter-form { border-bottom-color: rgba(10, 20, 50, .3) !important; }
+.newsletter-form input { color: #0a0e1a !important; }
+.newsletter-form button { color: #0a0e1a !important; }
 
 /* FINAL CTA */
 .final-cta {
-    background: radial-gradient(900px 500px at 50% 50%, rgba(26, 77, 255, .14), transparent 65%) !important;
-    border-color: rgba(127, 176, 255, .1) !important;
+    background: radial-gradient(900px 500px at 50% 50%, rgba(26, 77, 255, .08), transparent 65%) !important;
+    border-color: rgba(10, 20, 50, .12) !important;
 }
-.final-cta h2 { color: #ffffff !important; }
-.final-cta h2 span { color: #7fb0ff !important; }
-.final-cta p { color: #7fb0ff !important; }
+.final-cta h2 { color: #0a0e1a !important; }
+.final-cta h2 span { color: #1a4dff !important; }
+.final-cta p { color: #1a4dff !important; }
 
 /* FOOTER */
-.footer { background: #0a0a0a !important; border-top-color: rgba(127, 176, 255, .1) !important; }
-.footer-logo { color: #ffffff !important; }
-.footer-logo span { color: #7fb0ff !important; }
-.footer-links a { color: #a4b2ca !important; }
-.footer > p { color: #5d6b83 !important; border-top-color: rgba(127, 176, 255, .1) !important; }
-.footer-contato-link { color: #a4b2ca !important; border-color: rgba(127, 176, 255, .2) !important; }
+.footer { background: #eef1f8 !important; border-top-color: rgba(10, 20, 50, .12) !important; }
+.footer-logo { color: #0a0e1a !important; }
+.footer-logo span { color: #1a4dff !important; }
+.footer-links a { color: #1f2937 !important; }
+.footer > p { color: #64748b !important; border-top-color: rgba(10, 20, 50, .12) !important; }
+.footer-contato-link { color: #1f2937 !important; border-color: rgba(10, 20, 50, .25) !important; }
 
 /* BOTÕES DE GÊNERO (padrão) */
 .btn-gender {
-    color: #a4b2ca !important;
-    border-color: rgba(127, 176, 255, .3) !important;
+    color: #1f2937 !important;
+    border-color: rgba(10, 20, 50, .3) !important;
     background: transparent !important;
 }
-.btn-gender:hover { color: #ffffff !important; border-color: #7fb0ff !important; }
+.btn-gender:hover { color: #000000 !important; border-color: #1a4dff !important; }
 .btn-gender.active {
     background: #1a4dff !important;
     border-color: #1a4dff !important;
     color: #ffffff !important;
-    box-shadow: 0 0 20px rgba(26, 77, 255, .35) !important;
+    box-shadow: 0 0 20px rgba(26, 77, 255, .25) !important;
 }
 
 /* BOTÕES PADRÃO */
 .btn-primary { background: #1a4dff !important; border-color: #1a4dff !important; color: #fff !important; }
-.btn-secondary { color: #ffffff !important; border-color: rgba(127, 176, 255, .3) !important; background: transparent !important; }
+.btn-primary:hover { background: #0a2fa8 !important; border-color: #0a2fa8 !important; }
+.btn-secondary { color: #0a0e1a !important; border-color: rgba(10, 20, 50, .35) !important; background: transparent !important; }
+.btn-secondary:hover { background: rgba(26, 77, 255, .1) !important; border-color: #1a4dff !important; color: #1a4dff !important; }
 
 
 /* =========================================================
-   2. TEMA MASCULINO = IGUAL À PÁGINA INICIAL (PRETO)
-   Mesma fonte Playfair Display da página inicial
+   2. TEMA MASCULINO = IGUAL À PÁGINA INICIAL
+   Mesmo fundo claro, mesma fonte, mesmas cores
    ========================================================= */
 body.tema-masculino {
-    background-color: #0a0a0a !important;
+    background-color: #f5f7ff !important;
+    color: #0a0e1a !important;
 }
 
 body.tema-masculino h1,
@@ -10860,31 +10865,45 @@ body.tema-masculino .hero-decoration span {
     font-weight: 400 !important;
     text-transform: none !important;
     letter-spacing: -0.02em !important;
-    color: #ffffff !important;
 }
 
-body.tema-masculino .hero h1 {
-    font-size: var(--fs-h1) !important;
-    line-height: 0.94 !important;
-}
+body.tema-masculino .hero h1 { font-size: var(--fs-h1) !important; line-height: 0.94 !important; }
 
 body.tema-masculino .hero h1 span,
-body.tema-masculino .section-title h2 span {
-    color: #7fb0ff !important;
-    font-style: normal !important;
-    font-weight: 700 !important;
-}
+body.tema-masculino .section-title h2 span { color: #1a4dff !important; font-style: normal !important; font-weight: 700 !important; }
 
 body.tema-masculino .btn-gender.active {
     background: #1a4dff !important;
     border-color: #1a4dff !important;
-    box-shadow: 0 0 20px rgba(26, 77, 255, .35) !important;
+    box-shadow: 0 0 20px rgba(26, 77, 255, .25) !important;
 }
 
 
 /* =========================================================
-   3. TEMA FEMININO — MESMA FONTE, COR ROSA
+   3. TEMA FEMININO — mesma base CLARA, detalhes ROSA
    ========================================================= */
+body.tema-feminino {
+    background-color: #fdf5f8 !important;
+    color: #3a1f2b !important;
+}
+
+body.tema-feminino::before {
+    background:
+        radial-gradient(1200px 800px at 15% -10%, rgba(200, 97, 140, .08), transparent 60%),
+        radial-gradient(900px 700px at 105% 15%, rgba(168, 74, 112, .06), transparent 65%) !important;
+}
+
+body.tema-feminino .header { background: rgba(253, 245, 248, .92) !important; border-bottom-color: rgba(200, 97, 140, .15) !important; }
+body.tema-feminino .hero {
+    background:
+        radial-gradient(1000px 800px at 78% 10%, rgba(200, 97, 140, .12), transparent 60%),
+        radial-gradient(800px 600px at 8% 92%, rgba(168, 74, 112, .08), transparent 65%),
+        linear-gradient(180deg, #fdf5f8 0%, #fae8ef 60%, #fdf5f8 100%) !important;
+}
+body.tema-feminino .ticker { background: #fae8ef !important; }
+body.tema-feminino .ticker::before { background: linear-gradient(90deg, #fae8ef, transparent) !important; }
+body.tema-feminino .ticker::after  { background: linear-gradient(270deg, #fae8ef, transparent) !important; }
+
 body.tema-feminino h1,
 body.tema-feminino h2,
 body.tema-feminino h3,
@@ -10900,46 +10919,27 @@ body.tema-feminino .hero-decoration span {
     letter-spacing: -0.02em !important;
 }
 
-body.tema-feminino .hero h1 {
-    font-size: var(--fs-h1) !important;
-    line-height: 0.94 !important;
-}
+body.tema-feminino .hero h1 { font-size: var(--fs-h1) !important; line-height: 0.94 !important; }
 
 body.tema-feminino .hero h1 span,
-body.tema-feminino .section-title h2 span {
-    color: #c8618c !important;
-    font-style: normal !important;
-    font-weight: 700 !important;
-}
+body.tema-feminino .section-title h2 span { color: #c8618c !important; font-style: normal !important; font-weight: 700 !important; }
 
 body.tema-feminino .hero-small,
 body.tema-feminino .section-kicker,
-body.tema-feminino .product-cat {
-    color: #c8618c !important;
-}
+body.tema-feminino .product-cat,
+body.tema-feminino .section-title > p { color: #c8618c !important; }
 
-body.tema-feminino .btn-primary {
-    background: #c8618c !important;
-    border-color: #c8618c !important;
-}
-
-body.tema-feminino .btn-primary:hover {
-    background: #a84a70 !important;
-    border-color: #a84a70 !important;
-}
-
+body.tema-feminino .btn-primary { background: #c8618c !important; border-color: #c8618c !important; }
+body.tema-feminino .btn-primary:hover { background: #a84a70 !important; border-color: #a84a70 !important; }
 body.tema-feminino .btn-gender.active {
     background: #c8618c !important;
     border-color: #c8618c !important;
-    box-shadow: 0 0 20px rgba(200, 97, 140, .35) !important;
+    box-shadow: 0 0 20px rgba(200, 97, 140, .3) !important;
 }
 
 /* Transição suave */
 body { transition: background-color .4s ease, color .4s ease !important; }
-body h1, body h2, body h3, body .logo, body .product-name {
-    transition: color .3s ease !important;
-}
 
 /* =========================================================
-   FIM — BLOCO FINAL
+   FIM — TEMA CLARO (inicial + masculino + feminino)
    ========================================================= */
