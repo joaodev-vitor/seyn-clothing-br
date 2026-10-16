@@ -10693,13 +10693,13 @@ body.tema-masculino .btn-gender.active {
 }
 
 /* =========================================================
-   ✅ PÁGINA INICIAL PRETA + MASCULINO IGUAL + FONTE ÚNICA
-   (Cola no final — sobrescreve tudo acima)
+   🔥 BLOCO FINAL — PÁGINA INICIAL PRETA + MASCULINO IGUAL
+   Deve ser o ÚLTIMO bloco do arquivo
    ========================================================= */
 
-/* =========================================================
-   1. PÁGINA INICIAL (sem filtro) — FUNDO PRETO
-   ========================================================= */
+/* ---------------------------------------------------------
+   1. PÁGINA INICIAL (padrão) — FUNDO PRETO
+   --------------------------------------------------------- */
 html, body {
     background-color: #0a0a0a !important;
     color: #e8e8e8 !important;
@@ -10712,15 +10712,11 @@ body::before {
         radial-gradient(1100px 900px at 50% 120%, rgba(26, 77, 255, .06), transparent 70%) !important;
 }
 
+body::after { opacity: .3 !important; }
+
 /* HEADER */
-.header {
-    background: rgba(10, 10, 10, .85) !important;
-    border-bottom-color: rgba(127, 176, 255, .1) !important;
-}
-.header.scrolled {
-    background: rgba(10, 10, 10, .95) !important;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, .5) !important;
-}
+.header { background: rgba(10, 10, 10, .85) !important; border-bottom-color: rgba(127, 176, 255, .1) !important; }
+.header.scrolled { background: rgba(10, 10, 10, .95) !important; }
 .logo { color: #ffffff !important; }
 .logo span { color: #7fb0ff !important; }
 .nav a { color: #a4b2ca !important; }
@@ -10845,12 +10841,12 @@ p { color: #a4b2ca !important; }
 
 /* =========================================================
    2. TEMA MASCULINO = IGUAL À PÁGINA INICIAL (PRETO)
+   Mesma fonte Playfair Display da página inicial
    ========================================================= */
 body.tema-masculino {
     background-color: #0a0a0a !important;
 }
 
-/* Fonte igual ao padrão (Playfair Display) */
 body.tema-masculino h1,
 body.tema-masculino h2,
 body.tema-masculino h3,
@@ -10887,7 +10883,7 @@ body.tema-masculino .btn-gender.active {
 
 
 /* =========================================================
-   3. TEMA FEMININO — MESMA FONTE DO PADRÃO, COR ROSA
+   3. TEMA FEMININO — MESMA FONTE, COR ROSA
    ========================================================= */
 body.tema-feminino h1,
 body.tema-feminino h2,
@@ -10937,3 +10933,13 @@ body.tema-feminino .btn-gender.active {
     border-color: #c8618c !important;
     box-shadow: 0 0 20px rgba(200, 97, 140, .35) !important;
 }
+
+/* Transição suave */
+body { transition: background-color .4s ease, color .4s ease !important; }
+body h1, body h2, body h3, body .logo, body .product-name {
+    transition: color .3s ease !important;
+}
+
+/* =========================================================
+   FIM — BLOCO FINAL
+   ========================================================= */
