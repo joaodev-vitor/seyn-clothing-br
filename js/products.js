@@ -484,9 +484,15 @@ let filtroGeneroAtual = 'todos';
 
 /* =========================================================
    FUNÇÃO DE FILTRAR GÊNERO
-   Aplica tema (feminino/masculino), controla hambúrguer e re-renderiza
+   - Clicar num gênero: filtra + aplica tema + mostra hambúrguer
+   - Clicar no MESMO gênero novamente: reseta (volta ao "todos")
    ========================================================= */
 function filtrarGenero(genero) {
+    // 🔄 TOGGLE: se clicar no mesmo gênero que já está ativo, reseta
+    if (filtroGeneroAtual === genero) {
+        genero = 'todos';
+    }
+
     filtroGeneroAtual = genero;
 
     // 1. Atualiza a classe 'active' nos botões

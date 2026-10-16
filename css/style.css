@@ -10671,3 +10671,23 @@ body {
 body h1, body h2, body h3, body .logo, body .product-name {
     transition: font-family .3s ease, color .3s ease !important;
 }
+
+/* Botão de gênero ativo — destaque */
+.btn-gender.active {
+    background: var(--blue-1) !important;
+    border-color: var(--blue-1) !important;
+    color: #ffffff !important;
+    box-shadow: 0 0 20px rgba(26, 77, 255, .35);
+}
+
+body.tema-feminino .btn-gender.active {
+    background: #c8618c !important;
+    border-color: #c8618c !important;
+    box-shadow: 0 0 20px rgba(200, 97, 140, .35);
+}
+
+body.tema-masculino .btn-gender.active {
+    background: #1a1a1a !important;
+    border-color: #1a1a1a !important;
+    box-shadow: 0 0 20px rgba(26, 26, 26, .35);
+}
