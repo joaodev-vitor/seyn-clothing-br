@@ -11237,3 +11237,80 @@ body.tema-feminino ::-webkit-scrollbar-thumb {
 /* =========================================================
    FIM — FEMININO NO MODO ESCURO
    ========================================================= */
+
+   /* =========================================================
+   🔄 INVERTER INICIAL ↔ MASCULINO
+   - Cores trocadas entre os dois
+   - Masculino com a fonte da Inicial (Playfair italic)
+   ========================================================= */
+
+/* ---------------------------------------------------------
+   1. INICIAL (padrão) = CORES do Masculino (cinza-azulado)
+   --------------------------------------------------------- */
+body:not(.tema-masculino):not(.tema-feminino) .hero h1 span,
+body:not(.tema-masculino):not(.tema-feminino) .section-title h2 span,
+body:not(.tema-masculino):not(.tema-feminino) .category-content strong {
+    color: #2a3a4a !important;
+    font-style: normal !important;
+    font-weight: 700 !important;
+}
+
+body:not(.tema-masculino):not(.tema-feminino) .logo span {
+    color: #2a3a4a !important;
+}
+
+/* ---------------------------------------------------------
+   2. MASCULINO = CORES da Inicial + FONTE da Inicial
+   --------------------------------------------------------- */
+
+/* 🖋️ Fonte Playfair italic (igual à inicial) */
+body.tema-masculino h1,
+body.tema-masculino h2,
+body.tema-masculino h3,
+body.tema-masculino h4,
+body.tema-masculino h5,
+body.tema-masculino h6,
+body.tema-masculino .logo,
+body.tema-masculino .product-name,
+body.tema-masculino .section-title h2,
+body.tema-masculino .hero-decoration span,
+body.tema-masculino .category-content h3,
+body.tema-masculino .lookbook-item h4,
+body.tema-masculino .quick-card h3,
+body.tema-masculino .newsletter h3,
+body.tema-masculino .final-cta h2,
+body.tema-masculino .footer-logo,
+body.tema-masculino .pull-quote blockquote,
+body.tema-masculino .cart-summary-title,
+body.tema-masculino .hero h1 {
+    font-family: 'Playfair Display', 'Times New Roman', Georgia, serif !important;
+    font-style: italic !important;
+    font-weight: 400 !important;
+    text-transform: none !important;
+    letter-spacing: -0.02em !important;
+}
+
+/* Hero h1 no tamanho grande (igual à inicial) */
+body.tema-masculino .hero h1 {
+    font-size: var(--fs-h1) !important;
+    line-height: 0.94 !important;
+    color: #ffffff !important;
+}
+
+/* 🎨 Cores azuis brilhantes (cor da inicial) */
+body.tema-masculino .hero h1 span,
+body.tema-masculino .section-title h2 span {
+    color: #7fb0ff !important;
+    font-style: normal !important;
+    font-weight: 700 !important;
+}
+
+body.tema-masculino .logo {
+    font-style: italic !important;
+    text-transform: none !important;
+}
+
+body.tema-masculino .logo span {
+    color: #7fb0ff !important;
+    font-style: normal !important;
+}
