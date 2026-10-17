@@ -11314,3 +11314,101 @@ body.tema-masculino .logo span {
     color: #7fb0ff !important;
     font-style: normal !important;
 }
+
+/* =========================================================
+   🌞 MASCULINO NO MODO CLARO — CORES LEGÍVEIS
+   Azul escuro para contraste com fundo claro
+   ========================================================= */
+
+[data-tema="claro"] body.tema-masculino .hero h1 span,
+[data-tema="claro"] body.tema-masculino .section-title h2 span,
+[data-tema="claro"] body.tema-masculino .category-content strong {
+    color: #0a2fa8 !important;
+}
+
+[data-tema="claro"] body.tema-masculino .logo {
+    color: #0a0e1a !important;
+}
+
+[data-tema="claro"] body.tema-masculino .logo span {
+    color: #0a2fa8 !important;
+}
+
+[data-tema="claro"] body.tema-masculino .hero-small,
+[data-tema="claro"] body.tema-masculino .section-kicker,
+[data-tema="claro"] body.tema-masculino .product-cat,
+[data-tema="claro"] body.tema-masculino .section-title > p {
+    color: #0a2fa8 !important;
+}
+
+[data-tema="claro"] body.tema-masculino .hero h1 {
+    color: #0a0e1a !important;
+}
+
+[data-tema="claro"] body.tema-masculino .btn-gender {
+    color: #1f2937 !important;
+    border-color: rgba(10, 20, 50, .3) !important;
+}
+
+[data-tema="claro"] body.tema-masculino .btn-gender.active {
+    background: #1a4dff !important;
+    border-color: #1a4dff !important;
+    color: #ffffff !important;
+    box-shadow: 0 0 20px rgba(26, 77, 255, .25) !important;
+}
+
+[data-tema="claro"] body.tema-masculino .btn-primary {
+    background: #1a4dff !important;
+    border-color: #1a4dff !important;
+    color: #ffffff !important;
+}
+
+[data-tema="claro"] body.tema-masculino .btn-secondary {
+    color: #0a0e1a !important;
+    border-color: rgba(10, 20, 50, .35) !important;
+}
+
+[data-tema="claro"] body.tema-masculino .hero-decoration span {
+    color: transparent !important;
+    -webkit-text-stroke: 2px rgba(10, 47, 168, .35) !important;
+    opacity: 1 !important;
+}
+
+[data-tema="claro"] body.tema-masculino .hero-description {
+    color: #1f2937 !important;
+}
+
+[data-tema="claro"] body.tema-masculino .category-content > span,
+[data-tema="claro"] body.tema-masculino .lookbook-item small,
+[data-tema="claro"] body.tema-masculino .quick-card span,
+[data-tema="claro"] body.tema-masculino .pull-quote cite {
+    color: #0a2fa8 !important;
+}
+
+[data-tema="claro"] body.tema-masculino .category-content h3,
+[data-tema="claro"] body.tema-masculino .lookbook-item h4,
+[data-tema="claro"] body.tema-masculino .quick-card h3,
+[data-tema="claro"] body.tema-masculino .pull-quote blockquote,
+[data-tema="claro"] body.tema-masculino .product-name,
+[data-tema="claro"] body.tema-masculino .product-price strong,
+[data-tema="claro"] body.tema-masculino .newsletter h3,
+[data-tema="claro"] body.tema-masculino .final-cta h2,
+[data-tema="claro"] body.tema-masculino .footer-logo {
+    color: #0a0e1a !important;
+}
+
+[data-tema="claro"] body.tema-masculino .newsletter h3 span,
+[data-tema="claro"] body.tema-masculino .final-cta h2 span {
+    color: #0a2fa8 !important;
+}
+
+[data-tema="claro"] body.tema-masculino .category-content p,
+[data-tema="claro"] body.tema-masculino .quick-card p,
+[data-tema="claro"] body.tema-masculino .product-desc,
+[data-tema="claro"] body.tema-masculino .newsletter p {
+    color: #1f2937 !important;
+}
+
+[data-tema="claro"] body.tema-masculino .footer-links a {
+    color: #1f2937 !important;
+}
