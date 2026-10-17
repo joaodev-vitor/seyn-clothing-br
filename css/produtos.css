@@ -1158,3 +1158,12 @@
 
     .review-star-pick { width: 30px; height: 30px; }
 }
+
+/* Galeria sem thumbs — 1 coluna só */
+.product-gallery.sem-thumbs {
+    grid-template-columns: 1fr;
+}
+/* Galeria sem thumbs — 1 coluna só */
+.product-gallery.sem-thumbs {
+    grid-template-columns: 1fr;
+}

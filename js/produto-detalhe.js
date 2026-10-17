@@ -67,6 +67,7 @@ function renderizarProduto(p) {
         }
     }
     renderizarGaleria(p);
+    ajustarGridGaleria();
     renderizarCores(p);
     renderizarTamanhos(p);
 
@@ -123,14 +124,14 @@ function renderizarCores(p) {
         return '<button type="button" class="detail-color' + (i === 0 ? ' active' : '') + '" style="background:' + cor + '" data-cor="' + cor + '" onclick="selecionarCor(this)"></button>';
     }).join('');
     corSelecionadaAtual = p.cores[0];
-    setText('corSelecionada', p.cores[0]);
+    setText('corSelecionada', formatarCor(p.cores[0]));
 }
 
 function selecionarCor(btn) {
     document.querySelectorAll('.detail-color').forEach(function (b) { b.classList.remove('active'); });
     btn.classList.add('active');
     corSelecionadaAtual = btn.dataset.cor;
-    setText('corSelecionada', corSelecionadaAtual);
+    setText('corSelecionada', formatarCor(corSelecionadaAtual));
 }
 
 function renderizarTamanhos(p) {
@@ -236,3 +237,22 @@ window.toggleWishProduto = toggleWishProduto;
 window.abrirZoom = abrirZoom;
 window.fecharZoom = fecharZoom;
 window.abrirGuiaTamanhos = abrirGuiaTamanhos;
+
+/* ---------------------------------------------------------
+   AJUSTE DE GRID — quando não tem thumbs
+   --------------------------------------------------------- */
+function ajustarGridGaleria() {
+    const gallery = document.querySelector('.product-gallery');
+    if (!gallery) return;
+    const thumbs = document.getElementById('galleryThumbs');
+    const temThumbs = thumbs && thumbs.style.display !== 'none' && thumbs.children.length > 0;
+    gallery.classList.toggle('sem-thumbs', !temThumbs);
+}
+
+function formatarCor(cor) {
+    if (!cor) return '';
+    return cor.startsWith('#') ? 'Selecionada' : cor;
+}
+
+window.ajustarGridGaleria = ajustarGridGaleria;
+window.formatarCor = formatarCor;
