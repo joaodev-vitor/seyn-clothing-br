@@ -1706,18 +1706,18 @@ function escapeHtmlAdmin(str) {
 function carregarConfig() {
     var cfg = window.__config || {};
     setValue('configPixChave', cfg.pixChave || '');
-    setValue('configPixNome', cfg.pixNome || 'SEYN CLOTHING');      // ✅ com espaço
+    setValue('configPixNome', cfg.pixNome || 'SEYN CLOTHING');      
     setValue('configPixCidade', cfg.pixCidade || 'SAO PAULO');
 }
 
 /* Limpa texto pra ficar compatível com BR Code (sem acento, sem ç) */
 function limparTextoBrCode(str) {
     return String(str || '')
-        .normalize('NFD').replace(/[\u0300-\u036f]/g, '')  // remove acentos
-        .replace(/ç/gi, 'c')                                // remove cedilha
+        .normalize('NFD').replace(/[\u0300-\u036f]/g, '')  
+        .replace(/ç/gi, 'c')                                
         .replace(/Ç/g, 'C')
-        .replace(/[^A-Za-z0-9 ]/g, '')                     // só letras/números/espaço
-        .replace(/\s+/g, ' ')                               // espaços duplicados
+        .replace(/[^A-Za-z0-9 ]/g, '')                     
+        .replace(/\s+/g, ' ')                               
         .trim();
 }
 
@@ -1727,7 +1727,6 @@ async function salvarConfiguracoes() {
     var nomeBruto  = String(getValue('configPixNome')  || '').trim();
     var cidadeBruta = String(getValue('configPixCidade') || '').trim();
 
-    /* Se a chave parece CPF (tem ponto, traço ou barra), limpa pra só números */
     var chaveLimpa = chaveBruta;
     if (/[\.\-\/]/.test(chaveBruta)) {
         chaveLimpa = chaveBruta.replace(/\D/g, '');
@@ -1739,7 +1738,6 @@ async function salvarConfiguracoes() {
         pixCidade: limparTextoBrCode(cidadeBruta).slice(0, 15)
     };
 
-    /* Avisa se o valor final ficou diferente do que foi digitado */
     if (cfg.pixNome !== nomeBruto || cfg.pixCidade !== cidadeBruta || cfg.pixChave !== chaveBruta) {
         console.log('[admin] ⚠️ Valores foram sanitizados:');
         console.log('  Nome:', nomeBruto, '→', cfg.pixNome);
@@ -1750,10 +1748,8 @@ async function salvarConfiguracoes() {
     try {
         await salvarConfigFirebase(cfg);
 
-        /* Atualiza cache local pra refletir na UI imediatamente */
         window.__config = Object.assign({}, window.__config || {}, cfg);
 
-        /* Repõe os valores sanitizados nos campos */
         setValue('configPixChave', cfg.pixChave);
         setValue('configPixNome', cfg.pixNome);
         setValue('configPixCidade', cfg.pixCidade);
@@ -1785,7 +1781,7 @@ function abrirModalProduto(produto) {
         setValue('produtoId', produto.id);
         setValue('fNome', produto.nome);
         setValue('fCategoria', produto.categoria);
-                setValue('fGenero', produto.genero || 'unissex');
+        setValue('fGenero', produto.genero || 'unissex'); /* ✅ GÊNERO CARREGADO AQUI */
         setValue('fBadge', produto.badge || '');
         setValue('fDescricao', produto.descricao);
         setValue('fPreco', produto.preco);
@@ -1833,56 +1829,10 @@ async function salvarProduto(e) {
 
     var precoAntigo = parseFloat(getValue('fPrecoAntigo'));
 
-        var dados = {
-        nome: getValue('fNome'),
-        categoria: getValue('fCategoria'),
-        genero: getValue('fGenero') || 'unissex',
-        badge: getValue('fBadge') || null,
-        descricao: getValue('fDescricao'),
-        preco: parseFloat(getValue('fPreco')),
-        precoAntigo: isNaN(precoAntigo) ? null : precoAntigo,
-        imagem: getValue('fImagem'),
-        imagemAlt: getValue('fImagemAlt') || '',
-        tamanhos: tamanhos,
-        estoque: true
-    };
-
-    if (!dados.nome || !dados.categoria || !dados.preco || !dados.imagem) {
-        toast('Preencha os campos obrigatórios', 'error');
-        return;
-    }
-
-    try {
-        if (adminState.editingId) {
-            dados.id = adminState.editingId;
-        }
-        await salvarProdutoFirebase(dados);
-        await carregarCatalogo();
-        fecharModalProduto();
-        renderizarProdutosTabela();
-        renderizarEstoque();
-        renderizarDashboard();
-        toast('Produto salvo', 'success');
-    } catch (e) {
-        console.error(e);
-        toast('Erro ao salvar', 'error');
-    }
-}
-
-async function salvarProduto(e) {
-
-    e.preventDefault();
-
-    var tamanhosStr = getValue('fTamanhos');
-    var tamanhos = tamanhosStr
-        ? tamanhosStr.split(',').map(function (t) { return t.trim(); }).filter(function (t) { return t; })
-        : ['Único'];
-
-    var precoAntigo = parseFloat(getValue('fPrecoAntigo'));
-    
     var dados = {
         nome: getValue('fNome'),
         categoria: getValue('fCategoria'),
+        genero: getValue('fGenero') || 'unissex', /* ✅ GÊNERO SENDO SALVO AQUI */
         badge: getValue('fBadge') || null,
         descricao: getValue('fDescricao'),
         preco: parseFloat(getValue('fPreco')),
