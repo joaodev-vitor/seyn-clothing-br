@@ -11016,3 +11016,224 @@ body.tema-feminino .btn-secondary {
 /* =========================================================
    FIM — TEMAS POR GÊNERO (claro + escuro)
    ========================================================= */
+   /* =========================================================
+   🌸 TEMA FEMININO — MODO ESCURO
+   Fundo vinho escuro + detalhes rosa
+   (Ativo quando o site está no tema escuro padrão)
+   ========================================================= */
+
+/* Body e fundo geral */
+body.tema-feminino:not([data-tema="claro"]) {
+    background-color: #1a0e14 !important;
+    color: #f5e6ec !important;
+}
+
+body.tema-feminino {
+    background-color: #1a0e14 !important;
+}
+
+/* Remove o fundo claro caso esteja sobrescrevendo */
+html:not([data-tema="claro"]) body.tema-feminino {
+    background-color: #1a0e14 !important;
+    color: #f5e6ec !important;
+}
+
+/* Efeito de fundo */
+body.tema-feminino::before {
+    background:
+        radial-gradient(1200px 800px at 15% -10%, rgba(200, 97, 140, .15), transparent 60%),
+        radial-gradient(900px 700px at 105% 15%, rgba(168, 74, 112, .12), transparent 65%),
+        radial-gradient(1100px 900px at 50% 120%, rgba(200, 97, 140, .08), transparent 70%) !important;
+}
+
+/* HEADER */
+body.tema-feminino .header {
+    background: rgba(26, 14, 20, .88) !important;
+    border-bottom-color: rgba(200, 97, 140, .2) !important;
+}
+body.tema-feminino .header.scrolled {
+    background: rgba(26, 14, 20, .96) !important;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, .6) !important;
+}
+body.tema-feminino .logo { color: #ffffff !important; }
+body.tema-feminino .logo span { color: #e89bb5 !important; }
+body.tema-feminino .nav a { color: #e8c4d2 !important; }
+body.tema-feminino .nav a:hover,
+body.tema-feminino .nav a.active { color: #ffffff !important; }
+body.tema-feminino .search-button,
+body.tema-feminino .cart-button,
+body.tema-feminino .menu-button,
+body.tema-feminino .conta-button { color: #e8c4d2 !important; }
+body.tema-feminino .search-button:hover,
+body.tema-feminino .cart-button:hover,
+body.tema-feminino .menu-button:hover {
+    color: #ffffff !important;
+    background: rgba(200, 97, 140, .12) !important;
+    border-color: rgba(200, 97, 140, .4) !important;
+}
+
+/* HERO */
+body.tema-feminino .hero {
+    background:
+        radial-gradient(1000px 800px at 78% 10%, rgba(200, 97, 140, .22), transparent 60%),
+        radial-gradient(800px 600px at 8% 92%, rgba(168, 74, 112, .2), transparent 65%),
+        linear-gradient(180deg, #1a0e14 0%, #241018 60%, #1a0e14 100%) !important;
+}
+body.tema-feminino .hero h1 { color: #ffffff !important; }
+body.tema-feminino .hero h1 span { color: #e89bb5 !important; }
+body.tema-feminino .hero-small {
+    color: #e89bb5 !important;
+    border-bottom-color: rgba(200, 97, 140, .35) !important;
+}
+body.tema-feminino .hero-description { color: #e8c4d2 !important; }
+body.tema-feminino .hero-decoration span {
+    color: transparent !important;
+    -webkit-text-stroke: 2px rgba(200, 97, 140, .45) !important;
+    opacity: 1 !important;
+}
+body.tema-feminino .hero::after {
+    color: #8a6a78 !important;
+}
+
+/* TICKER */
+body.tema-feminino .ticker {
+    background: #241018 !important;
+    border-color: rgba(200, 97, 140, .15) !important;
+}
+body.tema-feminino .ticker::before { background: linear-gradient(90deg, #241018, transparent) !important; }
+body.tema-feminino .ticker::after  { background: linear-gradient(270deg, #241018, transparent) !important; }
+body.tema-feminino .ticker-track > * { color: #e8c4d2 !important; }
+
+/* TÍTULOS E TEXTOS */
+body.tema-feminino h1,
+body.tema-feminino h2,
+body.tema-feminino h3,
+body.tema-feminino h4,
+body.tema-feminino h5,
+body.tema-feminino h6 { color: #ffffff !important; }
+body.tema-feminino p { color: #e8c4d2 !important; }
+body.tema-feminino .section-title h2 { color: #ffffff !important; }
+body.tema-feminino .section-title h2 span { color: #e89bb5 !important; }
+body.tema-feminino .section-title > p,
+body.tema-feminino .section-kicker { color: #e89bb5 !important; }
+body.tema-feminino .section-kicker span { color: #8a6a78 !important; }
+
+/* CATEGORIAS */
+body.tema-feminino .category-card { border-color: rgba(200, 97, 140, .22) !important; }
+body.tema-feminino .category-content h3 { color: #ffffff !important; }
+body.tema-feminino .category-content p { color: #e8c4d2 !important; }
+body.tema-feminino .category-content > span { color: #e89bb5 !important; }
+body.tema-feminino .category-content strong { color: #ffffff !important; }
+
+/* LOOKBOOK */
+body.tema-feminino .lookbook-item {
+    background: #241018 !important;
+    border-color: rgba(200, 97, 140, .22) !important;
+}
+body.tema-feminino .lookbook-item h4 { color: #ffffff !important; }
+body.tema-feminino .lookbook-item small { color: #e89bb5 !important; }
+
+/* PULL-QUOTE */
+body.tema-feminino .pull-quote blockquote { color: #ffffff !important; }
+body.tema-feminino .pull-quote cite { color: #e89bb5 !important; }
+
+/* CARDS DE PRODUTO */
+body.tema-feminino .product-media {
+    background: #241018 !important;
+    border-color: rgba(200, 97, 140, .22) !important;
+}
+body.tema-feminino .product-name,
+body.tema-feminino .product-name a { color: #ffffff !important; }
+body.tema-feminino .product-desc { color: #e8c4d2 !important; }
+body.tema-feminino .product-price strong { color: #ffffff !important; }
+body.tema-feminino .product-price s { color: #8a6a78 !important; }
+body.tema-feminino .product-cat { color: #e89bb5 !important; }
+
+/* QUICK CATEGORIES */
+body.tema-feminino .quick-card { border-color: rgba(200, 97, 140, .18) !important; }
+body.tema-feminino .quick-card h3 { color: #ffffff !important; }
+body.tema-feminino .quick-card p { color: #e8c4d2 !important; }
+body.tema-feminino .quick-card span { color: #e89bb5 !important; }
+
+/* NEWSLETTER */
+body.tema-feminino .newsletter {
+    background: radial-gradient(700px 500px at 20% 30%, rgba(200, 97, 140, .18), transparent 65%), #241018 !important;
+    border-color: rgba(200, 97, 140, .22) !important;
+}
+body.tema-feminino .newsletter h3 { color: #ffffff !important; }
+body.tema-feminino .newsletter h3 span { color: #e89bb5 !important; }
+body.tema-feminino .newsletter p { color: #e8c4d2 !important; }
+body.tema-feminino .newsletter-form { border-bottom-color: rgba(200, 97, 140, .35) !important; }
+body.tema-feminino .newsletter-form input { color: #ffffff !important; }
+body.tema-feminino .newsletter-form button { color: #ffffff !important; }
+
+/* FINAL CTA */
+body.tema-feminino .final-cta {
+    background: radial-gradient(900px 500px at 50% 50%, rgba(200, 97, 140, .2), transparent 65%) !important;
+    border-color: rgba(200, 97, 140, .22) !important;
+}
+body.tema-feminino .final-cta h2 { color: #ffffff !important; }
+body.tema-feminino .final-cta h2 span { color: #e89bb5 !important; }
+body.tema-feminino .final-cta p { color: #e89bb5 !important; }
+
+/* FOOTER */
+body.tema-feminino .footer {
+    background: #1a0e14 !important;
+    border-top-color: rgba(200, 97, 140, .2) !important;
+}
+body.tema-feminino .footer-logo { color: #ffffff !important; }
+body.tema-feminino .footer-logo span { color: #e89bb5 !important; }
+body.tema-feminino .footer-links a { color: #e8c4d2 !important; }
+body.tema-feminino .footer > p {
+    color: #8a6a78 !important;
+    border-top-color: rgba(200, 97, 140, .15) !important;
+}
+body.tema-feminino .footer-contato-link {
+    color: #e8c4d2 !important;
+    border-color: rgba(200, 97, 140, .3) !important;
+}
+
+/* BOTÕES */
+body.tema-feminino .btn-gender {
+    color: #e8c4d2 !important;
+    border-color: rgba(200, 97, 140, .4) !important;
+    background: transparent !important;
+}
+body.tema-feminino .btn-gender:hover {
+    color: #ffffff !important;
+    border-color: #e89bb5 !important;
+}
+body.tema-feminino .btn-gender.active {
+    background: #c8618c !important;
+    border-color: #c8618c !important;
+    color: #ffffff !important;
+    box-shadow: 0 0 20px rgba(200, 97, 140, .4) !important;
+}
+body.tema-feminino .btn-primary {
+    background: #c8618c !important;
+    border-color: #c8618c !important;
+    color: #ffffff !important;
+}
+body.tema-feminino .btn-primary:hover {
+    background: #a84a70 !important;
+    border-color: #a84a70 !important;
+}
+body.tema-feminino .btn-secondary {
+    color: #ffffff !important;
+    border-color: rgba(200, 97, 140, .45) !important;
+    background: transparent !important;
+}
+body.tema-feminino .btn-secondary:hover {
+    background: rgba(200, 97, 140, .12) !important;
+    border-color: #e89bb5 !important;
+}
+
+/* SCROLLBAR (opcional, pra combinar) */
+body.tema-feminino ::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #c8618c, #a84a70);
+    border-color: #1a0e14;
+}
+
+/* =========================================================
+   FIM — FEMININO NO MODO ESCURO
+   ========================================================= */
