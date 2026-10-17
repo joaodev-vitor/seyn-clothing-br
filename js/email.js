@@ -136,13 +136,13 @@ function logErroEmailJS(contexto, e) {
 
 
 const STATUS_EMAIL = {
-    'aguardando_pagamento': { emoji: '⏳', titulo: 'Pedido recebido',          mensagem: 'Recebemos seu pedido! Assim que o pagamento for confirmado, começamos a preparar tudo com cuidado.', botao_texto: 'Acompanhar pedido',   botao_url: 'https://joaodev-vitor.github.io/mjstores/minha-conta.html' },
-    'pago':                 { emoji: '💰', titulo: 'Pagamento confirmado',     mensagem: 'Confirmamos o recebimento do seu pagamento! Seu pedido já entrou na fila de separação.',                botao_texto: 'Acompanhar pedido',   botao_url: 'https://joaodev-vitor.github.io/mjstores/minha-conta.html' },
-    'processando':          { emoji: '📝', titulo: 'Pedido em processamento',  mensagem: 'Estamos processando seu pedido. Em breve ele será preparado para envio.',                              botao_texto: 'Acompanhar pedido',   botao_url: 'https://joaodev-vitor.github.io/mjstores/minha-conta.html' },
-    'preparando':           { emoji: '📦', titulo: 'Preparando seu pedido',    mensagem: 'Boas notícias! Seu pedido já entrou na fila de separação e está sendo embalado com cuidado.',          botao_texto: 'Acompanhar pedido',   botao_url: 'https://joaodev-vitor.github.io/mjstores/minha-conta.html' },
-    'enviado':              { emoji: '🚚', titulo: 'Seu pedido saiu para entrega', mensagem: 'Seu pedido já está em rota! A transportadora foi acionada.',                                       botao_texto: 'Acompanhar pedido',   botao_url: 'https://joaodev-vitor.github.io/mjstores/minha-conta.html' },
-    'entregue':             { emoji: '✅', titulo: 'Pedido entregue',          mensagem: 'Seu pedido chegou! Esperamos que você ame as peças.',                                                  botao_texto: 'Avaliar produtos',    botao_url: 'https://joaodev-vitor.github.io/mjstores/minha-conta.html' },
-    'cancelado':            { emoji: '💸', titulo: 'Pedido cancelado',         mensagem: 'Confirmamos o cancelamento do seu pedido. A solicitação de reembolso foi aberta automaticamente.',     botao_texto: 'Acompanhar reembolso', botao_url: 'https://joaodev-vitor.github.io/mjstores/minha-conta.html' }
+    'aguardando_pagamento': { emoji: '⏳', titulo: 'Pedido recebido',          mensagem: 'Recebemos seu pedido! Assim que o pagamento for confirmado, começamos a preparar tudo com cuidado.', botao_texto: 'Acompanhar pedido',   botao_url: 'https://joaodev-vitor.github.io/seyn-clothing-bres/minha-conta.html' },
+    'pago':                 { emoji: '💰', titulo: 'Pagamento confirmado',     mensagem: 'Confirmamos o recebimento do seu pagamento! Seu pedido já entrou na fila de separação.',                botao_texto: 'Acompanhar pedido',   botao_url: 'https://joaodev-vitor.github.io/seyn-clothing-bres/minha-conta.html' },
+    'processando':          { emoji: '📝', titulo: 'Pedido em processamento',  mensagem: 'Estamos processando seu pedido. Em breve ele será preparado para envio.',                              botao_texto: 'Acompanhar pedido',   botao_url: 'https://joaodev-vitor.github.io/seyn-clothing-bres/minha-conta.html' },
+    'preparando':           { emoji: '📦', titulo: 'Preparando seu pedido',    mensagem: 'Boas notícias! Seu pedido já entrou na fila de separação e está sendo embalado com cuidado.',          botao_texto: 'Acompanhar pedido',   botao_url: 'https://joaodev-vitor.github.io/seyn-clothing-bres/minha-conta.html' },
+    'enviado':              { emoji: '🚚', titulo: 'Seu pedido saiu para entrega', mensagem: 'Seu pedido já está em rota! A transportadora foi acionada.',                                       botao_texto: 'Acompanhar pedido',   botao_url: 'https://joaodev-vitor.github.io/seyn-clothing-bres/minha-conta.html' },
+    'entregue':             { emoji: '✅', titulo: 'Pedido entregue',          mensagem: 'Seu pedido chegou! Esperamos que você ame as peças.',                                                  botao_texto: 'Avaliar produtos',    botao_url: 'https://joaodev-vitor.github.io/seyn-clothing-bres/minha-conta.html' },
+    'cancelado':            { emoji: '💸', titulo: 'Pedido cancelado',         mensagem: 'Confirmamos o cancelamento do seu pedido. A solicitação de reembolso foi aberta automaticamente.',     botao_texto: 'Acompanhar reembolso', botao_url: 'https://joaodev-vitor.github.io/seyn-clothing-bres/minha-conta.html' }
 };
 
 
@@ -208,7 +208,7 @@ async function enviarEmailNovoPedidoProAdmin(pedido) {
         titulo:            'Novo pedido #' + (pedido.numero || pedido.id || '-'),
         mensagem:          'Você recebeu um novo pedido!',
         botao_texto:       'Abrir painel',
-        botao_url:         'https://joaodev-vitor.github.io/mjstores/admin.html'
+        botao_url:         'https://joaodev-vitor.github.io/seyn-clothing-bres/admin.html'
     };
 
     console.log('[email] 📤 Enviando admin (novo pedido) → template:', EMAILJS_CONFIG.templateIdAdmin);
@@ -229,10 +229,10 @@ async function enviarEmailReembolso(refund, novoStatus, observacaoAdmin) {
     if (typeof emailjs === 'undefined') return { ok: false, erro: 'EmailJS indisponível' };
 
     var mapas = {
-        'pendente': { emoji: '📩', titulo: 'Reembolso recebido', mensagem: 'Recebemos sua solicitação de reembolso.', botao_texto: 'Acompanhar reembolso', botao_url: 'https://joaodev-vitor.github.io/mjstores/minha-conta.html' },
-        'aprovado': { emoji: '✅', titulo: 'Reembolso aprovado', mensagem: 'Sua solicitação foi aprovada!', botao_texto: 'Acompanhar reembolso', botao_url: 'https://joaodev-vitor.github.io/mjstores/minha-conta.html' },
-        'pago':     { emoji: '💰', titulo: 'Reembolso pago',     mensagem: 'O valor do reembolso já foi devolvido.', botao_texto: 'Voltar à loja', botao_url: 'https://joaodev-vitor.github.io/mjstores/index.html' },
-        'negado':   { emoji: '⚠️', titulo: 'Reembolso negado',   mensagem: 'Analisamos sua solicitação e não foi possível aprovar.', botao_texto: 'Falar com o ateliê', botao_url: 'https://joaodev-vitor.github.io/mjstores/minha-conta.html' }
+        'pendente': { emoji: '📩', titulo: 'Reembolso recebido', mensagem: 'Recebemos sua solicitação de reembolso.', botao_texto: 'Acompanhar reembolso', botao_url: 'https://joaodev-vitor.github.io/seyn-clothing-bres/minha-conta.html' },
+        'aprovado': { emoji: '✅', titulo: 'Reembolso aprovado', mensagem: 'Sua solicitação foi aprovada!', botao_texto: 'Acompanhar reembolso', botao_url: 'https://joaodev-vitor.github.io/seyn-clothing-bres/minha-conta.html' },
+        'pago':     { emoji: '💰', titulo: 'Reembolso pago',     mensagem: 'O valor do reembolso já foi devolvido.', botao_texto: 'Voltar à loja', botao_url: 'https://joaodev-vitor.github.io/seyn-clothing-br/es/index.html' },
+        'negado':   { emoji: '⚠️', titulo: 'Reembolso negado',   mensagem: 'Analisamos sua solicitação e não foi possível aprovar.', botao_texto: 'Falar com o ateliê', botao_url: 'https://joaodev-vitor.github.io/seyn-clothing-br/es/minha-conta.html' }
     };
 
     var info = mapas[novoStatus];
@@ -285,7 +285,7 @@ async function enviarEmailAdminReembolso(refund) {
         titulo:            'Novo reembolso #' + pedidoNum,
         mensagem:          'Reembolso solicitado. Motivo: ' + (refund.motivo || '—'),
         botao_texto:       'Abrir painel',
-        botao_url:         'https://joaodev-vitor.github.io/mjstores/admin.html?section=reembolsos'
+        botao_url:         'https://joaodev-vitor.github.io/seyn-clothing-br/es/admin.html?section=reembolsos'
     };
 
     console.log('[email] 📤 Enviando reembolso admin → template:', EMAILJS_CONFIG.templateIdAdmin);
