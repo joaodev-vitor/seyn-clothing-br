@@ -370,10 +370,6 @@
             </div>
         </section>
 
-        <!-- =========================================================
-             CONFIGURAÇÕES — PIX
-             ✅ AJUSTADO: placeholder claro, texto de ajuda, contador
-             ========================================================= -->
         <section class="page" data-section="config">
             <header class="page-head"><div><h2>Configurações</h2><p>Chave PIX e dados da loja.</p></div></header>
             <article class="panel" style="padding:32px;">
@@ -434,18 +430,53 @@
         <form class="modal-body" id="formProduto">
             <input type="hidden" id="produtoId">
             <div class="form-row"><div class="field field-full"><label for="fNome">Nome do produto <span>*</span></label><input type="text" id="fNome" required placeholder="Ex: Moletom Oversized Ártico"></div></div>
+            
             <div class="form-row">
-                <div class="field"><label for="fCategoria">Categoria <span>*</span></label><select id="fCategoria" required><option value="">Selecione</option><option value="streetwear">Streetwear</option><option value="acessorios">Acessórios</option><option value="old-money">Old Money</option></select></div>
-                <div class="field"><label for="fBadge">Badge</label><select id="fBadge"><option value="">Nenhum</option><option value="novo">Novo</option><option value="sale">Promoção</option></select></div>
+                <div class="field">
+                    <label for="fCategoria">Categoria <span>*</span></label>
+                    <select id="fCategoria" required>
+                        <option value="">Selecione</option>
+                        <option value="streetwear">Streetwear</option>
+                        <option value="acessorios">Acessórios</option>
+                        <option value="old-money">Old Money</option>
+                    </select>
+                </div>
+                <div class="field">
+                    <label for="fGenero">Gênero</label>
+                    <select id="fGenero">
+                        <option value="unissex">Unissex</option>
+                        <option value="masculino">Masculino</option>
+                        <option value="feminino">Feminino</option>
+                    </select>
+                </div>
             </div>
+
+            <div class="form-row">
+                <div class="field">
+                    <label for="fBadge">Badge</label>
+                    <select id="fBadge">
+                        <option value="">Nenhum</option>
+                        <option value="novo">Novo</option>
+                        <option value="sale">Promoção</option>
+                    </select>
+                </div>
+                <div class="field">
+                    <label for="fTamanhos">Tamanhos disponíveis</label>
+                    <input type="text" id="fTamanhos" placeholder="P, M, G, GG">
+                </div>
+            </div>
+
             <div class="form-row"><div class="field field-full"><label for="fDescricao">Descrição curta <span>*</span></label><textarea id="fDescricao" required rows="3" placeholder="Descrição do produto"></textarea></div></div>
+            
             <div class="form-row">
                 <div class="field"><label for="fPreco">Preço (R$) <span>*</span></label><input type="number" step="0.01" id="fPreco" required placeholder="349.90"></div>
                 <div class="field"><label for="fPrecoAntigo">Preço original (opcional)</label><input type="number" step="0.01" id="fPrecoAntigo" placeholder="429.90"></div>
             </div>
+            
             <div class="form-row"><div class="field field-full"><label for="fImagem">URL da imagem principal <span>*</span></label><input type="url" id="fImagem" required placeholder="https://..."></div></div>
+            
             <div class="form-row"><div class="field field-full"><label for="fImagemAlt">URL da imagem alternativa (opcional)</label><input type="url" id="fImagemAlt" placeholder="https://..."></div></div>
-            <div class="form-row"><div class="field field-full"><label for="fTamanhos">Tamanhos disponíveis</label><input type="text" id="fTamanhos" placeholder="P, M, G, GG"></div></div>
+            
             <footer class="modal-foot">
                 <button type="button" class="btn btn-ghost" onclick="fecharModalProduto()">Cancelar</button>
                 <button type="submit" class="btn btn-primary">Salvar produto</button>
@@ -536,7 +567,7 @@
 
 <!-- ✅ CORRIGIDO: libs TOTP com URLs corretas -->
 <script src="https://cdn.jsdelivr.net/npm/otpauth@9/dist/otpauth.umd.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.js"></script>
 
 <script src="js/firebase-config.js"></script>
 <script src="js/firebase-service.js"></script>

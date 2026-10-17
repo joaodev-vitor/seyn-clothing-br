@@ -1785,6 +1785,7 @@ function abrirModalProduto(produto) {
         setValue('produtoId', produto.id);
         setValue('fNome', produto.nome);
         setValue('fCategoria', produto.categoria);
+                setValue('fGenero', produto.genero || 'unissex');
         setValue('fBadge', produto.badge || '');
         setValue('fDescricao', produto.descricao);
         setValue('fPreco', produto.preco);
@@ -1832,6 +1833,53 @@ async function salvarProduto(e) {
 
     var precoAntigo = parseFloat(getValue('fPrecoAntigo'));
 
+        var dados = {
+        nome: getValue('fNome'),
+        categoria: getValue('fCategoria'),
+        genero: getValue('fGenero') || 'unissex',
+        badge: getValue('fBadge') || null,
+        descricao: getValue('fDescricao'),
+        preco: parseFloat(getValue('fPreco')),
+        precoAntigo: isNaN(precoAntigo) ? null : precoAntigo,
+        imagem: getValue('fImagem'),
+        imagemAlt: getValue('fImagemAlt') || '',
+        tamanhos: tamanhos,
+        estoque: true
+    };
+
+    if (!dados.nome || !dados.categoria || !dados.preco || !dados.imagem) {
+        toast('Preencha os campos obrigatórios', 'error');
+        return;
+    }
+
+    try {
+        if (adminState.editingId) {
+            dados.id = adminState.editingId;
+        }
+        await salvarProdutoFirebase(dados);
+        await carregarCatalogo();
+        fecharModalProduto();
+        renderizarProdutosTabela();
+        renderizarEstoque();
+        renderizarDashboard();
+        toast('Produto salvo', 'success');
+    } catch (e) {
+        console.error(e);
+        toast('Erro ao salvar', 'error');
+    }
+}
+
+async function salvarProduto(e) {
+
+    e.preventDefault();
+
+    var tamanhosStr = getValue('fTamanhos');
+    var tamanhos = tamanhosStr
+        ? tamanhosStr.split(',').map(function (t) { return t.trim(); }).filter(function (t) { return t; })
+        : ['Único'];
+
+    var precoAntigo = parseFloat(getValue('fPrecoAntigo'));
+    
     var dados = {
         nome: getValue('fNome'),
         categoria: getValue('fCategoria'),
