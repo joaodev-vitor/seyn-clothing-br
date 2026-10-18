@@ -1007,8 +1007,8 @@ code, kbd, samp { font-family: var(--ff-mono); font-size: .9em; }
     transition: width .5s var(--ease-soft);
 }
 
-.btn-primary { color: var(--paper-0); background: var(--blue-1); }
-.btn-primary:hover { background: var(--blue-0); transform: translateY(-2px); }
+.btn-primary { color: var(--paper-0); background: #1a1a1a; }
+.btn-primary:hover { background: #000; transform: translateY(-2px); }
 .btn-primary:hover::after { width: 44px; }
 
 .btn-secondary { color: var(--paper-0); background: transparent; border: 1px solid var(--line-2); }
@@ -9832,12 +9832,6 @@ img, video, canvas, svg {
     color: #4b5563;
 }
 
-/* =========================================================
-   🎯 SEYN — CSS FINAL CONSOLIDADO
-   Tudo o que vem depois daqui é a ÚNICA fonte da verdade
-   para: hambúrguer, gaveta lateral e filtro de gênero.
-   ========================================================= */
-
 /* ---------------------------------------------------------
    1. HEADER — abre espaço à esquerda SE o hambúrguer estiver visível
    --------------------------------------------------------- */
@@ -10100,13 +10094,6 @@ body.tem-filtro .header {
     border-color: #1a4dff;
 }
 
-/* =========================================================
-   FIM — CSS LIMPO
-   ========================================================= */
-   /* =========================================================
-   🔧 CORREÇÃO FINAL — HAMBÚRGUER + BOTÕES DE GÊNERO
-   Cola no final do style.css
-   ========================================================= */
 
 /* ---------------------------------------------------------
    1. FILTRO DE GÊNERO — posicionado entre hero e ticker
