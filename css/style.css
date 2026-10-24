@@ -11399,3 +11399,41 @@ body.tema-masculino .logo span {
 [data-tema="claro"] body.tema-masculino .footer-links a {
     color: #1f2937 !important;
 }
+/* =========================================================
+   FORÇA O BOTÃO "VER DESTAQUES" A SER PRETO NA PÁGINA INICIAL
+   ========================================================= */
+
+/* No tema escuro */
+body:not(.tema-masculino):not(.tema-feminino) .hero-buttons .btn-primary {
+    background: #111111 !important;
+    border-color: #111111 !important;
+    color: #ffffff !important;
+}
+body:not(.tema-masculino):not(.tema-feminino) .hero-buttons .btn-primary:hover {
+    background: #000000 !important;
+    border-color: #000000 !important;
+}
+
+/* No tema claro (o que você está usando na print) */
+[data-tema="claro"] body:not(.tema-masculino):not(.tema-feminino) .hero-buttons .btn-primary {
+    background: #111111 !important;
+    border-color: #111111 !important;
+    color: #ffffff !important;
+}
+[data-tema="claro"] body:not(.tema-masculino):not(.tema-feminino) .hero-buttons .btn-primary:hover {
+    background: #000000 !important;
+    border-color: #000000 !important;
+}
+
+/* Mantém o azul no tema masculino */
+body.tema-masculino .hero-buttons .btn-primary,
+[data-tema="claro"] body.tema-masculino .hero-buttons .btn-primary {
+    background: var(--blue-1) !important;
+    border-color: var(--blue-1) !important;
+    color: #ffffff !important;
+}
+body.tema-masculino .hero-buttons .btn-primary:hover,
+[data-tema="claro"] body.tema-masculino .hero-buttons .btn-primary:hover {
+    background: var(--blue-0) !important;
+    border-color: var(--blue-0) !important;
+}
