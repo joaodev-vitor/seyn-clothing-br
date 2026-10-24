@@ -11437,3 +11437,36 @@ body.tema-masculino .hero-buttons .btn-primary:hover,
     background: var(--blue-0) !important;
     border-color: var(--blue-0) !important;
 }
+
+/* =========================================================
+   TEXTO DE FUNDO DO HERO (SEYNCLOTHING GIGANTE)
+   ========================================================= */
+
+/* 1. Padrão e Masculino — Contorno Azul */
+.hero-decoration span {
+    color: transparent !important;
+    -webkit-text-stroke: 2px var(--blue-2) !important;
+    opacity: 0.8 !important;
+}
+
+/* No tema claro, o azul fica um pouco mais escuro pra aparecer bem */
+[data-tema="claro"] .hero-decoration span {
+    -webkit-text-stroke: 2px rgba(26, 77, 255, 0.45) !important;
+}
+
+/* Masculino (garante que o azul se mantenha) */
+body.tema-masculino .hero-decoration span,
+[data-tema="claro"] body.tema-masculino .hero-decoration span {
+    -webkit-text-stroke: 2px var(--blue-2) !important;
+}
+
+/* 2. Feminino — Contorno Rosa */
+body.tema-feminino .hero-decoration span {
+    -webkit-text-stroke: 2px #c8618c !important; /* Rosa escuro */
+    opacity: 0.9 !important;
+}
+
+/* Feminino no tema claro */
+[data-tema="claro"] body.tema-feminino .hero-decoration span {
+    -webkit-text-stroke: 2px rgba(200, 97, 140, 0.6) !important;
+}
