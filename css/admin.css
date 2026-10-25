@@ -2451,6 +2451,7 @@ body.admin-locked {
 .estoque-tamanho-input::-webkit-outer-spin-button,
 .estoque-tamanho-input::-webkit-inner-spin-button {
     -webkit-appearance: none;
+    appearance: none;
     margin: 0;
 }
 

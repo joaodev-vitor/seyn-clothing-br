@@ -1629,6 +1629,7 @@ code, kbd, samp { font-family: var(--ff-mono); font-size: .9em; }
     color: var(--paper-2);
     display: -webkit-box;
     -webkit-line-clamp: 2;
+    line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
 }
@@ -11470,3 +11471,53 @@ body.tema-feminino .hero-decoration span {
 [data-tema="claro"] body.tema-feminino .hero-decoration span {
     -webkit-text-stroke: 2px rgba(200, 97, 140, 0.6) !important;
 }
+
+/* =========================================================
+   CORREÇÃO DEFINITIVA: TEMA CLARO + FEMININO
+   Força todas as seções a ficarem claras (sem vazar o escuro)
+   ========================================================= */
+
+/* 1. Cabeçalho */
+html[data-tema="claro"] body.tema-feminino .header {
+    background: rgba(253, 245, 248, 0.95) !important;
+    border-bottom-color: rgba(200, 97, 140, 0.2) !important;
+}
+html[data-tema="claro"] body.tema-feminino .logo { color: #3a1f2b !important; }
+html[data-tema="claro"] body.tema-feminino .logo span { color: #c8618c !important; }
+html[data-tema="claro"] body.tema-feminino .search-button,
+html[data-tema="claro"] body.tema-feminino .cart-button,
+html[data-tema="claro"] body.tema-feminino .menu-button,
+html[data-tema="claro"] body.tema-feminino .conta-button { color: #3a1f2b !important; }
+
+/* 2. Fundo geral do site */
+html[data-tema="claro"] body.tema-feminino {
+    background-color: #fdf5f8 !important;
+}
+
+/* 3. A barra que rola (Ticker) */
+html[data-tema="claro"] body.tema-feminino .ticker {
+    background: #fae8ef !important;
+    border-color: rgba(200, 97, 140, 0.2) !important;
+}
+html[data-tema="claro"] body.tema-feminino .ticker::before { 
+    background: linear-gradient(90deg, #fae8ef, transparent) !important; 
+}
+html[data-tema="claro"] body.tema-feminino .ticker::after { 
+    background: linear-gradient(270deg, #fae8ef, transparent) !important; 
+}
+html[data-tema="claro"] body.tema-feminino .ticker-track > * { 
+    color: #5a3a48 !important; 
+}
+
+/* 4. Seção de Produtos (onde fica "Peças em destaque") */
+html[data-tema="claro"] body.tema-feminino .products,
+html[data-tema="claro"] body.tema-feminino .categories,
+html[data-tema="claro"] body.tema-feminino .quick-categories,
+html[data-tema="claro"] body.tema-feminino .lookbook {
+    background-color: #fdf5f8 !important;
+}
+html[data-tema="claro"] body.tema-feminino .section-title h2 { color: #3a1f2b !important; }
+html[data-tema="claro"] body.tema-feminino .section-title h2 span { color: #c8618c !important; }
+html[data-tema="claro"] body.tema-feminino .section-kicker,
+html[data-tema="claro"] body.tema-feminino .section-title > p { color: #c8618c !important; }
+html[data-tema="claro"] body.tema-feminino .section-head-right p { color: #5a3a48 !important; }     
