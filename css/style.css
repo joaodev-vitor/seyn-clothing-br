@@ -11510,3 +11510,9 @@ html[data-tema="claro"] body.tema-feminino .section-kicker,
 html[data-tema="claro"] body.tema-feminino .section-title > p { color: #c8618c !important; }
 html[data-tema="claro"] body.tema-feminino .section-head-right p { color: #5a3a48 !important; }     
 
+/* Ajuste para o menu hamburguer rolar caso tenha muitas marcas */
+.header .nav.open {
+    justify-content: flex-start !important;
+    overflow-y: auto !important; 
+    padding-top: 100px !important;
+}
