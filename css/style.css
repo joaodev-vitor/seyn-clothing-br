@@ -11630,3 +11630,61 @@ html[data-tema="claro"] body.tema-feminino .section-head-right p { color: #5a3a4
     color: #1a4dff;
     border-bottom-color: #1a4dff;
 }
+
+/* =========================================================
+   🔥 FORÇAR TEMA CLARO NOS CARDS DE MARCA (OVERRIDE)
+   ========================================================= */
+[data-tema="claro"] .category-card,
+[data-tema="claro"] .marca-card {
+    background: linear-gradient(180deg, transparent 42%, rgba(255, 255, 255, 1) 100%),
+                radial-gradient(600px 550px at 22% 28%, rgba(26, 77, 255, 0.1), transparent 65%),
+                linear-gradient(160deg, #eef2f8 0%, #ffffff 100%) !important;
+    border-color: rgba(0, 0, 0, 0.15) !important;
+}
+
+[data-tema="claro"] .category-card h3,
+[data-tema="claro"] .marca-card h3,
+[data-tema="claro"] .category-content h3,
+[data-tema="claro"] .marca-card-content h3 {
+    color: #000000 !important;
+}
+
+[data-tema="claro"] .category-card p,
+[data-tema="claro"] .marca-card p,
+[data-tema="claro"] .category-content p,
+[data-tema="claro"] .marca-card-content p {
+    color: #1f2937 !important;
+}
+
+[data-tema="claro"] .category-card strong,
+[data-tema="claro"] .marca-card strong,
+[data-tema="claro"] .category-content strong,
+[data-tema="claro"] .marca-card-content strong {
+    color: #000000 !important;
+    border-bottom-color: rgba(0, 0, 0, 0.3) !important;
+}
+
+[data-tema="claro"] .category-card:hover strong,
+[data-tema="claro"] .marca-card:hover strong {
+    color: #1a4dff !important;
+    border-bottom-color: #1a4dff !important;
+}
+
+[data-tema="claro"] .category-card .category-hero-mark,
+[data-tema="claro"] .marca-card-mark {
+    color: transparent !important;
+    -webkit-text-stroke: 2px rgba(0, 0, 0, 0.15) !important;
+    opacity: 0.5 !important;
+}
+
+/* Garante que o texto do menu lateral (gaveta) não fique invisível */
+[data-tema="claro"] .nav.open a,
+[data-tema="claro"] .header .nav.open a {
+    color: #000000 !important;
+}
+
+/* Textos gerais para garantir */
+[data-tema="claro"] .product-cat,
+[data-tema="claro"] .detail-cat {
+    color: #0a2fa8 !important;
+}
