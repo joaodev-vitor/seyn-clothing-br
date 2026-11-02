@@ -2032,3 +2032,37 @@ document.addEventListener('DOMContentLoaded', async () => {
         console.warn('[Marcas] Erro ao carregar no menu:', error);
     }
 });
+
+// Coloque isso no final do admin.js
+async function carregarMarcasNoSelect() {
+    const select = document.getElementById('fCategoria');
+    if (!select) return;
+    
+    try {
+        const snap = await db.collection('marcas').orderBy('nome').get();
+        select.innerHTML = '<option value="">Selecione a marca</option>';
+        
+        if (snap.empty) {
+            select.innerHTML = '<option value="">Nenhuma marca cadastrada</option>';
+            return;
+        }
+
+        snap.forEach(doc => {
+            const marca = doc.data();
+            const option = document.createElement('option');
+            option.value = marca.nome;
+            option.textContent = marca.nome;
+            select.appendChild(option);
+        });
+    } catch (error) {
+        console.error("Erro ao carregar marcas:", error);
+        select.innerHTML = '<option value="">Erro ao carregar</option>';
+    }
+}
+
+// Modifique a função de abrir o modal para chamar a carga das marcas
+const originalAbrirModal = window.abrirModalProduto;
+window.abrirModalProduto = function() {
+    carregarMarcasNoSelect(); // Carrega as marcas
+    if (originalAbrirModal) originalAbrirModal();
+};

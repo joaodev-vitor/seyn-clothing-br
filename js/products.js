@@ -1,15 +1,13 @@
 /* =========================================================
    PRODUCTS.JS — Catálogo + grids + favoritos + comprar agora
-   v6 — filtro de gênero + temas (feminino/masculino) + hambúrguer
+   v7 — Adaptado para MARCAS (Admin -> Site)
    ========================================================= */
 
 'use strict';
 
-
 /* =========================================================
    SISTEMA DE FAVORITOS
    ========================================================= */
-
 const FAV_KEY = 'artefatos_favoritos';
 
 function lerFavoritos() {
@@ -75,168 +73,22 @@ function atualizarBadgeFavoritos() {
 
 
 /* =========================================================
-   CATÁLOGO PADRÃO
+   CATÁLOGO PADRÃO (FALLBACK SE O FIREBASE ESTIVER VAZIO)
    ========================================================= */
 const CATALOGO_PADRAO = [
-    /* ---------- STREETWEAR ---------- */
-    { id: 'sw-001', nome: 'Moletom Oversized Ártico', categoria: 'streetwear',
+    { id: 'sw-001', nome: 'Moletom Oversized Ártico', categoria: 'Seynclothing',
       descricao: 'Moletom pesado 420g, capuz duplo, corte oversized.',
       preco: 349.90, precoAntigo: 429.90,
       imagem: 'https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=800&q=80',
       imagemAlt: 'https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?w=800&q=80',
       badge: 'novo', tamanhos: ['P', 'M', 'G', 'GG'],
       cores: ['#0a1a3a', '#111', '#7a8aa8'], estoque: true },
-
-    { id: 'sw-002', nome: 'Calça Cargo Utility', categoria: 'streetwear',
-      descricao: 'Sarja resistente, bolsos laterais, barra ajustável.',
-      preco: 389.90,
-      imagem: 'https://images.unsplash.com/photo-1517445312882-bc9910d016b7?w=800&q=80',
-      imagemAlt: 'https://images.unsplash.com/photo-1541099649105-f69ad21f3246?w=800&q=80',
-      badge: null, tamanhos: ['38', '40', '42', '44'],
-      cores: ['#0d1a30', '#2a2a2a'], estoque: true },
-
-    { id: 'sw-003', nome: 'Jaqueta Corta-Vento Noturna', categoria: 'streetwear',
-      descricao: 'Tecido ripstop, costura selada, fecho YKK.',
-      preco: 549.90, precoAntigo: 649.90,
-      imagem: 'https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=800&q=80',
-      imagemAlt: 'https://images.unsplash.com/photo-1548126032-079a0fb0099d?w=800&q=80',
-      badge: 'sale', tamanhos: ['P', 'M', 'G', 'GG'],
-      cores: ['#050a1a', '#1a4dff'], estoque: true },
-
-    { id: 'sw-004', nome: 'Camiseta Boxy Heavy', categoria: 'streetwear',
-      descricao: 'Algodão penteado 240g, gola dupla, corte boxy.',
-      preco: 189.90,
-      imagem: 'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=800&q=80',
-      imagemAlt: 'https://images.unsplash.com/photo-1503341504253-dff4815485f1?w=800&q=80',
-      badge: null, tamanhos: ['P', 'M', 'G', 'GG', 'XG'],
-      cores: ['#fff', '#050a1a', '#1a4dff'], estoque: true },
-
-    { id: 'sw-005', nome: 'Boné Aba Curva Stone', categoria: 'streetwear',
-      descricao: 'Sarja lavada, aba curva, bordado tom sobre tom.',
-      preco: 129.90,
-      imagem: 'https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=800&q=80',
-      badge: null, tamanhos: ['Único'],
-      cores: ['#0d1a30', '#2a2a2a', '#7a8aa8'], estoque: true },
-
-    { id: 'sw-006', nome: 'Moletom Capuz Fechado Deep', categoria: 'streetwear',
-      descricao: 'Moletom fechado, felpa interna, punhos canelados.',
-      preco: 319.90,
-      imagem: 'https://images.unsplash.com/photo-1620799139507-2a76f79a2f4d?w=800&q=80',
-      imagemAlt: 'https://images.unsplash.com/photo-1578768079052-aa76e52ff62e?w=800&q=80',
-      badge: null, tamanhos: ['P', 'M', 'G', 'GG'],
-      cores: ['#050a1a', '#1a4dff'], estoque: false },
-
-    { id: 'sw-007', nome: 'Calça Moletom Wide', categoria: 'streetwear',
-      descricao: 'Moletom peluciado, corte wide, cordão de algodão.',
-      preco: 289.90,
-      imagem: 'https://images.unsplash.com/photo-1552902865-b72c031ac5ea?w=800&q=80',
-      badge: 'novo', tamanhos: ['P', 'M', 'G', 'GG'],
-      cores: ['#111', '#0a1a3a'], estoque: true },
-
-    { id: 'sw-008', nome: 'Jaqueta Jeans Crua', categoria: 'streetwear',
-      descricao: 'Denim cru 14oz, lavagem rígida, botões de metal.',
-      preco: 479.90,
-      imagem: 'https://images.unsplash.com/photo-1544022613-e87ca75a784a?w=800&q=80',
-      imagemAlt: 'https://images.unsplash.com/photo-1541099649105-f69ad21f3246?w=800&q=80',
-      badge: null, tamanhos: ['P', 'M', 'G', 'GG'],
-      cores: ['#7a8aa8'], estoque: true },
-
-    /* ---------- ACESSÓRIOS ---------- */
-    { id: 'ac-001', nome: 'Relógio Minimalista Aço', categoria: 'acessorios',
-      descricao: 'Caixa fina 38mm, mostrador azul-marinho, pulseira em couro.',
-      preco: 689.90, precoAntigo: 849.90,
-      imagem: 'https://images.unsplash.com/photo-1524805444758-089113d48a6d?w=800&q=80',
-      imagemAlt: 'https://images.unsplash.com/photo-1523170335258-f5ed11844a49?w=800&q=80',
-      badge: 'sale', tamanhos: ['Único'],
-      cores: ['#0a1a3a', '#111'], estoque: true },
-
-    { id: 'ac-002', nome: 'Cinto Couro Legítimo', categoria: 'acessorios',
-      descricao: 'Couro curtido à mão, fivela em metal escovado.',
-      preco: 249.90,
-      imagem: 'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=800&q=80',
-      badge: null, tamanhos: ['P', 'M', 'G'],
-      cores: ['#1a1008', '#111'], estoque: true },
-
-    { id: 'ac-003', nome: 'Óculos Sol Polarizado', categoria: 'acessorios',
-      descricao: 'Armação acetato, lentes polarizadas UV400.',
-      preco: 429.90,
-      imagem: 'https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=800&q=80',
-      imagemAlt: 'https://images.unsplash.com/photo-1577803645773-f96470509666?w=800&q=80',
-      badge: 'novo', tamanhos: ['Único'],
-      cores: ['#0a0a0a', '#4a3520'], estoque: true },
-
-    { id: 'ac-004', nome: 'Corrente Prata Fina', categoria: 'acessorios',
-      descricao: 'Prata 925, elo cubano 3mm, fecho reforçado.',
-      preco: 379.90,
-      imagem: 'https://images.unsplash.com/photo-1611652022419-a9419f74343d?w=800&q=80',
-      badge: null, tamanhos: ['Único'],
-      cores: ['#c0c0c0'], estoque: true },
-
-    { id: 'ac-005', nome: 'Carteira Slim Couro', categoria: 'acessorios',
-      descricao: 'Couro vegetal, porta-cartões e nota, perfil fino.',
-      preco: 199.90,
-      imagem: 'https://images.unsplash.com/photo-1627123424574-724758594e93?w=800&q=80',
-      badge: null, tamanhos: ['Único'],
-      cores: ['#1a1008', '#111'], estoque: true },
-
-    { id: 'ac-006', nome: 'Relógio Cronógrafo Esporte', categoria: 'acessorios',
-      descricao: 'Aço inox, movimento suíço, resistente 100m.',
-      preco: 1290.00,
-      imagem: 'https://images.unsplash.com/photo-1547996160-81dfa63595aa?w=800&q=80',
-      badge: 'novo', tamanhos: ['Único'],
-      cores: ['#111', '#7a8aa8'], estoque: true },
-
-    /* ---------- OLD MONEY ---------- */
-    { id: 'om-001', nome: 'Blazer Alfaiataria Marinho', categoria: 'old-money',
+    { id: 'om-001', nome: 'Blazer Alfaiataria Marinho', categoria: 'Seynclothing',
       descricao: 'Lã fria italiana, corte estruturado, forro Bemberg.',
       preco: 1490.00,
       imagem: 'https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=800&q=80',
-      imagemAlt: 'https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=800&q=80',
       badge: null, tamanhos: ['P', 'M', 'G', 'GG'],
-      cores: ['#0a1a3a', '#1a1008'], estoque: true },
-
-    { id: 'om-002', nome: 'Camisa Oxford Branca', categoria: 'old-money',
-      descricao: 'Algodão oxford premium, gola button-down.',
-      preco: 349.90,
-      imagem: 'https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=800&q=80',
-      imagemAlt: 'https://images.unsplash.com/photo-1598033129183-c4f50c736f10?w=800&q=80',
-      badge: null, tamanhos: ['P', 'M', 'G', 'GG'],
-      cores: ['#fff', '#a8c0e0'], estoque: true },
-
-    { id: 'om-003', nome: 'Calça Chino Bege', categoria: 'old-money',
-      descricao: 'Sarja gabardine, corte reto clássico.',
-      preco: 449.90, precoAntigo: 549.90,
-      imagem: 'https://images.unsplash.com/photo-1473966968600-fa801b869a1a?w=800&q=80',
-      badge: 'sale', tamanhos: ['38', '40', '42', '44'],
-      cores: ['#c9b28f', '#0a1a3a'], estoque: true },
-
-    { id: 'om-004', nome: 'Mocassim Couro Marrom', categoria: 'old-money',
-      descricao: 'Couro italiano, solado costurado, forro em couro.',
-      preco: 890.00,
-      imagem: 'https://images.unsplash.com/photo-1533867617858-e7b97e060509?w=800&q=80',
-      badge: null, tamanhos: ['39', '40', '41', '42', '43'],
-      cores: ['#3d2818', '#111'], estoque: true },
-
-    { id: 'om-005', nome: 'Suéter Cashmere Cinza', categoria: 'old-money',
-      descricao: 'Cashmere 100%, gola redonda, caimento suave.',
-      preco: 890.00,
-      imagem: 'https://images.unsplash.com/photo-1576566588028-4147f3842f27?w=800&q=80',
-      badge: 'novo', tamanhos: ['P', 'M', 'G', 'GG'],
-      cores: ['#8a8a8a', '#0a1a3a'], estoque: true },
-
-    { id: 'om-006', nome: 'Blazer Xadrez Príncipe de Gales', categoria: 'old-money',
-      descricao: 'Lã inglesa, xadrez tradicional, corte bespoke.',
-      preco: 1890.00,
-      imagem: 'https://images.unsplash.com/photo-1617137968427-85924c800a22?w=800&q=80',
-      badge: null, tamanhos: ['P', 'M', 'G', 'GG'],
-      cores: ['#3a3a3a'], estoque: true },
-
-    { id: 'om-007', nome: 'Polo Piquet Azul Marinho', categoria: 'old-money',
-      descricao: 'Piquet de algodão egípcio, bordado discreto.',
-      preco: 289.90,
-      imagem: 'https://images.unsplash.com/photo-1586790170083-2f9ceadc732d?w=800&q=80',
-      badge: null, tamanhos: ['P', 'M', 'G', 'GG'],
-      cores: ['#0a1a3a', '#fff'], estoque: true }
+      cores: ['#0a1a3a', '#1a1008'], estoque: true }
 ];
 
 
@@ -247,7 +99,7 @@ function normalizarProduto(p) {
     return {
         id:              p.id || ('tmp-' + Math.random().toString(36).slice(2)),
         nome:            p.nome || 'Sem nome',
-        categoria:       p.categoria || '',
+        categoria:       p.categoria || 'Seynclothing', // Agora é a MARCA
         descricao:       p.descricao || '',
         preco:           Number(p.preco) || 0,
         precoAntigo:     p.precoAntigo ? Number(p.precoAntigo) : null,
@@ -482,20 +334,13 @@ function renderizarProdutos(lista, gridId = 'products-grid') {
 let filtroGeneroAtual = 'todos';
 
 
-/* =========================================================
-   FUNÇÃO DE FILTRAR GÊNERO
-   - Clicar num gênero: filtra + aplica tema + mostra hambúrguer
-   - Clicar no MESMO gênero novamente: reseta (volta ao "todos")
-   ========================================================= */
 function filtrarGenero(genero) {
-    // 🔄 TOGGLE: se clicar no mesmo gênero que já está ativo, reseta
     if (filtroGeneroAtual === genero) {
         genero = 'todos';
     }
 
     filtroGeneroAtual = genero;
 
-    // 1. Atualiza a classe 'active' nos botões
     document.querySelectorAll('.btn-gender').forEach(function (btn) {
         btn.classList.remove('active');
         var onclick = btn.getAttribute('onclick') || '';
@@ -504,7 +349,6 @@ function filtrarGenero(genero) {
         }
     });
 
-    // 2. Aplica o TEMA de fonte/paleta no <body>
     document.body.classList.remove('tema-feminino', 'tema-masculino');
     if (genero === 'feminino') {
         document.body.classList.add('tema-feminino');
@@ -512,7 +356,6 @@ function filtrarGenero(genero) {
         document.body.classList.add('tema-masculino');
     }
 
-    // 3. Mostra/esconde o hambúrguer
     const btnMenu = document.querySelector('.header .menu-button');
     if (btnMenu) {
         if (genero === 'feminino' || genero === 'masculino') {
@@ -524,11 +367,9 @@ function filtrarGenero(genero) {
         }
     }
 
-    // 4. Fecha a gaveta se estiver aberta
     const nav = document.querySelector('.header .nav');
     if (nav) nav.classList.remove('open');
 
-    // 5. Re-renderiza os grids
     inicializarProdutos();
 }
 
@@ -551,7 +392,6 @@ function inicializarProdutos() {
 
         let lista = obterProdutos();
 
-        // Aplica o filtro de gênero
         if (filtroGeneroAtual !== 'todos') {
             lista = lista.filter(p => p.genero === filtroGeneroAtual);
         }
@@ -580,10 +420,6 @@ function selecionarTamanho(event, botao) {
     botao.classList.add('active');
 }
 
-
-/* =========================================================
-   ❤️ TOGGLE FAVORITO
-   ========================================================= */
 function toggleWish(event, botao) {
     event.preventDefault();
     event.stopPropagation();

@@ -29,9 +29,8 @@
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
         </button>
         <a href="index.html">Início</a>
-        <a href="streetwear.html">Streetwear</a>
-        <a href="acessorios.html">Acessórios</a>
-        <a href="old-money.html">Old Money</a>
+        <!-- Removi os links fixos de Streetwear, Acessórios e Old Money.
+             O script.js vai injetar as marcas aqui automaticamente -->
     </nav>
 
     <a href="index.html" class="logo" aria-label="Seynclothing — Página inicial">
@@ -71,7 +70,8 @@
     <nav class="breadcrumb" aria-label="Trilha de navegação">
         <a href="index.html">Início</a>
         <span aria-hidden="true">/</span>
-        <a href="#" id="breadcrumbCategoria">Categoria</a>
+        <!-- Trocado Categoria por Marca -->
+        <a href="#" id="breadcrumbCategoria">Marca</a>
         <span aria-hidden="true">/</span>
         <span aria-current="page" id="breadcrumbProduto">Produto</span>
     </nav>
@@ -89,7 +89,8 @@
         </div>
 
         <div class="product-detail">
-            <span class="detail-cat" id="detailCategoria">STREETWEAR</span>
+            <!-- Trocado STREETWEAR por MARCA -->
+            <span class="detail-cat" id="detailCategoria">MARCA</span>
             <h1 class="detail-title" id="detailNome">Carregando...</h1>
             <div id="produtoNotaHeader"></div>
 
@@ -220,7 +221,7 @@
                 <span class="section-kicker"><span>—</span>VOCÊ TAMBÉM VAI GOSTAR</span>
                 <h2>Peças<span>relacionadas.</span></h2>
             </div>
-            <a href="#" id="linkVerTudoCategoria" class="link-underline">Ver tudo da categoria</a>
+            <a href="#" id="linkVerTudoCategoria" class="link-underline">Ver tudo da marca</a>
         </header>
         <div class="products-grid" id="relatedGrid" aria-live="polite"></div>
     </section>
@@ -238,9 +239,8 @@
 <footer class="footer">
     <div class="footer-logo">Seyn<span>clothing</span></div>
     <nav class="footer-links" aria-label="Rodapé">
-        <a href="streetwear.html">Streetwear</a>
-        <a href="acessorios.html">Acessórios</a>
-        <a href="old-money.html">Old Money</a>
+        <a href="index.html">Início</a>
+        <!-- Removidos os links fixos do footer também -->
         <a href="admin.html" class="admin-link">Área administrativa</a>
     </nav>
     <div class="footer-contato">
