@@ -11834,3 +11834,54 @@ p,
         grid-column: span 6; 
     }
 }
+/* =========================================================
+   🔥 UNIFICAÇÃO DE FONTES (Inicial = Masculino = Feminino)
+   ========================================================= */
+
+/* 1. Força todos os títulos a usarem a fonte padrão da loja (Playfair Display/Lora) */
+body.tema-feminino h1, body.tema-masculino h1,
+body.tema-feminino h2, body.tema-masculino h2,
+body.tema-feminino h3, body.tema-masculino h3,
+body.tema-feminino h4, body.tema-masculino h4,
+body.tema-feminino .logo, body.tema-masculino .logo,
+body.tema-feminino .product-name, body.tema-masculino .product-name,
+body.tema-feminino .section-title h2, body.tema-masculino .section-title h2,
+body.tema-feminino .hero-decoration span, body.tema-masculino .hero-decoration span,
+body.tema-feminino .category-content h3, body.tema-masculino .category-content h3,
+body.tema-feminino .lookbook-item h4, body.tema-masculino .lookbook-item h4,
+body.tema-feminino .quick-card h3, body.tema-masculino .quick-card h3,
+body.tema-feminino .newsletter h3, body.tema-masculino .newsletter h3,
+body.tema-feminino .final-cta h2, body.tema-masculino .final-cta h2,
+body.tema-feminino .footer-logo, body.tema-masculino .footer-logo,
+body.tema-feminino .pull-quote blockquote, body.tema-masculino .pull-quote blockquote,
+body.tema-feminino .cart-summary-title, body.tema-masculino .cart-summary-title,
+body.tema-feminino .marca-card-content h3, body.tema-masculino .marca-card-content h3 {
+    font-family: var(--ff-display) !important;
+    font-style: italic !important; /* Mantém o itálico elegante da inicial */
+    font-weight: 400 !important; /* Remove o negrito pesado */
+    text-transform: none !important; /* Remove o CAIXA ALTA (do masculino) */
+    letter-spacing: -.02em !important; 
+}
+
+/* 2. Exceção para o H1 do Hero, para manter o tamanho e quebra corretos */
+body.tema-feminino .hero h1,
+body.tema-masculino .hero h1 {
+    font-family: var(--ff-display) !important;
+    font-style: italic !important;
+    font-weight: 400 !important;
+    text-transform: none !important;
+    letter-spacing: -.025em !important;
+    line-height: .94 !important;
+}
+
+/* 3. Força os textos normais, botões e inputs a usarem a fonte padrão (Plus Jakarta/Inter) */
+body.tema-feminino, body.tema-masculino,
+body.tema-feminino p, body.tema-masculino p,
+body.tema-feminino span, body.tema-masculino span,
+body.tema-feminino button, body.tema-masculino button,
+body.tema-feminino input, body.tema-masculino input,
+body.tema-feminino textarea, body.tema-masculino textarea,
+body.tema-feminino .btn-primary, body.tema-masculino .btn-primary,
+body.tema-feminino .btn-secondary, body.tema-masculino .btn-secondary {
+    font-family: var(--ff-sans) !important;
+}
