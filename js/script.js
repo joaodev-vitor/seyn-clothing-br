@@ -418,3 +418,59 @@ async function carregarMarcasNoMenu() {
 
 // Tenta rodar assim que a página abre
 document.addEventListener('DOMContentLoaded', carregarMarcasNoMenu);
+
+/* =========================================================
+   RENDERIZAR CARDS DE MARCAS NA HOME
+   ========================================================= */
+async function renderizarCardsMarcas() {
+    const grid = document.getElementById('marcas-grid');
+    if (!grid) return;
+
+    const database = window.db || (typeof db !== 'undefined' ? db : null);
+    if (!database) {
+        setTimeout(renderizarCardsMarcas, 1000);
+        return;
+    }
+
+    try {
+        const snap = await database.collection('marcas').get();
+        
+        if (snap.empty) {
+            grid.innerHTML = '<p style="color:var(--paper-2); text-align:center; grid-column:1/-1;">Nenhuma marca cadastrada ainda.</p>';
+            return;
+        }
+
+        // Transforma em array e ordena alfabeticamente
+        const marcas = snap.docs.map(doc => doc.data().nome);
+        marcas.sort((a, b) => a.localeCompare(b));
+
+        let html = '';
+        
+        // Cria um card para cada marca
+        marcas.forEach((nomeMarca, index) => {
+            // Pega as 2 primeiras letras da marca para o "logo" gigante de fundo
+            const sigla = nomeMarca.substring(0, 2).toUpperCase();
+            // Cria um número (01, 02, 03...)
+            const numero = String(index + 1).padStart(2, '0');
+
+            html += `
+                <div onclick="window.location.href='busca.html?q=${encodeURIComponent(nomeMarca)}'" class="category-card" style="cursor:pointer; background: linear-gradient(180deg, transparent 42%, rgba(4, 6, 11, .92) 100%), radial-gradient(650px 550px at 50% 20%, rgba(26, 77, 255, .25), transparent 65%), linear-gradient(160deg, #0a1730 0%, #05070f 100%); border-color: rgba(127, 176, 255, .15);">
+                    <div class="category-hero-mark" style="opacity: 0.1; font-size: 12rem; bottom: -20px; right: -10px; z-index: 0;">${sigla}</div>
+                    <div class="category-content" style="z-index: 2;">
+                        <span>${numero}</span>
+                        <h3>${nomeMarca}</h3>
+                        <p>Explore os produtos e lançamentos exclusivos da marca ${nomeMarca}.</p>
+                        <strong>Ver produtos</strong>
+                    </div>
+                </div>
+            `;
+        });
+
+        grid.innerHTML = html;
+    } catch (error) {
+        console.error('[Marcas] Erro ao renderizar cards:', error);
+        grid.innerHTML = '<p style="color:red; text-align:center; grid-column:1/-1;">Erro ao carregar as marcas.</p>';
+    }
+}
+
+document.addEventListener('DOMContentLoaded', renderizarCardsMarcas);

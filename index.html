@@ -131,34 +131,15 @@
         </div>
     </section>
 
-    <section class="categories" id="categorias">
+    
+            <section class="categories" id="categorias">
         <div class="section-title">
-            <p>ESCOLHA SEU UNIVERSO</p>
-            <h2>Três territórios.<span>Uma assinatura.</span></h2>
+            <p>EXPLORE A LOJA</p>
+            <h2>Nossas marcas.<span>Escolha a sua.</span></h2>
         </div>
-        <div class="category-grid category-grid--three">
-            <!-- Trocado de <a> para <div> para tirar a URL feia no canto -->
-            <div onclick="window.location.href='busca.html'" class="category-card street-card" style="cursor:pointer">
-                <div class="category-content">
-                    <span>01</span><h3>Streetwear</h3>
-                    <p>Silhuetas largas, atitude urbana. Para quem cria suas próprias regras.</p>
-                    <strong>Explorar</strong>
-                </div>
-            </div>
-            <div onclick="window.location.href='busca.html'" class="category-card access-card" style="cursor:pointer">
-                <div class="category-content">
-                    <span>02</span><h3>Acessórios</h3>
-                    <p>Relógios, cintos, óculos e o que define o detalhe invisível.</p>
-                    <strong>Explorar</strong>
-                </div>
-            </div>
-            <div onclick="window.location.href='busca.html'" class="category-card old-card" style="cursor:pointer">
-                <div class="category-content">
-                    <span>03</span><h3>Old Money</h3>
-                    <p>Sobriedade como declaração. O luxo que não precisa gritar.</p>
-                    <strong>Explorar</strong>
-                </div>
-            </div>
+        <!-- O JS vai preencher esse grid com as marcas do Firebase -->
+        <div class="category-grid category-grid--three" id="marcas-grid">
+            <p style="color:var(--paper-2); text-align:center; grid-column:1/-1;">Carregando marcas...</p>
         </div>
     </section>
 
