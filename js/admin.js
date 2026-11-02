@@ -1928,3 +1928,107 @@ window.salvarStatusReembolso = salvarStatusReembolso;
 window.excluirReembolso = excluirReembolso;
 
 window.iniciarPainel = iniciarPainel;
+
+/* =========================================
+   GESTÃO DE MARCAS NO ADMIN
+   ========================================= */
+async function carregarMarcasAdmin() {
+    const tbody = document.getElementById('marcasTable');
+    if (!tbody) return;
+    
+    tbody.innerHTML = '<tr><td colspan="2" style="text-align:center;color:var(--text-3);">Carregando marcas...</td></tr>';
+
+    try {
+        const snap = await db.collection('marcas').orderBy('nome').get();
+        if (snap.empty) {
+            tbody.innerHTML = '<tr><td colspan="2" style="text-align:center;color:var(--text-3);">Nenhuma marca cadastrada.</td></tr>';
+            return;
+        }
+
+        let html = '';
+        snap.forEach(doc => {
+            const marca = doc.data();
+            html += `
+                <tr>
+                    <td><strong>${marca.nome}</strong></td>
+                    <td style="text-align: right;">
+                        <button class="btn btn-ghost danger" onclick="excluirMarca('${doc.id}')" style="padding: 6px 12px; font-size: 11px; color: #ef4444; border-color: #ef4444;">Excluir</button>
+                    </td>
+                </tr>
+            `;
+        });
+        tbody.innerHTML = html;
+    } catch (error) {
+        console.error("Erro ao carregar marcas:", error);
+        tbody.innerHTML = '<tr><td colspan="2" style="text-align:center;color:red;">Erro ao carregar.</td></tr>';
+    }
+}
+
+async function salvarMarca(e) {
+    e.preventDefault();
+    const nome = document.getElementById('marcaNome').value.trim();
+    if (!nome) return;
+
+    try {
+        await db.collection('marcas').add({ nome, data: new Date().toISOString() });
+        if (typeof toast === 'function') toast('Marca adicionada!', 'success');
+        
+        document.getElementById('formMarca').reset();
+        carregarMarcasAdmin();
+    } catch (error) {
+        console.error("Erro ao salvar marca:", error);
+        if (typeof toast === 'function') toast('Erro ao salvar marca', 'error');
+    }
+}
+
+async function excluirMarca(id) {
+    if (!confirm('Tem certeza que deseja excluir esta marca?')) return;
+    try {
+        await db.collection('marcas').doc(id).delete();
+        if (typeof toast === 'function') toast('Marca excluída', 'success');
+        carregarMarcasAdmin();
+    } catch (error) {
+        console.error("Erro ao excluir:", error);
+    }
+}
+
+// Garante que a lista carrega ao trocar de aba
+if (typeof trocarSecao === 'function') {
+    const originalTrocarSecao = trocarSecao;
+    window.trocarSecao = function(nome) {
+        originalTrocarSecao(nome);
+        if (nome === 'marcas') carregarMarcasAdmin();
+    };
+}
+
+/* =========================================================
+   INJETAR MARCAS NO MENU LATERAL (HAMBURGUER)
+   ========================================================= */
+document.addEventListener('DOMContentLoaded', async () => {
+    const nav = document.querySelector('.header .nav');
+    if (!nav || !window.db) return;
+
+    try {
+        const snap = await db.collection('marcas').orderBy('nome').get();
+        
+        if (!snap.empty) {
+            // Cria o título "MARCAS"
+            const title = document.createElement('span');
+            title.textContent = 'MARCAS';
+            title.style.cssText = 'font-family:var(--ff-sans); font-size:.68rem; font-weight:600; letter-spacing:.34em; color:var(--blue-3); width:100%; margin-top: 24px; margin-bottom: 8px; display:block; border-top: 1px solid var(--line-1); padding-top: 24px;';
+            nav.appendChild(title);
+
+            // Adiciona cada marca
+            snap.forEach(doc => {
+                const marca = doc.data();
+                const link = document.createElement('a');
+                link.href = `busca.html?q=${encodeURIComponent(marca.nome)}`; 
+                link.textContent = marca.nome;
+                link.style.cssText = 'font-size: 1.1rem !important; padding: 12px 0 !important; text-transform: none; letter-spacing: 0.02em; opacity: 0.9;'; 
+                nav.appendChild(link);
+            });
+        }
+    } catch (error) {
+        console.warn('[Marcas] Erro ao carregar no menu:', error);
+    }
+});

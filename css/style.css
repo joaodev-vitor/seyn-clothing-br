@@ -1170,18 +1170,6 @@ code, kbd, samp { font-family: var(--ff-mono); font-size: .9em; }
         linear-gradient(160deg, #081020 0%, #04060b 100%);
 }
 
-.category-card::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background-image:
-        repeating-linear-gradient(45deg, transparent 0, transparent 10px, rgba(127, 176, 255, .035) 10px, rgba(127, 176, 255, .035) 11px);
-    opacity: 0;
-    transition: opacity .6s var(--ease-soft);
-    pointer-events: none;
-    z-index: 1;
-}
-
 .category-card:hover { border-color: var(--line-3); transform: translateY(-6px); }
 .category-card:hover::before { opacity: 1; }
 
@@ -11522,52 +11510,3 @@ html[data-tema="claro"] body.tema-feminino .section-kicker,
 html[data-tema="claro"] body.tema-feminino .section-title > p { color: #c8618c !important; }
 html[data-tema="claro"] body.tema-feminino .section-head-right p { color: #5a3a48 !important; }     
 
-/* =========================================================
-   🚨 CORREÇÃO FINAL: FEMININO NO MODO CLARO (SEM FUNDO ESCURO)
-   ========================================================= */
-
-/* 1. Remove o gradiente escuro e força o fundo rosa claro */
-html[data-tema="claro"] body.tema-feminino {
-    background-color: #fdf5f8 !important;
-    color: #3a1f2b !important;
-}
-
-html[data-tema="claro"] body.tema-feminino::before {
-    background: none !important;
-}
-
-/* 2. Header, Ticker e Footer claros */
-html[data-tema="claro"] body.tema-feminino .header,
-html[data-tema="claro"] body.tema-feminino .ticker,
-html[data-tema="claro"] body.tema-feminino .footer {
-    background: #fae8ef !important;
-    border-color: rgba(200, 97, 140, 0.2) !important;
-}
-
-/* 3. Seções transparentes para mostrar o fundo rosa claro */
-html[data-tema="claro"] body.tema-feminino .hero,
-html[data-tema="claro"] body.tema-feminino .products,
-html[data-tema="claro"] body.tema-feminino .categories,
-html[data-tema="claro"] body.tema-feminino .lookbook,
-html[data-tema="claro"] body.tema-feminino .quick-categories,
-html[data-tema="claro"] body.tema-feminino .newsletter,
-html[data-tema="claro"] body.tema-feminino .final-cta {
-    background: transparent !important;
-}
-
-/* 4. Força textos escuros para dar contraste */
-html[data-tema="claro"] body.tema-feminino h1,
-html[data-tema="claro"] body.tema-feminino h2,
-html[data-tema="claro"] body.tema-feminino h3,
-html[data-tema="claro"] body.tema-feminino h4,
-html[data-tema="claro"] body.tema-feminino .logo,
-html[data-tema="claro"] body.tema-feminino .logo span,
-html[data-tema="claro"] body.tema-feminino .product-name,
-html[data-tema="claro"] body.tema-feminino .product-price strong {
-    color: #3a1f2b !important;
-}
-
-/* 5. Corrige a barra de rolagem do ticker */
-html[data-tema="claro"] body.tema-feminino .ticker::before { background: linear-gradient(90deg, #fae8ef, transparent) !important; }
-html[data-tema="claro"] body.tema-feminino .ticker::after { background: linear-gradient(270deg, #fae8ef, transparent) !important; }
-html[data-tema="claro"] body.tema-feminino .ticker-track > * { color: #5a3a48 !important; }

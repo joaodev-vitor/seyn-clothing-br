@@ -135,7 +135,7 @@
                     <div class="field-row">
                         <div class="field">
                             <label for="cCep">CEP <span>*</span></label>
-                            <input type="text" id="cCep" name="cep" required placeholder="00000-000" autocomplete="postal-code" oninput="mascaraCep(this)">
+                            <input type="text" id="cCep" name="cep" required placeholder="00000-000" autocomplete="postal-code" inputmode="numeric" oninput="mascaraCep(this)">
                         </div>
                         <div class="field field-grow">
                             <label for="cEndereco">Endereço <span>*</span></label>
@@ -414,6 +414,16 @@ document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('checkoutForm');
     if (form) form.addEventListener('submit', (e) => { e.preventDefault(); enviarPedido(); });
 
+    // 🔧 BACKUP: dispara busca do CEP também no blur (caso o input não dispare)
+    const cepInput = document.getElementById('cCep');
+    if (cepInput) {
+        cepInput.addEventListener('blur', () => {
+            if (cepInput.value.replace(/\D/g, '').length === 8) {
+                autoBuscarCep(cepInput);
+            }
+        });
+    }
+
     if (window.auth) {
         auth.onAuthStateChanged(function (user) {
             if (!user) return;
@@ -436,12 +446,14 @@ async function carregarEnderecoClienteLogado() {
         var end = (dados.enderecos && dados.enderecos[0]) || null;
         if (!end) return;
         preencherSeVazio('cCep', end.cep);
-        preencherSeVazio('cEndereco', end.rua);
+        // 🔧 aceita tanto 'rua' quanto 'endereco' (compatibilidade com dados antigos)
+        preencherSeVazio('cEndereco', end.rua || end.endereco);
         preencherSeVazio('cNumero', end.numero);
         preencherSeVazio('cComplemento', end.complemento);
         preencherSeVazio('cBairro', end.bairro);
         preencherSeVazio('cCidade', end.cidade);
-        preencherSeVazio('cEstado', end.estado);
+        // 🔧 aceita tanto 'estado' quanto 'uf'
+        preencherSeVazio('cEstado', end.estado || end.uf);
         preencherSeVazio('cTelefone', dados.telefone || '');
     } catch (e) {
         console.warn('[checkout] Não foi possível carregar endereço salvo:', e);
@@ -664,6 +676,58 @@ window.finalizarPedidoAposPix = async function () {
     document.body.style.overflow = 'hidden';
 };
 
+/* =========================================================
+   🔧 BUSCA DE CEP (ViaCEP) — versão corrigida
+   ========================================================= */
+async function autoBuscarCep(input) {
+    if (!input) return;
+
+    const cepLimpo = (input.value || '').replace(/\D/g, '');
+    if (cepLimpo.length !== 8) return;
+
+    // Evita rebuscar o mesmo CEP (evita spam na API)
+    if (input.dataset.cepBuscado === cepLimpo) return;
+    input.dataset.cepBuscado = cepLimpo;
+
+    const enderecoEl = document.getElementById('cEndereco');
+    const placeholderOriginal = enderecoEl ? enderecoEl.placeholder : '';
+    if (enderecoEl) enderecoEl.placeholder = 'Buscando endereço...';
+
+    try {
+        const resp = await fetch(`https://viacep.com.br/ws/${cepLimpo}/json/`);
+        if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
+        const data = await resp.json();
+
+        if (data.erro) {
+            if (window.toast) window.toast('CEP não encontrado', 'error');
+            input.dataset.cepBuscado = '';
+            return;
+        }
+
+        const preencher = (id, valor) => {
+            const el = document.getElementById(id);
+            if (el && valor) el.value = valor;
+        };
+
+        preencher('cEndereco', data.logradouro);
+        preencher('cBairro',   data.bairro);
+        preencher('cCidade',   data.localidade);
+        preencher('cEstado',   data.uf);
+
+        // Foca no número pra agilizar o preenchimento
+        const numEl = document.getElementById('cNumero');
+        if (numEl && !numEl.value) numEl.focus();
+
+        if (window.toast) window.toast('Endereço preenchido automaticamente', 'success');
+    } catch (err) {
+        console.error('[CEP] Erro ao buscar:', err);
+        if (window.toast) window.toast('Erro ao buscar CEP. Preencha o endereço manualmente.', 'error');
+        input.dataset.cepBuscado = '';
+    } finally {
+        if (enderecoEl) enderecoEl.placeholder = placeholderOriginal;
+    }
+}
+
 function mascaraTelefone(input) {
     let v = input.value.replace(/\D/g, '').slice(0, 11);
     if (v.length <= 10) v = v.replace(/(\d{2})(\d{4})(\d{0,4})/, '($1) $2-$3');
@@ -673,10 +737,9 @@ function mascaraTelefone(input) {
 
 function mascaraCep(input) {
     let v = input.value.replace(/\D/g, '').slice(0, 8);
-    v = v.replace(/(\d{5})(\d{0,3})/, '$1-$2');
+    if (v.length > 5) v = v.replace(/(\d{5})(\d{0,3})/, '$1-$2');
     input.value = v;
-    var cepLimpo = input.value.replace(/\D/g, '');
-    if (cepLimpo.length === 8 && typeof autoBuscarCep === 'function') autoBuscarCep(input);
+    if (v.replace(/\D/g, '').length === 8) autoBuscarCep(input);
 }
 
 function mascaraCartao(input) {

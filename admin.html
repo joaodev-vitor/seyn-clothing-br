@@ -94,6 +94,11 @@
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="1"/><path d="M3 9h18M3 15h18M9 3v18M15 3v18"/></svg>
                 <span>Estoque</span>
             </button>
+            <!-- NOVO BOTÃO DE MARCAS -->
+            <button class="nav-item" data-section="marcas" onclick="trocarSecao('marcas')">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
+                <span>Marcas</span>
+            </button>
         </div>
 
         <div class="nav-section">
@@ -307,6 +312,33 @@
                 <button class="btn btn-ghost" onclick="reporTudo(10)">Definir 10 un. em todos sem estoque</button>
             </header>
             <div id="estoqueLista"></div>
+        </section>
+
+        <!-- NOVA SEÇÃO DE MARCAS -->
+        <section class="page" data-section="marcas">
+            <header class="page-head">
+                <div><h2>Gestão de Marcas</h2><p>Cadastre as marcas que aparecerão no menu do site.</p></div>
+            </header>
+
+            <article class="panel" style="padding: 24px; margin-bottom: 24px;">
+                <form id="formMarca" onsubmit="salvarMarca(event)" style="display: flex; gap: 16px; align-items: flex-end;">
+                    <input type="hidden" id="marcaId">
+                    <div class="field field-grow" style="flex: 1;">
+                        <label for="marcaNome">Nome da Marca</label>
+                        <input type="text" id="marcaNome" required placeholder="Ex: Nike, Adidas, Seyn...">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Salvar Marca</button>
+                </form>
+            </article>
+
+            <article class="panel">
+                <div class="table-wrap">
+                    <table class="table">
+                        <thead><tr><th>Nome da Marca</th><th class="col-actions"></th></tr></thead>
+                        <tbody id="marcasTable"></tbody>
+                    </table>
+                </div>
+            </article>
         </section>
 
         <section class="page" data-section="clientes">
@@ -564,8 +596,6 @@
 <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth-compat.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-
-<!-- ✅ CORRIGIDO: libs TOTP com URLs corretas -->
 <script src="https://cdn.jsdelivr.net/npm/otpauth@9/dist/otpauth.umd.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.js"></script>
 
