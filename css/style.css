@@ -11516,3 +11516,117 @@ html[data-tema="claro"] body.tema-feminino .section-head-right p { color: #5a3a4
     overflow-y: auto !important; 
     padding-top: 100px !important;
 }
+
+/* =========================================================
+   CARDS DE MARCAS NA HOME (Dinâmicos)
+   ========================================================= */
+.marca-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    min-height: clamp(300px, 40vw, 450px);
+    padding: clamp(32px, 4vw, 56px);
+    background: linear-gradient(180deg, transparent 42%, rgba(4, 6, 11, .92) 100%),
+                radial-gradient(650px 550px at 50% 20%, rgba(26, 77, 255, .25), transparent 65%),
+                linear-gradient(160deg, var(--ink-2) 0%, var(--ink-0) 100%);
+    border: 1px solid var(--line-1);
+    overflow: hidden;
+    isolation: isolate;
+    transition: border-color .6s var(--ease-soft), transform .8s var(--ease-soft);
+}
+
+.marca-card:hover { 
+    border-color: var(--line-3); 
+    transform: translateY(-6px); 
+}
+
+.marca-card-mark {
+    position: absolute;
+    right: -2vw; 
+    bottom: -2vw;
+    font-family: var(--ff-display);
+    font-style: italic;
+    font-weight: 900;
+    font-size: clamp(8rem, 16vw, 15rem);
+    line-height: .8;
+    color: transparent;
+    -webkit-text-stroke: 2px var(--line-2);
+    opacity: 0.3;
+    pointer-events: none;
+    user-select: none;
+    z-index: 0;
+}
+
+.marca-card-content {
+    position: relative;
+    z-index: 2;
+}
+
+.marca-card-content span {
+    display: inline-block;
+    font-family: var(--ff-mono);
+    font-size: var(--fs-micro);
+    font-weight: 500;
+    letter-spacing: .34em;
+    color: var(--blue-3);
+    margin-bottom: 16px;
+}
+
+.marca-card-content h3 {
+    font-family: var(--ff-display);
+    font-size: clamp(1.8rem, 1.4rem + 2vw, 3rem);
+    font-weight: 400;
+    font-style: italic;
+    color: var(--paper-0);
+    margin-bottom: 20px;
+}
+
+.marca-card-content p {
+    max-width: 380px;
+    font-size: var(--fs-body);
+    line-height: 1.7;
+    color: var(--paper-2);
+    margin-bottom: 26px;
+}
+
+.marca-card-content strong {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    font-size: var(--fs-label);
+    font-weight: 600;
+    letter-spacing: .28em;
+    text-transform: uppercase;
+    color: var(--paper-0);
+    padding-bottom: 6px;
+    border-bottom: 1px solid var(--line-2);
+    transition: color .4s var(--ease-soft), border-color .4s var(--ease-soft);
+}
+
+.marca-card:hover .marca-card-content strong {
+    color: var(--blue-3);
+    border-bottom-color: var(--blue-1);
+}
+
+/* --- Ajustes do Tema Claro --- */
+[data-tema="claro"] .marca-card {
+    background: linear-gradient(180deg, transparent 42%, rgba(255, 255, 255, .96) 100%),
+                radial-gradient(600px 550px at 22% 28%, rgba(26, 77, 255, .14), transparent 65%),
+                linear-gradient(160deg, #eef2f8 0%, #ffffff 100%);
+}
+
+[data-tema="claro"] .marca-card-mark {
+    -webkit-text-stroke: 2px rgba(0, 0, 0, .15);
+}
+
+[data-tema="claro"] .marca-card-content h3 { color: #000; }
+[data-tema="claro"] .marca-card-content p { color: #1f2937; }
+[data-tema="claro"] .marca-card-content strong {
+    color: #000;
+    border-bottom-color: rgba(0, 0, 0, .3);
+}
+[data-tema="claro"] .marca-card:hover .marca-card-content strong {
+    color: #1a4dff;
+    border-bottom-color: #1a4dff;
+}

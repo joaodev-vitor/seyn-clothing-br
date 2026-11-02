@@ -440,23 +440,20 @@ async function renderizarCardsMarcas() {
             return;
         }
 
-        // Transforma em array e ordena alfabeticamente
         const marcas = snap.docs.map(doc => doc.data().nome);
         marcas.sort((a, b) => a.localeCompare(b));
 
         let html = '';
         
-        // Cria um card para cada marca
         marcas.forEach((nomeMarca, index) => {
-            // Pega as 2 primeiras letras da marca para o "logo" gigante de fundo
             const sigla = nomeMarca.substring(0, 2).toUpperCase();
-            // Cria um número (01, 02, 03...)
             const numero = String(index + 1).padStart(2, '0');
 
+            // 🔥 Removi o style inline e usei classes CSS
             html += `
-                <div onclick="window.location.href='busca.html?q=${encodeURIComponent(nomeMarca)}'" class="category-card" style="cursor:pointer; background: linear-gradient(180deg, transparent 42%, rgba(4, 6, 11, .92) 100%), radial-gradient(650px 550px at 50% 20%, rgba(26, 77, 255, .25), transparent 65%), linear-gradient(160deg, #0a1730 0%, #05070f 100%); border-color: rgba(127, 176, 255, .15);">
-                    <div class="category-hero-mark" style="opacity: 0.1; font-size: 12rem; bottom: -20px; right: -10px; z-index: 0;">${sigla}</div>
-                    <div class="category-content" style="z-index: 2;">
+                <div onclick="window.location.href='busca.html?q=${encodeURIComponent(nomeMarca)}'" class="marca-card" style="cursor:pointer;">
+                    <div class="marca-card-mark">${sigla}</div>
+                    <div class="marca-card-content">
                         <span>${numero}</span>
                         <h3>${nomeMarca}</h3>
                         <p>Explore os produtos e lançamentos exclusivos da marca ${nomeMarca}.</p>
