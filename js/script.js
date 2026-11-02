@@ -359,3 +359,56 @@ document.addEventListener('DOMContentLoaded', function() {
     moverHamburger();
     window.addEventListener('resize', moverHamburger);
 });
+
+
+/* =========================================================
+   🔥 INJETAR MARCAS NO MENU HAMBURGUER (O QUE FALTAVA) 🔥
+   ========================================================= */
+async function carregarMarcasNoMenu() {
+    const nav = document.querySelector('.header .nav');
+    if (!nav || !window.db) return;
+
+    // Evita duplicar se a função rodar mais de uma vez
+    if (document.getElementById('menu-titulo-marcas')) return;
+
+    try {
+        const snap = await db.collection('marcas').get();
+        
+        if (!snap.empty) {
+            // Cria a lista de marcas para ordenar alfabeticamente
+            const marcas = snap.docs.map(doc => doc.data().nome);
+            marcas.sort((a, b) => a.localeCompare(b));
+
+            // Cria o título "MARCAS"
+            const title = document.createElement('span');
+            title.id = 'menu-titulo-marcas';
+            title.textContent = 'MARCAS';
+            title.style.cssText = 'font-family:var(--ff-sans); font-size:.68rem; font-weight:600; letter-spacing:.34em; color:var(--blue-3); width:100%; margin-top: 32px; margin-bottom: 12px; display:block; border-top: 1px solid var(--line-1); padding-top: 24px;';
+            nav.appendChild(title);
+
+            // Adiciona cada marca
+            marcas.forEach(nomeMarca => {
+                const link = document.createElement('a');
+                link.href = `busca.html?q=${encodeURIComponent(nomeMarca)}`; 
+                link.textContent = nomeMarca;
+                link.style.cssText = 'font-size: 1.2rem !important; padding: 12px 0 !important; text-transform: uppercase; letter-spacing: 0.1em; opacity: 0.9; border-bottom: none !important;'; 
+                
+                link.onmouseenter = () => link.style.color = 'var(--blue-3)';
+                link.onmouseleave = () => link.style.color = 'var(--paper-0)';
+
+                nav.appendChild(link);
+            });
+        }
+    } catch (error) {
+        console.warn('[Marcas] Erro ao carregar no menu:', error);
+    }
+}
+
+// Tenta rodar quando o HTML carregar
+document.addEventListener('DOMContentLoaded', carregarMarcasNoMenu);
+
+// Tenta rodar de novo quando o Firebase avisar que está pronto
+window.addEventListener('firebase-ready', carregarMarcasNoMenu);
+if (window.__firebasePronto) {
+    carregarMarcasNoMenu();
+}
