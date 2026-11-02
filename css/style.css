@@ -40,9 +40,9 @@
     --halo-soft:  0 0 80px rgba(26, 77, 255, .18);
     --halo-mid:   0 0 60px rgba(26, 77, 255, .30);
     --halo-hard:  0 0 40px rgba(26, 77, 255, .50);
-
-    --ff-display: 'Playfair Display', 'Times New Roman', Georgia, serif;
-    --ff-sans:    'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+    
+    --ff-display: 'Lora', 'Times New Roman', Georgia, serif;
+    --ff-sans:    'Plus Jakarta Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
     --ff-mono:    'Space Grotesk', 'JetBrains Mono', ui-monospace, monospace;
 
     --fs-nano:    clamp(0.60rem, 0.55rem + 0.20vw, 0.70rem);
