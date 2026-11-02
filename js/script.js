@@ -362,17 +362,26 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 /* =========================================================
-   🔥 INJETAR MARCAS NO MENU HAMBURGUER (O QUE FALTAVA) 🔥
+   🔥 INJETAR MARCAS NO MENU HAMBURGUER (VERIFICAÇÃO DUPLA) 🔥
    ========================================================= */
 async function carregarMarcasNoMenu() {
     const nav = document.querySelector('.header .nav');
-    if (!nav || !window.db) return;
+    if (!nav) return;
 
     // Evita duplicar se a função rodar mais de uma vez
     if (document.getElementById('menu-titulo-marcas')) return;
 
+    // Tenta pegar a instância do banco (window.db ou apenas db)
+    const database = window.db || (typeof db !== 'undefined' ? db : null);
+
+    if (!database) {
+        console.warn('[Marcas] Firebase ainda não carregou. Tentando de novo em 1 segundo...');
+        setTimeout(carregarMarcasNoMenu, 1000); // Tenta de novo daqui a pouco
+        return;
+    }
+
     try {
-        const snap = await db.collection('marcas').get();
+        const snap = await database.collection('marcas').get();
         
         if (!snap.empty) {
             // Cria a lista de marcas para ordenar alfabeticamente
@@ -398,17 +407,14 @@ async function carregarMarcasNoMenu() {
 
                 nav.appendChild(link);
             });
+            console.log('[Marcas] ✅ Marcas carregadas no menu!');
+        } else {
+            console.warn('[Marcas] ⚠️ A coleção "marcas" está vazia no Firebase.');
         }
     } catch (error) {
-        console.warn('[Marcas] Erro ao carregar no menu:', error);
+        console.error('[Marcas] ❌ Erro ao carregar no menu:', error);
     }
 }
 
-// Tenta rodar quando o HTML carregar
+// Tenta rodar assim que a página abre
 document.addEventListener('DOMContentLoaded', carregarMarcasNoMenu);
-
-// Tenta rodar de novo quando o Firebase avisar que está pronto
-window.addEventListener('firebase-ready', carregarMarcasNoMenu);
-if (window.__firebasePronto) {
-    carregarMarcasNoMenu();
-}
