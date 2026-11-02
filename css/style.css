@@ -11885,3 +11885,59 @@ body.tema-feminino .btn-primary, body.tema-masculino .btn-primary,
 body.tema-feminino .btn-secondary, body.tema-masculino .btn-secondary {
     font-family: var(--ff-sans) !important;
 }
+
+/* =========================================================
+   🚀 NOVO VISUAL DO HERO (Estilo Moderno/Tech)
+   ========================================================= */
+
+/* 1. Título principal */
+.hero h1,
+body.tema-masculino .hero h1,
+body.tema-feminino .hero h1,
+[data-tema="claro"] body.tema-masculino .hero h1,
+[data-tema="claro"] body.tema-feminino .hero h1 {
+    font-family: var(--ff-sans) !important; /* Fonte sem serifa */
+    font-style: normal !important;          /* Tira o itálico */
+    font-weight: 800 !important;            /* Deixa bem grosso */
+    text-transform: uppercase !important;   /* Tudo maiúsculo */
+    letter-spacing: -0.03em !important;     /* Junta um pouco as letras */
+    line-height: 1.1 !important;
+    margin-bottom: 24px !important;
+}
+
+/* 2. A palavra em destaque (É SOBRE SER.) */
+.hero h1 span,
+body.tema-masculino .hero h1 span,
+body.tema-feminino .hero h1 span,
+[data-tema="claro"] body.tema-masculino .hero h1 span,
+[data-tema="claro"] body.tema-feminino .hero h1 span {
+    color: var(--blue-1) !important; /* Azul forte */
+    font-family: var(--ff-sans) !important;
+    font-style: normal !important;
+    font-weight: 800 !important;
+}
+
+/* 3. Subtítulo (Sua essência não segue...) */
+.hero-description,
+body.tema-masculino .hero-description,
+body.tema-feminino .hero-description {
+    font-family: var(--ff-sans) !important;
+    font-style: normal !important;
+    font-size: 1.15rem !important; /* Um pouco maior para leitura */
+    font-weight: 500 !important;
+    line-height: 1.6 !important;
+    color: var(--paper-1) !important; /* Cor de texto normal */
+}
+
+/* 4. Tag de cima (NOVA COLEÇÃO) */
+.hero-small {
+    font-family: var(--ff-sans) !important;
+    font-weight: 700 !important;
+    color: var(--blue-1) !important;
+    border-bottom: none !important; /* Tira a linha embaixo se tiver */
+}
+
+/* 5. No tema escuro, a segunda linha continua azul claro para dar contraste */
+body:not([data-tema="claro"]) .hero h1 span {
+    color: var(--blue-3) !important; 
+}
