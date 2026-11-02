@@ -11688,3 +11688,53 @@ html[data-tema="claro"] body.tema-feminino .section-head-right p { color: #5a3a4
 [data-tema="claro"] .detail-cat {
     color: #0a2fa8 !important;
 }
+
+/* =========================================================
+   🔥 MELHORIA DE LEGIBILIDADE (Leitura Fácil)
+   ========================================================= */
+
+/* 1. Deixa o texto base um pouco maior e mais forte */
+body {
+    font-size: 1.05rem; /* Aumenta o tamanho padrão */
+    font-weight: 450;   /* Um pouco mais encorpado que o normal */
+    line-height: 1.7;   /* Dá mais espaço entre as linhas */
+}
+
+/* 2. Títulos: Tira o itálico e engrossa as letras */
+h1, h2, h3, h4, h5, h6,
+.section-title h2,
+.hero h1,
+.detail-title,
+.product-name,
+.category-content h3,
+.cart-summary-title {
+    font-style: normal !important; /* Tira o itálico que cansa a vista */
+    font-weight: 700 !important;   /* Deixa o título bem forte */
+    letter-spacing: -0.01em !important;
+}
+
+/* 3. Destaques dos títulos (aquela parte colorida) */
+.hero h1 span,
+.section-title h2 span,
+.detail-title span,
+.category-content h3 span {
+    font-weight: 800 !important;
+}
+
+/* 4. Textos de parágrafo e descrições mais escuros e visíveis */
+p, 
+.product-desc, 
+.detail-desc, 
+.cart-item-name {
+    color: var(--paper-1) !important; /* Deixa o texto mais escuro (no tema claro) e mais claro (no escuro) */
+}
+
+/* 5. Botões mais legíveis */
+.btn-primary, 
+.btn-secondary, 
+.btn-add-cart, 
+.btn-buy-now,
+.checkout-button {
+    font-weight: 700 !important;
+    letter-spacing: 0.1em !important;
+}
