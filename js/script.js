@@ -471,3 +471,27 @@ async function renderizarCardsMarcas() {
 }
 
 document.addEventListener('DOMContentLoaded', renderizarCardsMarcas);
+
+document.addEventListener('DOMContentLoaded', () => {
+    const quickCards = document.querySelectorAll('.quick-card');
+
+    quickCards.forEach(card => {
+        card.addEventListener('click', function(e) {
+            // 1. Evita que a página recarregue ou pule para o topo (se for uma tag <a>)
+            e.preventDefault();
+
+            // 2. Remove a classe active de TODOS os cards
+            quickCards.forEach(c => c.classList.remove('active'));
+
+            // 3. Adiciona a classe active apenas no card que foi clicado
+            this.classList.add('active');
+
+            // ----------------------------------------------------
+            // AQUI VOCÊ COLOCA A SUA LÓGICA DE FILTRO
+            // Exemplo: se o card tiver data-genero="feminino", você chama sua função
+            // const genero = this.getAttribute('data-genero');
+            // filtrarProdutos(genero);
+            // ----------------------------------------------------
+        });
+    });
+});

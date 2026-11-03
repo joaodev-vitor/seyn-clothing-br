@@ -109,8 +109,8 @@
 
     <div class="ticker" aria-hidden="true">
         <div class="ticker-track">
-            <span>Seynclothing</span><span>Autoral</span><span>Edição limitada</span><span>Desde 2018</span><span>Novidades</span><span>Frete Grátis</span>
-            <span>Seynclothing</span><span>Autoral</span><span>Edição limitada</span><span>Desde 2018</span><span>Novidades</span><span>Frete Grátis</span>
+            <span>Seynclothing</span><span>Autoral</span><span>Edições exclusivas</span><span>Chegando agora</span><span>Novidades</span><span>Frete Grátis</span>
+            <span>Seynclothing</span><span>Autoral</span><span>Edições exclusivas</span><span>Chegando agora</span><span>Novidades</span><span>Frete Grátis</span>
         </div>
     </div>
 
@@ -212,10 +212,19 @@
             <h2>Escolha<span>um filtro.</span></h2>
         </div>
         <div class="quick-grid">
-            <a href="busca.html" class="quick-card"><span>01</span><h3>Ver Tudo</h3><p>Todas as peças.</p></a>
-            <a href="busca.html?q=feminino" class="quick-card"><span>02</span><h3>Feminino</h3><p>Moda feminina.</p></a>
-            <a href="busca.html?q=masculino" class="quick-card"><span>03</span><h3>Masculino</h3><p>Moda masculina.</p></a>
-            <a href="busca.html?q=novo" class="quick-card"><span>04</span><h3>Novidades</h3><p>Lançamentos.</p></a>
+            <!-- MODIFICADO AQUI: Adicionado o onclick e a classe para controle -->
+            <a href="busca.html" class="quick-card" onclick="selecionarQuickCard(this, event, 'todos')">
+                <span>01</span><h3>Ver Tudo</h3><p>Todas as peças.</p>
+            </a>
+            <a href="busca.html?q=feminino" class="quick-card" onclick="selecionarQuickCard(this, event, 'feminino')">
+                <span>02</span><h3>Feminino</h3><p>Moda feminina.</p>
+            </a>
+            <a href="busca.html?q=masculino" class="quick-card" onclick="selecionarQuickCard(this, event, 'masculino')">
+                <span>03</span><h3>Masculino</h3><p>Moda masculina.</p>
+            </a>
+            <a href="busca.html?q=novo" class="quick-card" onclick="selecionarQuickCard(this, event, 'novo')">
+                <span>04</span><h3>Novidades</h3><p>Lançamentos.</p>
+            </a>
         </div>
     </section>
 
@@ -280,5 +289,32 @@
 <script src="js/script.js"></script>
 <script src="js/whatsapp-float.js"></script>
 <script src="js/cookie-consent.js"></script>
+
+<!-- =========================================================
+     SCRIPT DO FILTRO RÁPIDO (ADICIONADO AQUI)
+     ========================================================= -->
+<script>
+    function selecionarQuickCard(elemento, evento, filtro) {
+        // 1. Impede que a página recarregue ou role para o topo
+        evento.preventDefault();
+
+        // 2. Tira a classe "active" de todos os cards
+        const todosCards = document.querySelectorAll('.quick-card');
+        todosCards.forEach(card => {
+            card.classList.remove('active');
+        });
+
+        // 3. Coloca a classe "active" só no card que foi clicado
+        elemento.classList.add('active');
+
+        // 4. Chama a sua função de filtro (que já existe no seu código)
+        if (typeof filtrarGenero === 'function') {
+            filtrarGenero(filtro);
+        } else {
+            console.log("A função filtrarGenero não foi encontrada no seu script.js");
+        }
+    }
+</script>
+
 </body>
 </html>

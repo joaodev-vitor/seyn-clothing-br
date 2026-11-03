@@ -17,17 +17,6 @@
     <link rel="stylesheet" href="css/style.css">
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode/1.5.1/qrcode.min.js"></script>
-    <script>
-      if (typeof QRCode === 'undefined') {
-        document.write('<script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"><\/script>');
-      }
-    </script>
-    <script>
-      if (typeof QRCode === 'undefined') {
-        document.write('<script src="https://unpkg.com/qrcode@1.5.3/build/qrcode.min.js"><\/script>');
-      }
-    </script>
-
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 </head>
 
@@ -93,17 +82,238 @@
         <p>Preencha seus dados para finalizar a compra. Seus itens já estão reservados.</p>
     </header>
 
-    <!-- O restante do conteúdo (formulário, PIX, modal de sucesso) permanece exatamente igual ao seu, 
-         pois não há links de categoria nele, apenas nos menus que já limpamos acima -->
-    
-    <!-- ... (copie o restante do body do seu finalizar.html original aqui, a partir da div checkout-layout) ... -->
-    
     <div class="checkout-layout">
-        <!-- ... formulário ... -->
+        <!-- FORMULÁRIO (ESQUERDA) -->
+        <form class="checkout-form" id="checkoutForm">
+            
+            <!-- Passo 1 -->
+            <div class="checkout-step">
+                <div class="step-head">
+                    <div class="step-num">1</div>
+                    <div>
+                        <h2>Identificação</h2>
+                        <p>Para quem é este pedido?</p>
+                    </div>
+                </div>
+                <div class="field">
+                    <label for="nome">Nome Completo <span>*</span></label>
+                    <input type="text" id="nome" required placeholder="Seu nome completo">
+                </div>
+                <div class="field-row">
+                    <div class="field field-grow">
+                        <label for="email">E-mail <span>*</span></label>
+                        <input type="email" id="email" required placeholder="seu@email.com">
+                    </div>
+                    <div class="field">
+                        <label for="cpf">CPF <span>*</span></label>
+                        <input type="text" id="cpf" required placeholder="000.000.000-00">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Passo 2 -->
+            <div class="checkout-step">
+                <div class="step-head">
+                    <div class="step-num">2</div>
+                    <div>
+                        <h2>Entrega</h2>
+                        <p>Onde vamos enviar suas peças?</p>
+                    </div>
+                </div>
+                <div class="field-row">
+                    <div class="field">
+                        <label for="cep">CEP <span>*</span></label>
+                        <input type="text" id="cep" required placeholder="00000-000" maxlength="9">
+                    </div>
+                    <div class="field field-grow">
+                        <label for="endereco">Endereço <span>*</span></label>
+                        <input type="text" id="endereco" required placeholder="Rua, Avenida...">
+                    </div>
+                </div>
+                <div class="field-row">
+                    <div class="field">
+                        <label for="numero">Número <span>*</span></label>
+                        <input type="text" id="numero" required placeholder="123">
+                    </div>
+                    <div class="field field-grow">
+                        <label for="complemento">Complemento</label>
+                        <input type="text" id="complemento" placeholder="Apto, Bloco (opcional)">
+                    </div>
+                </div>
+                <div class="field-row">
+                    <div class="field">
+                        <label for="bairro">Bairro <span>*</span></label>
+                        <input type="text" id="bairro" required placeholder="Seu bairro">
+                    </div>
+                    <div class="field">
+                        <label for="cidade">Cidade <span>*</span></label>
+                        <input type="text" id="cidade" required placeholder="Sua cidade">
+                    </div>
+                    <div class="field" style="max-width: 80px;">
+                        <label for="estado">UF <span>*</span></label>
+                        <input type="text" id="estado" required placeholder="SP" maxlength="2">
+                    </div>
+                </div>
+
+                <!-- Opções de Frete (geralmente preenchidas via JS após o CEP) -->
+                <div class="shipping-options" id="shippingOptions" style="margin-top: 20px;">
+                    <label class="shipping-option">
+                        <input type="radio" name="frete" value="pac" checked>
+                        <div class="shipping-info">
+                            <strong>PAC</strong>
+                            <small>Prazo: 5 a 10 dias úteis</small>
+                        </div>
+                        <span class="shipping-price" id="frete-pac">R$ 00,00</span>
+                    </label>
+                    <label class="shipping-option">
+                        <input type="radio" name="frete" value="sedex">
+                        <div class="shipping-info">
+                            <strong>SEDEX</strong>
+                            <small>Prazo: 1 a 3 dias úteis</small>
+                        </div>
+                        <span class="shipping-price" id="frete-sedex">R$ 00,00</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Passo 3 -->
+            <div class="checkout-step">
+                <div class="step-head">
+                    <div class="step-num">3</div>
+                    <div>
+                        <h2>Pagamento</h2>
+                        <p>Como você prefere pagar?</p>
+                    </div>
+                </div>
+                <div class="payment-methods">
+                    <label class="payment-method">
+                        <input type="radio" name="pagamento" value="pix" checked>
+                        <div>
+                            <strong>Pix</strong>
+                            <small>Aprovação imediata</small>
+                        </div>
+                    </label>
+                    <label class="payment-method">
+                        <input type="radio" name="pagamento" value="cartao">
+                        <div>
+                            <strong>Cartão</strong>
+                            <small>Crédito em até 12x</small>
+                        </div>
+                    </label>
+                    <label class="payment-method">
+                        <input type="radio" name="pagamento" value="boleto">
+                        <div>
+                            <strong>Boleto</strong>
+                            <small>Vence em 3 dias</small>
+                        </div>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Botão Mobile (só aparece em telas pequenas) -->
+            <button type="submit" class="btn-finish-mobile">Finalizar Compra</button>
+        </form>
+
+        <!-- RESUMO DO PEDIDO (DIREITA) -->
+        <aside class="checkout-summary">
+            <div class="summary-content">
+                <span class="cart-summary-kicker">Resumo do Pedido</span>
+                <h2 class="cart-summary-title">Sua <em>sacola.</em></h2>
+
+                <div class="summary-items" id="summaryItems">
+                    <!-- Os itens entram aqui via JS -->
+                </div>
+
+                <div class="summary-totals">
+                    <div class="summary-row">
+                        <span>Subtotal</span>
+                        <strong id="resumo-subtotal">R$ 0,00</strong>
+                    </div>
+                    <div class="summary-row">
+                        <span>Frete</span>
+                        <strong id="resumo-frete">R$ 0,00</strong>
+                    </div>
+                    <div class="summary-row summary-row--discount" id="resumo-desconto-row" style="display: none;">
+                        <span>Desconto</span>
+                        <strong id="resumo-desconto">- R$ 0,00</strong>
+                    </div>
+                    <div class="summary-divider"></div>
+                    <div class="summary-row summary-row--total">
+                        <span>Total</span>
+                        <strong id="resumo-total">R$ 0,00</strong>
+                    </div>
+                </div>
+
+                <button type="submit" form="checkoutForm" class="checkout-button" id="btnFinalizar">
+                    Pagar Agora
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </button>
+                <p class="summary-info">Ambiente 100% seguro. Seus dados estão protegidos.</p>
+            </div>
+        </aside>
     </div>
 </main>
 
-<!-- ... (modais PIX e sucesso) ... -->
+<!-- MODAL PIX -->
+<div class="pix-modal" id="pixModal" role="dialog" aria-modal="true" aria-label="Pagamento via PIX">
+    <div class="pix-backdrop" onclick="fecharPix()"></div>
+    <div class="pix-dialog">
+        <button class="pix-close" onclick="fecharPix()" aria-label="Fechar">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 6l12 12M18 6L6 18"/></svg>
+        </button>
+        <div class="pix-head">
+            <span class="pix-kicker"><span class="pix-dot"></span>AGUARDANDO PAGAMENTO</span>
+            <h2>Pague com <em>PIX.</em></h2>
+        </div>
+        <div class="pix-body">
+            <div class="pix-qr-wrap">
+                <canvas id="pixQrCode"></canvas>
+                <div class="pix-qr-logo"><span>S</span></div>
+            </div>
+            <div class="pix-info">
+                <div class="pix-valor-row">
+                    <span>Valor total</span>
+                    <strong id="pixValor">R$ 0,00</strong>
+                </div>
+                <div class="pix-countdown-row">
+                    <span>Expira em</span>
+                    <strong id="pixTimer">15:00</strong>
+                </div>
+                <p class="pix-aviso">Abra o app do seu banco e escaneie o código acima.</p>
+            </div>
+        </div>
+        <div class="pix-codigo-wrap">
+            <label>Código PIX Copia e Cola</label>
+            <code id="pixCodigo">carregando...</code>
+            <button class="pix-copiar" onclick="copiarPix()">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                Copiar código
+            </button>
+        </div>
+        <div class="pix-foot">
+            <button class="pix-confirmar" onclick="confirmarPix()">Já fiz o pagamento</button>
+            <button class="pix-cancelar" onclick="fecharPix()">Cancelar</button>
+        </div>
+    </div>
+</div>
+
+<!-- MODAL DE SUCESSO -->
+<div class="checkout-success" id="checkoutSuccess">
+    <div class="success-box">
+        <div class="success-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
+        </div>
+        <h2>Pedido <em>Confirmado!</em></h2>
+        <p>Obrigado pela compra. Enviamos os detalhes para o seu e-mail.</p>
+        <div class="success-code">
+            <span>Número do pedido</span>
+            <strong id="pedidoNumero">#0000</strong>
+        </div>
+        <a href="index.html" class="btn-primary">Voltar para a loja</a>
+    </div>
+</div>
 
 <footer class="footer">
     <div class="footer-logo">Seyn<span>clothing</span></div>
@@ -119,7 +329,6 @@
         </svg>
         <span>seyn.clothing@gmail.com</span>
     </a>
-
     <a href="https://wa.me/5511993890188" target="_blank" rel="noopener" class="footer-contato-link">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
             <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
@@ -127,13 +336,11 @@
         <span>(11) 99389-0188</span>
     </a>
 </div>
-
 <p>© 2026 Seyn clothing — Todos os direitos reservados.</p>
 </footer>
 
 <div class="toast-stack" id="toastStack"></div>
 
-<!-- Seus scripts originais aqui (firebase, pix, email, etc.) -->
 <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth-compat.js"></script>
@@ -146,7 +353,5 @@
 <script src="js/cliente.js"></script>
 <script src="js/pix.js"></script>
 <script src="js/email.js"></script>
-<!-- (Cole o script inline do CEP e checkout aqui, se preferir) -->
-
 </body>
 </html>
