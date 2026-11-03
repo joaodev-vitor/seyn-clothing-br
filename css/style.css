@@ -11951,12 +11951,12 @@ body.tema-feminino .hero-buttons .btn-primary {
     background: #c8618c !important; /* Rosa no feminino */
 }
 /* =========================================================
-   🌸 CARDS DE MARCAS NO TEMA FEMININO (Rosa)
+   🌸 FORÇAR CORES ROSA NOS CARDS (FEMININO - OVERRIDE)
    ========================================================= */
 
-/* Tema Feminino - Modo Escuro (Vinho/Rosa) */
-body.tema-feminino .marca-card,
-body.tema-feminino .category-card {
+/* 1. Fundo do Card no Feminino Escuro */
+html body.tema-feminino .marca-card,
+html body.tema-feminino .category-card {
     background: 
         linear-gradient(180deg, transparent 42%, rgba(26, 14, 20, .95) 100%),
         radial-gradient(650px 550px at 50% 20%, rgba(200, 97, 140, .35), transparent 65%),
@@ -11964,9 +11964,9 @@ body.tema-feminino .category-card {
     border-color: rgba(200, 97, 140, 0.3) !important;
 }
 
-/* Tema Feminino - Modo Claro (Rosa Bebê) */
-[data-tema="claro"] body.tema-feminino .marca-card,
-[data-tema="claro"] body.tema-feminino .category-card {
+/* 2. Fundo do Card no Feminino Claro */
+html[data-tema="claro"] body.tema-feminino .marca-card,
+html[data-tema="claro"] body.tema-feminino .category-card {
     background: 
         linear-gradient(180deg, transparent 42%, rgba(255, 255, 255, .96) 100%),
         radial-gradient(600px 550px at 22% 28%, rgba(200, 97, 140, .2), transparent 65%),
@@ -11974,29 +11974,24 @@ body.tema-feminino .category-card {
     border-color: rgba(200, 97, 140, 0.2) !important;
 }
 
-/* Cor dos textos dentro do card (Número "01" e "Ver Produtos") */
-body.tema-feminino .marca-card-content span,
-body.tema-feminino .marca-card-content strong,
-body.tema-feminino .category-content > span,
-body.tema-feminino .category-content strong {
+/* 3. Cores dos textos (Número "01" e "Ver Produtos") */
+html body.tema-feminino .marca-card-content span,
+html body.tema-feminino .marca-card-content strong,
+html body.tema-feminino .category-content > span,
+html body.tema-feminino .category-content strong {
     color: #e89bb5 !important;
-}
-
-/* Linha embaixo do "Ver Produtos" */
-body.tema-feminino .marca-card-content strong,
-body.tema-feminino .category-content strong {
     border-bottom-color: rgba(200, 97, 140, 0.5) !important;
 }
 
-/* Hover do botão "Ver Produtos" no feminino */
-body.tema-feminino .marca-card:hover .marca-card-content strong,
-body.tema-feminino .category-card:hover .category-content strong {
-    color: #ffffff !important;
+/* 4. Hover do botão no Feminino */
+html body.tema-feminino .marca-card:hover .marca-card-content strong,
+html body.tema-feminino .category-card:hover .category-content strong {
+    color: #c8618c !important;
     border-bottom-color: #c8618c !important;
 }
 
-[data-tema="claro"] body.tema-feminino .marca-card:hover .marca-card-content strong,
-[data-tema="claro"] body.tema-feminino .category-card:hover .category-content strong {
+html[data-tema="claro"] body.tema-feminino .marca-card:hover .marca-card-content strong,
+html[data-tema="claro"] body.tema-feminino .category-card:hover .category-content strong {
     color: #c8618c !important;
     border-bottom-color: #c8618c !important;
 }
