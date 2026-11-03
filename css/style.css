@@ -11995,16 +11995,17 @@ html[data-tema="claro"] body.tema-feminino .category-card:hover .category-conten
     color: #c8618c !important;
     border-bottom-color: #c8618c !important;
 }
+
 /* =========================================================
-   🎨 CORREÇÃO DO DESTAQUE DO HERO NA PÁGINA INICIAL
+   🎨 CORREÇÃO DO DESTAQUE DO HERO (CINZA)
    ========================================================= */
 
-/* 1. No modo CLARO: O texto fica PRETO */
+/* 1. No modo CLARO: O texto fica CINZA */
 [data-tema="claro"] body:not(.tema-feminino):not(.tema-masculino) .hero h1 span {
-    color: #000000 !important;
+    color: #898989 !important;
 }
 
-/* 2. No modo ESCURO: O texto fica BRANCO */
+/* 2. No modo ESCURO: O texto também fica CINZA */
 body:not(.tema-feminino):not(.tema-masculino) .hero h1 span {
-    color: var(--paper-0) !important;
+    color: #898989 !important;
 }
