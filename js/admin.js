@@ -1765,33 +1765,55 @@ async function salvarConfiguracoes() {
 /* =========================================================
    MODAL PRODUTO
    ========================================================= */
-function abrirModalProduto(produto) {
+async function salvarProduto(e) {
+    e.preventDefault();
 
-    var modal = document.getElementById('modalProduto');
-    var form = document.getElementById('formProduto');
-    if (!modal || !form) return;
+    var tamanhosStr = getValue('fTamanhos');
+    var tamanhos = tamanhosStr
+        ? tamanhosStr.split(',').map(function (t) { return t.trim(); }).filter(function (t) { return t; })
+        : ['Único'];
 
-    form.reset();
-    adminState.editingId = null;
+    var precoAntigo = parseFloat(getValue('fPrecoAntigo'));
 
-    setText('modalProdutoTitle', produto ? 'Editar produto' : 'Novo produto');
+    var dados = {
+        nome: getValue('fNome'),
+        categoria: getValue('fCategoria'),
+        genero: getValue('fGenero') || 'unissex',
+        badge: getValue('fBadge') || null,
+        descricao: getValue('fDescricao'),
+        preco: parseFloat(getValue('fPreco')),
+        precoAntigo: isNaN(precoAntigo) ? null : precoAntigo,
+        imagem: getValue('fImagem'),
+        imagemAlt: getValue('fImagemAlt') || '',
+        tamanhos: tamanhos,
+        estoque: true
+    };
 
-    if (produto) {
-        adminState.editingId = produto.id;
-        setValue('produtoId', produto.id);
-        setValue('fNome', produto.nome);
-        setValue('fCategoria', produto.categoria);
-        setValue('fGenero', produto.genero || 'unissex'); /* ✅ GÊNERO CARREGADO AQUI */
-        setValue('fBadge', produto.badge || '');
-        setValue('fDescricao', produto.descricao);
-        setValue('fPreco', produto.preco);
-        setValue('fPrecoAntigo', produto.precoAntigo || '');
-        setValue('fImagem', produto.imagem);
-        setValue('fImagemAlt', produto.imagemAlt || '');
-        setValue('fTamanhos', (produto.tamanhos || []).join(', '));
+    if (!dados.nome || !dados.categoria || !dados.preco || !dados.imagem) {
+        toast('Preencha os campos obrigatórios', 'error');
+        return;
     }
 
-    modal.classList.add('open');
+    try {
+        // 🔥 AQUI ESTÁ O SEGREDO: Se tem ID, ele EDITA. Se não, ele CRIA.
+        if (adminState.editingId) {
+            dados.id = adminState.editingId;
+        }
+        
+        await salvarProdutoFirebase(dados);
+        await carregarCatalogo(); // Recarrega a lista do banco
+        fecharModalProduto();
+        
+        // Atualiza as tabelas na tela
+        renderizarProdutosTabela();
+        renderizarEstoque();
+        renderizarDashboard();
+        
+        toast(adminState.editingId ? 'Produto atualizado!' : 'Produto salvo!', 'success');
+    } catch (e) {
+        console.error(e);
+        toast('Erro ao salvar', 'error');
+    }
 }
 
 function fecharModalProduto() {
