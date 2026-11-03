@@ -12009,3 +12009,21 @@ html[data-tema="claro"] body.tema-feminino .category-card:hover .category-conten
 body:not(.tema-feminino):not(.tema-masculino) .hero h1 span {
     color: #898989 !important;
 }
+
+/* =========================================================
+   🌸 FORÇAR TÍTULOS DE SEÇÃO NO ROSA (TEMA FEMININO)
+   ========================================================= */
+
+/* Modo Escuro (Vinho/Rosa) */
+body.tema-feminino .section-title h2 span,
+body.tema-feminino .section-head h2 span,
+body.tema-feminino .related-head h2 span {
+    color: #e89bb5 !important;
+}
+
+/* Modo Claro (Rosa Escuro) */
+[data-tema="claro"] body.tema-feminino .section-title h2 span,
+[data-tema="claro"] body.tema-feminino .section-head h2 span,
+[data-tema="claro"] body.tema-feminino .related-head h2 span {
+    color: #c8618c !important;
+}
