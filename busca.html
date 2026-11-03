@@ -83,7 +83,6 @@
             <h3>Nada por aqui — <em>ainda.</em></h3>
             <p id="noProductsText">Não encontramos peças com esse termo. Tente outra palavra ou explore os universos.</p>
             <div class="cart-empty-actions" style="justify-content:center;margin-top:20px;">
-                <!-- Botão único de voltar em vez das categorias antigas -->
                 <a href="index.html" class="btn-primary">Voltar para a loja</a>
             </div>
         </div>
@@ -130,61 +129,21 @@
 <script src="js/whatsapp-float.js"></script>
 
 <script>
-document.addEventListener('DOMContentLoaded', () => {
-    const params = new URLSearchParams(window.location.search);
-    const termo = (params.get('q') || '').trim();
-
-    const title = document.getElementById('searchTitle');
-    const subtitle = document.getElementById('searchSubtitle');
-    const grid = document.getElementById('products-grid');
-    const empty = document.getElementById('no-products');
-    const emptyText = document.getElementById('noProductsText');
-
-    if (!termo) {
-        title.innerHTML = 'O que você <em>procura?</em>';
-        subtitle.textContent = 'Digite algo para começar a busca.';
-        grid.innerHTML = '';
-        grid.style.display = 'none';
-        empty.style.display = 'flex';
-        emptyText.textContent = 'Digite um termo na lupa do topo para encontrar peças.';
-        return;
-    }
-
-    const todos = obterProdutos();
-    const resultados = todos.filter(p => {
-        const busca = termo.toLowerCase();
-        return (
-            p.nome.toLowerCase().includes(busca) ||
-            p.descricao.toLowerCase().includes(busca) ||
-            p.categoria.toLowerCase().includes(busca) ||
-            (p.tamanhos || []).some(t => t.toLowerCase().includes(busca))
-        );
-    });
-
-    const count = resultados.length;
-    title.innerHTML = `Resultados para <em>"${escapeHtml(termo)}"</em>`;
-    subtitle.textContent = count === 0 ? 'Nenhuma peça encontrada.' : count === 1 ? '1 peça encontrada.' : `${count} peças encontradas.`;
-
-    if (count === 0) {
-        grid.innerHTML = '';
-        grid.style.display = 'none';
-        empty.style.display = 'flex';
-        emptyText.textContent = `Não encontramos nada com "${termo}". Tente outra palavra ou explore os universos.`;
-    } else {
-        grid.style.display = 'grid';
-        empty.style.display = 'none';
-        if (typeof renderizarProdutos === 'function') renderizarProdutos(resultados);
-    }
-});
-
-function escapeHtml(str) {
-    return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#039;');
+// Função que limpa o texto: tira acento, deixa minúsculo, tira espaço sobrando
+function normalizarTexto(str) {
+    if (!str) return '';
+    return String(str)
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '') // Remove acentos
+        .toLowerCase()
+        .replace(/\s+/g, ' ') // Tira espaços duplos
+        .trim(); // Tira espaço do começo e fim
 }
-</script>
-<script>
+
 function executarBusca() {
     const params = new URLSearchParams(window.location.search);
-    const termo = (params.get('q') || '').trim();
+    const termoBruto = (params.get('q') || '').trim();
+    const termo = normalizarTexto(termoBruto);
 
     const title = document.getElementById('searchTitle');
     const subtitle = document.getElementById('searchSubtitle');
@@ -202,29 +161,40 @@ function executarBusca() {
         return;
     }
 
-    // Pega os produtos (agora já carregados do Firebase)
     const todos = obterProdutos();
-    
-    // Filtra pelo nome, descrição, marca (categoria) ou tamanho
+
+    // Se o catálogo estiver vazio, significa que o Firebase ainda não terminou de baixar.
+    if (!todos || todos.length === 0) {
+        title.innerHTML = 'Buscando...';
+        subtitle.textContent = 'Carregando o catálogo, aguarde...';
+        return;
+    }
+
+    // Filtra os produtos
     const resultados = todos.filter(p => {
-        const busca = termo.toLowerCase();
+        const nome = normalizarTexto(p.nome);
+        const desc = normalizarTexto(p.descricao);
+        const cat = normalizarTexto(p.categoria);
+        const tamanhos = (p.tamanhos || []).map(normalizarTexto).join(' ');
+        
+        // Verifica se o termo buscado está em algum desses campos
         return (
-            p.nome.toLowerCase().includes(busca) ||
-            p.descricao.toLowerCase().includes(busca) ||
-            p.categoria.toLowerCase().includes(busca) ||
-            (p.tamanhos || []).some(t => t.toLowerCase().includes(busca))
+            nome.includes(termo) ||
+            desc.includes(termo) ||
+            cat.includes(termo) ||
+            tamanhos.includes(termo)
         );
     });
 
     const count = resultados.length;
-    title.innerHTML = `Resultados para <em>"${escapeHtml(termo)}"</em>`;
+    title.innerHTML = `Resultados para <em>"${escapeHtml(termoBruto)}"</em>`;
     subtitle.textContent = count === 0 ? 'Nenhuma peça encontrada.' : count === 1 ? '1 peça encontrada.' : `${count} peças encontradas.`;
 
     if (count === 0) {
         grid.innerHTML = '';
         grid.style.display = 'none';
         empty.style.display = 'flex';
-        emptyText.textContent = `Não encontramos nada com "${termo}". Tente outra palavra ou explore os universos.`;
+        emptyText.textContent = `Não encontramos nada com "${termoBruto}". Tente outra palavra ou explore os universos.`;
     } else {
         grid.style.display = 'grid';
         empty.style.display = 'none';
@@ -236,16 +206,9 @@ function escapeHtml(str) {
     return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#039;');
 }
 
-// 1. Tenta rodar assim que a página abre
 document.addEventListener('DOMContentLoaded', executarBusca);
-
-// 2. Roda DE NOVO quando o Firebase avisar que terminou de carregar os produtos
 window.addEventListener('firebase-ready', executarBusca);
-
-// 3. Se o Firebase já estava pronto antes do script rodar
-if (window.__firebasePronto) {
-    executarBusca();
-}
+if (window.__firebasePronto) { executarBusca(); }
 </script>
 </body>
 </html>
